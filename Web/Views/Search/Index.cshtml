@@ -1,0 +1,7 @@
+@model SearchViewModel
+
+@{
+	ViewBag.MetaTitle = @Html.StringResource("page.title.search");
+}
+
+@Html.Raw(Model.PageContent)

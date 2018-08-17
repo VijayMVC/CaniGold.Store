@@ -1,0 +1,927 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.eway.com.au/gateway/rebill/manageRebill" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.eway.com.au/gateway/rebill/manageRebill" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.eway.com.au/gateway/rebill/manageRebill">
+      <s:element name="CreateRebillCustomer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="customerTitle" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerFirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerLastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerSuburb" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerState" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerCompany" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerPostCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerCountry" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerEmail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerFax" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerPhone1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerPhone2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerRef" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerJobDesc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerComments" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerURL" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateRebillCustomerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateRebillCustomerResult" type="tns:CustomerDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CustomerDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorSeverity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDetails" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RebillCustomerID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerRef" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerTitle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerFirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerLastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerCompany" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerJobDesc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerEmail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerSuburb" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerState" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerPostCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerCountry" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerPhone1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerPhone2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerFax" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerComments" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="eWAYHeader" type="tns:eWAYHeader" />
+      <s:complexType name="eWAYHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="eWAYCustomerID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="QueryRebillCustomer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RebillCustomerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryRebillCustomerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryRebillCustomerResult" type="tns:CustomerDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateRebillCustomer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RebillCustomerID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerTitle" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerFirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerLastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerSuburb" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerState" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerCompany" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerPostCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerCountry" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerEmail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerFax" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerPhone1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerPhone2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerRef" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerJobDesc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerComments" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerURL" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateRebillCustomerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateRebillCustomerResult" type="tns:CustomerDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteRebillCustomer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RebillCustomerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteRebillCustomerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteRebillCustomerResult" type="tns:CustomerDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateRebillEvent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RebillCustomerID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillInvRef" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillInvDes" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillCCName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillCCNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillCCExpMonth" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillCCExpYear" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillInitAmt" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillInitDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillRecurAmt" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillStartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillInterval" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillIntervalType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillEndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateRebillEventResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateRebillEventResult" type="tns:RebillEventDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RebillEventDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorSeverity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDetails" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RebillCustomerID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RebillID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RebillInvRef" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RebillInvDesc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RebillCCName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RebillCCNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RebillCCExpMonth" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RebillCCExpYear" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RebillInitAmt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RebillInitDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RebillRecurAmt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RebillStartDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RebillInterval" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RebillIntervalType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RebillEndDate" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateRebillEvent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RebillCustomerID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillInvRef" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillInvDes" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillCCName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillCCNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillCCExpMonth" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillCCExpYear" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillInitAmt" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillInitDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillRecurAmt" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillStartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillInterval" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillIntervalType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillEndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateRebillEventResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateRebillEventResult" type="tns:RebillEventDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryRebillEvent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RebillCustomerID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryRebillEventResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryRebillEventResult" type="tns:RebillEventDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteRebillEvent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RebillCustomerID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteRebillEventResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteRebillEventResult" type="tns:RebillEventDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryNextTransaction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RebillCustomerID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryNextTransactionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryNextTransactionResult" type="tns:rebillTransaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="rebillTransaction">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="CardHolderName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExpiryDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Amount" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:TransactionStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:TransactionType" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionError" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TransactionStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Future" />
+          <s:enumeration value="Successful" />
+          <s:enumeration value="Failed" />
+          <s:enumeration value="Pending" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="TransactionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Initial" />
+          <s:enumeration value="Recurring" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="QueryTransactions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RebillCustomerID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RebillID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startDate" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endDate" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="status" nillable="true" type="tns:TransactionStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryTransactionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryTransactionsResult" type="tns:ArrayOfRebillTransaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfRebillTransaction">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="rebillTransaction" nillable="true" type="tns:rebillTransaction" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CustomerDetails" nillable="true" type="tns:CustomerDetails" />
+      <s:element name="RebillEventDetails" nillable="true" type="tns:RebillEventDetails" />
+      <s:element name="rebillTransaction" nillable="true" type="tns:rebillTransaction" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateRebillCustomerSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateRebillCustomer" />
+  </wsdl:message>
+  <wsdl:message name="CreateRebillCustomerSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateRebillCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateRebillCustomereWAYHeader">
+    <wsdl:part name="eWAYHeader" element="tns:eWAYHeader" />
+  </wsdl:message>
+  <wsdl:message name="QueryRebillCustomerSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryRebillCustomer" />
+  </wsdl:message>
+  <wsdl:message name="QueryRebillCustomerSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryRebillCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryRebillCustomereWAYHeader">
+    <wsdl:part name="eWAYHeader" element="tns:eWAYHeader" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRebillCustomerSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateRebillCustomer" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRebillCustomerSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateRebillCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRebillCustomereWAYHeader">
+    <wsdl:part name="eWAYHeader" element="tns:eWAYHeader" />
+  </wsdl:message>
+  <wsdl:message name="DeleteRebillCustomerSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteRebillCustomer" />
+  </wsdl:message>
+  <wsdl:message name="DeleteRebillCustomerSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteRebillCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteRebillCustomereWAYHeader">
+    <wsdl:part name="eWAYHeader" element="tns:eWAYHeader" />
+  </wsdl:message>
+  <wsdl:message name="CreateRebillEventSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateRebillEvent" />
+  </wsdl:message>
+  <wsdl:message name="CreateRebillEventSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateRebillEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateRebillEventeWAYHeader">
+    <wsdl:part name="eWAYHeader" element="tns:eWAYHeader" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRebillEventSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateRebillEvent" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRebillEventSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateRebillEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRebillEventeWAYHeader">
+    <wsdl:part name="eWAYHeader" element="tns:eWAYHeader" />
+  </wsdl:message>
+  <wsdl:message name="QueryRebillEventSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryRebillEvent" />
+  </wsdl:message>
+  <wsdl:message name="QueryRebillEventSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryRebillEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryRebillEventeWAYHeader">
+    <wsdl:part name="eWAYHeader" element="tns:eWAYHeader" />
+  </wsdl:message>
+  <wsdl:message name="DeleteRebillEventSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteRebillEvent" />
+  </wsdl:message>
+  <wsdl:message name="DeleteRebillEventSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteRebillEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteRebillEventeWAYHeader">
+    <wsdl:part name="eWAYHeader" element="tns:eWAYHeader" />
+  </wsdl:message>
+  <wsdl:message name="QueryNextTransactionSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryNextTransaction" />
+  </wsdl:message>
+  <wsdl:message name="QueryNextTransactionSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryNextTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryNextTransactioneWAYHeader">
+    <wsdl:part name="eWAYHeader" element="tns:eWAYHeader" />
+  </wsdl:message>
+  <wsdl:message name="QueryTransactionsSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryTransactions" />
+  </wsdl:message>
+  <wsdl:message name="QueryTransactionsSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryTransactionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryTransactionseWAYHeader">
+    <wsdl:part name="eWAYHeader" element="tns:eWAYHeader" />
+  </wsdl:message>
+  <wsdl:message name="CreateRebillCustomerHttpPostIn">
+    <wsdl:part name="customerTitle" type="s:string" />
+    <wsdl:part name="customerFirstName" type="s:string" />
+    <wsdl:part name="customerLastName" type="s:string" />
+    <wsdl:part name="customerAddress" type="s:string" />
+    <wsdl:part name="customerSuburb" type="s:string" />
+    <wsdl:part name="customerState" type="s:string" />
+    <wsdl:part name="customerCompany" type="s:string" />
+    <wsdl:part name="customerPostCode" type="s:string" />
+    <wsdl:part name="customerCountry" type="s:string" />
+    <wsdl:part name="customerEmail" type="s:string" />
+    <wsdl:part name="customerFax" type="s:string" />
+    <wsdl:part name="customerPhone1" type="s:string" />
+    <wsdl:part name="customerPhone2" type="s:string" />
+    <wsdl:part name="customerRef" type="s:string" />
+    <wsdl:part name="customerJobDesc" type="s:string" />
+    <wsdl:part name="customerComments" type="s:string" />
+    <wsdl:part name="customerURL" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateRebillCustomerHttpPostOut">
+    <wsdl:part name="Body" element="tns:CustomerDetails" />
+  </wsdl:message>
+  <wsdl:message name="QueryRebillCustomerHttpPostIn">
+    <wsdl:part name="RebillCustomerID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="QueryRebillCustomerHttpPostOut">
+    <wsdl:part name="Body" element="tns:CustomerDetails" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRebillCustomerHttpPostIn">
+    <wsdl:part name="RebillCustomerID" type="s:string" />
+    <wsdl:part name="customerTitle" type="s:string" />
+    <wsdl:part name="customerFirstName" type="s:string" />
+    <wsdl:part name="customerLastName" type="s:string" />
+    <wsdl:part name="customerAddress" type="s:string" />
+    <wsdl:part name="customerSuburb" type="s:string" />
+    <wsdl:part name="customerState" type="s:string" />
+    <wsdl:part name="customerCompany" type="s:string" />
+    <wsdl:part name="customerPostCode" type="s:string" />
+    <wsdl:part name="customerCountry" type="s:string" />
+    <wsdl:part name="customerEmail" type="s:string" />
+    <wsdl:part name="customerFax" type="s:string" />
+    <wsdl:part name="customerPhone1" type="s:string" />
+    <wsdl:part name="customerPhone2" type="s:string" />
+    <wsdl:part name="customerRef" type="s:string" />
+    <wsdl:part name="customerJobDesc" type="s:string" />
+    <wsdl:part name="customerComments" type="s:string" />
+    <wsdl:part name="customerURL" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRebillCustomerHttpPostOut">
+    <wsdl:part name="Body" element="tns:CustomerDetails" />
+  </wsdl:message>
+  <wsdl:message name="DeleteRebillCustomerHttpPostIn">
+    <wsdl:part name="RebillCustomerID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteRebillCustomerHttpPostOut">
+    <wsdl:part name="Body" element="tns:CustomerDetails" />
+  </wsdl:message>
+  <wsdl:message name="CreateRebillEventHttpPostIn">
+    <wsdl:part name="RebillCustomerID" type="s:string" />
+    <wsdl:part name="RebillInvRef" type="s:string" />
+    <wsdl:part name="RebillInvDes" type="s:string" />
+    <wsdl:part name="RebillCCName" type="s:string" />
+    <wsdl:part name="RebillCCNumber" type="s:string" />
+    <wsdl:part name="RebillCCExpMonth" type="s:string" />
+    <wsdl:part name="RebillCCExpYear" type="s:string" />
+    <wsdl:part name="RebillInitAmt" type="s:string" />
+    <wsdl:part name="RebillInitDate" type="s:string" />
+    <wsdl:part name="RebillRecurAmt" type="s:string" />
+    <wsdl:part name="RebillStartDate" type="s:string" />
+    <wsdl:part name="RebillInterval" type="s:string" />
+    <wsdl:part name="RebillIntervalType" type="s:string" />
+    <wsdl:part name="RebillEndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateRebillEventHttpPostOut">
+    <wsdl:part name="Body" element="tns:RebillEventDetails" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRebillEventHttpPostIn">
+    <wsdl:part name="RebillCustomerID" type="s:string" />
+    <wsdl:part name="RebillID" type="s:string" />
+    <wsdl:part name="RebillInvRef" type="s:string" />
+    <wsdl:part name="RebillInvDes" type="s:string" />
+    <wsdl:part name="RebillCCName" type="s:string" />
+    <wsdl:part name="RebillCCNumber" type="s:string" />
+    <wsdl:part name="RebillCCExpMonth" type="s:string" />
+    <wsdl:part name="RebillCCExpYear" type="s:string" />
+    <wsdl:part name="RebillInitAmt" type="s:string" />
+    <wsdl:part name="RebillInitDate" type="s:string" />
+    <wsdl:part name="RebillRecurAmt" type="s:string" />
+    <wsdl:part name="RebillStartDate" type="s:string" />
+    <wsdl:part name="RebillInterval" type="s:string" />
+    <wsdl:part name="RebillIntervalType" type="s:string" />
+    <wsdl:part name="RebillEndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRebillEventHttpPostOut">
+    <wsdl:part name="Body" element="tns:RebillEventDetails" />
+  </wsdl:message>
+  <wsdl:message name="QueryRebillEventHttpPostIn">
+    <wsdl:part name="RebillCustomerID" type="s:string" />
+    <wsdl:part name="RebillID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="QueryRebillEventHttpPostOut">
+    <wsdl:part name="Body" element="tns:RebillEventDetails" />
+  </wsdl:message>
+  <wsdl:message name="DeleteRebillEventHttpPostIn">
+    <wsdl:part name="RebillCustomerID" type="s:string" />
+    <wsdl:part name="RebillID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteRebillEventHttpPostOut">
+    <wsdl:part name="Body" element="tns:RebillEventDetails" />
+  </wsdl:message>
+  <wsdl:message name="QueryNextTransactionHttpPostIn">
+    <wsdl:part name="RebillCustomerID" type="s:string" />
+    <wsdl:part name="RebillID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="QueryNextTransactionHttpPostOut">
+    <wsdl:part name="Body" element="tns:rebillTransaction" />
+  </wsdl:message>
+  <wsdl:portType name="manageRebillSoap">
+    <wsdl:operation name="CreateRebillCustomer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create rebill customer.</wsdl:documentation>
+      <wsdl:input message="tns:CreateRebillCustomerSoapIn" />
+      <wsdl:output message="tns:CreateRebillCustomerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryRebillCustomer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Query rebill customer.</wsdl:documentation>
+      <wsdl:input message="tns:QueryRebillCustomerSoapIn" />
+      <wsdl:output message="tns:QueryRebillCustomerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRebillCustomer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update rebill customer.</wsdl:documentation>
+      <wsdl:input message="tns:UpdateRebillCustomerSoapIn" />
+      <wsdl:output message="tns:UpdateRebillCustomerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRebillCustomer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Delete rebill customer.</wsdl:documentation>
+      <wsdl:input message="tns:DeleteRebillCustomerSoapIn" />
+      <wsdl:output message="tns:DeleteRebillCustomerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateRebillEvent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create new rebill event.</wsdl:documentation>
+      <wsdl:input message="tns:CreateRebillEventSoapIn" />
+      <wsdl:output message="tns:CreateRebillEventSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRebillEvent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update existing rebill event.</wsdl:documentation>
+      <wsdl:input message="tns:UpdateRebillEventSoapIn" />
+      <wsdl:output message="tns:UpdateRebillEventSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryRebillEvent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get existing rebill event.</wsdl:documentation>
+      <wsdl:input message="tns:QueryRebillEventSoapIn" />
+      <wsdl:output message="tns:QueryRebillEventSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRebillEvent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Delete existing rebill event.</wsdl:documentation>
+      <wsdl:input message="tns:DeleteRebillEventSoapIn" />
+      <wsdl:output message="tns:DeleteRebillEventSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryNextTransaction">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Query next transaction details for specified rebill event.</wsdl:documentation>
+      <wsdl:input message="tns:QueryNextTransactionSoapIn" />
+      <wsdl:output message="tns:QueryNextTransactionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryTransactions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Query transaction details for specified rebill event. StartDate, EndDate and Status are optional values.</wsdl:documentation>
+      <wsdl:input message="tns:QueryTransactionsSoapIn" />
+      <wsdl:output message="tns:QueryTransactionsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="manageRebillHttpPost">
+    <wsdl:operation name="CreateRebillCustomer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create rebill customer.</wsdl:documentation>
+      <wsdl:input message="tns:CreateRebillCustomerHttpPostIn" />
+      <wsdl:output message="tns:CreateRebillCustomerHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryRebillCustomer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Query rebill customer.</wsdl:documentation>
+      <wsdl:input message="tns:QueryRebillCustomerHttpPostIn" />
+      <wsdl:output message="tns:QueryRebillCustomerHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRebillCustomer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update rebill customer.</wsdl:documentation>
+      <wsdl:input message="tns:UpdateRebillCustomerHttpPostIn" />
+      <wsdl:output message="tns:UpdateRebillCustomerHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRebillCustomer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Delete rebill customer.</wsdl:documentation>
+      <wsdl:input message="tns:DeleteRebillCustomerHttpPostIn" />
+      <wsdl:output message="tns:DeleteRebillCustomerHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateRebillEvent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create new rebill event.</wsdl:documentation>
+      <wsdl:input message="tns:CreateRebillEventHttpPostIn" />
+      <wsdl:output message="tns:CreateRebillEventHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRebillEvent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update existing rebill event.</wsdl:documentation>
+      <wsdl:input message="tns:UpdateRebillEventHttpPostIn" />
+      <wsdl:output message="tns:UpdateRebillEventHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryRebillEvent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get existing rebill event.</wsdl:documentation>
+      <wsdl:input message="tns:QueryRebillEventHttpPostIn" />
+      <wsdl:output message="tns:QueryRebillEventHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRebillEvent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Delete existing rebill event.</wsdl:documentation>
+      <wsdl:input message="tns:DeleteRebillEventHttpPostIn" />
+      <wsdl:output message="tns:DeleteRebillEventHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryNextTransaction">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Query next transaction details for specified rebill event.</wsdl:documentation>
+      <wsdl:input message="tns:QueryNextTransactionHttpPostIn" />
+      <wsdl:output message="tns:QueryNextTransactionHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="manageRebillSoap" type="tns:manageRebillSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateRebillCustomer">
+      <soap:operation soapAction="http://www.eway.com.au/gateway/rebill/manageRebill/CreateRebillCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateRebillCustomereWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateRebillCustomereWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryRebillCustomer">
+      <soap:operation soapAction="http://www.eway.com.au/gateway/rebill/manageRebill/QueryRebillCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:QueryRebillCustomereWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:QueryRebillCustomereWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRebillCustomer">
+      <soap:operation soapAction="http://www.eway.com.au/gateway/rebill/manageRebill/UpdateRebillCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateRebillCustomereWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateRebillCustomereWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRebillCustomer">
+      <soap:operation soapAction="http://www.eway.com.au/gateway/rebill/manageRebill/DeleteRebillCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DeleteRebillCustomereWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:DeleteRebillCustomereWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateRebillEvent">
+      <soap:operation soapAction="http://www.eway.com.au/gateway/rebill/manageRebill/CreateRebillEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateRebillEventeWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateRebillEventeWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRebillEvent">
+      <soap:operation soapAction="http://www.eway.com.au/gateway/rebill/manageRebill/UpdateRebillEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateRebillEventeWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateRebillEventeWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryRebillEvent">
+      <soap:operation soapAction="http://www.eway.com.au/gateway/rebill/manageRebill/QueryRebillEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:QueryRebillEventeWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:QueryRebillEventeWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRebillEvent">
+      <soap:operation soapAction="http://www.eway.com.au/gateway/rebill/manageRebill/DeleteRebillEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DeleteRebillEventeWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:DeleteRebillEventeWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryNextTransaction">
+      <soap:operation soapAction="http://www.eway.com.au/gateway/rebill/manageRebill/QueryNextTransaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:QueryNextTransactioneWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryTransactions">
+      <soap:operation soapAction="http://www.eway.com.au/gateway/rebill/manageRebill/QueryTransactions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:QueryTransactionseWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="manageRebillSoap12" type="tns:manageRebillSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateRebillCustomer">
+      <soap12:operation soapAction="http://www.eway.com.au/gateway/rebill/manageRebill/CreateRebillCustomer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateRebillCustomereWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateRebillCustomereWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryRebillCustomer">
+      <soap12:operation soapAction="http://www.eway.com.au/gateway/rebill/manageRebill/QueryRebillCustomer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:QueryRebillCustomereWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:QueryRebillCustomereWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRebillCustomer">
+      <soap12:operation soapAction="http://www.eway.com.au/gateway/rebill/manageRebill/UpdateRebillCustomer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateRebillCustomereWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateRebillCustomereWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRebillCustomer">
+      <soap12:operation soapAction="http://www.eway.com.au/gateway/rebill/manageRebill/DeleteRebillCustomer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DeleteRebillCustomereWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DeleteRebillCustomereWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateRebillEvent">
+      <soap12:operation soapAction="http://www.eway.com.au/gateway/rebill/manageRebill/CreateRebillEvent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateRebillEventeWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateRebillEventeWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRebillEvent">
+      <soap12:operation soapAction="http://www.eway.com.au/gateway/rebill/manageRebill/UpdateRebillEvent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateRebillEventeWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateRebillEventeWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryRebillEvent">
+      <soap12:operation soapAction="http://www.eway.com.au/gateway/rebill/manageRebill/QueryRebillEvent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:QueryRebillEventeWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:QueryRebillEventeWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRebillEvent">
+      <soap12:operation soapAction="http://www.eway.com.au/gateway/rebill/manageRebill/DeleteRebillEvent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DeleteRebillEventeWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DeleteRebillEventeWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryNextTransaction">
+      <soap12:operation soapAction="http://www.eway.com.au/gateway/rebill/manageRebill/QueryNextTransaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:QueryNextTransactioneWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryTransactions">
+      <soap12:operation soapAction="http://www.eway.com.au/gateway/rebill/manageRebill/QueryTransactions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:QueryTransactionseWAYHeader" part="eWAYHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="manageRebillHttpPost" type="tns:manageRebillHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="CreateRebillCustomer">
+      <http:operation location="/CreateRebillCustomer" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryRebillCustomer">
+      <http:operation location="/QueryRebillCustomer" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRebillCustomer">
+      <http:operation location="/UpdateRebillCustomer" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRebillCustomer">
+      <http:operation location="/DeleteRebillCustomer" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateRebillEvent">
+      <http:operation location="/CreateRebillEvent" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRebillEvent">
+      <http:operation location="/UpdateRebillEvent" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryRebillEvent">
+      <http:operation location="/QueryRebillEvent" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRebillEvent">
+      <http:operation location="/DeleteRebillEvent" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryNextTransaction">
+      <http:operation location="/QueryNextTransaction" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="manageRebill">
+    <wsdl:port name="manageRebillSoap" binding="tns:manageRebillSoap">
+      <soap:address location="https://www.eway.com.au/gateway/rebill/manageRebill.asmx" />
+    </wsdl:port>
+    <wsdl:port name="manageRebillSoap12" binding="tns:manageRebillSoap12">
+      <soap12:address location="https://www.eway.com.au/gateway/rebill/manageRebill.asmx" />
+    </wsdl:port>
+    <wsdl:port name="manageRebillHttpPost" binding="tns:manageRebillHttpPost">
+      <http:address location="https://www.eway.com.au/gateway/rebill/manageRebill.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

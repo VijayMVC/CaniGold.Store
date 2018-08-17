@@ -1,0 +1,55 @@
+@model KitItemViewModel
+
+<div class="checkbox js-kit-control">
+	@Html.HiddenFor(
+		expression: model => model.Id,
+		htmlAttributes: new
+		{
+			@class = "js-kit-identifier"
+		})
+	@{
+		var htmlAttributes = HtmlHelper.AnonymousObjectToHtmlAttributes(ViewData["htmlAttributes"]);
+		htmlAttributes["class"] = "js-kit-checkbox";
+		htmlAttributes["aria_controls"] = "customizedPrice";
+		htmlAttributes["id"] = string.Format("kitgroup-checkbox-item-{0}", Model.Id);
+
+		@Html.CheckBoxFor(
+			expression: model => model.IsSelected,
+			htmlAttributes: htmlAttributes);
+	}
+	<label for="@string.Format("kitgroup-checkbox-item-{0}", Model.Id)" class="js-kit-name-display" data-kit-item-id="@Model.Id">
+		@Model.NameDisplay
+	</label>
+	@if(!string.IsNullOrEmpty(Model.ImageUrl)
+		|| !string.IsNullOrWhiteSpace(Model.Description)
+		|| !string.IsNullOrEmpty(Model.OutOfStockMessage))
+	{
+		<div class="kit-item-info clearfix">
+			@if(!string.IsNullOrEmpty(Model.ImageUrl))
+			{
+				<div class="kit-item-image-wrap">
+					<img src="@Model.ImageUrl"
+						 class="kit-item-image img-responsive" alt="" />
+				</div>
+			}
+			@if(!string.IsNullOrWhiteSpace(Model.Description)
+				|| !string.IsNullOrEmpty(Model.OutOfStockMessage))
+			{
+				<div class="kit-item-description" tabindex="0">
+					@if(!string.IsNullOrWhiteSpace(Model.Description))
+					{
+						<div class="kit-item-description">
+							@Html.Raw(Model.Description)
+						</div>
+					}
+					@if(!string.IsNullOrEmpty(Model.OutOfStockMessage))
+					{
+						<div class="stock-hint out-stock-hint kit-item-out-of-stock">
+							@Html.Raw(Model.OutOfStockMessage)
+						</div>
+					}
+				</div>
+			}
+		</div>
+	}
+</div>

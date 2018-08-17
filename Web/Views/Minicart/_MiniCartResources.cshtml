@@ -1,0 +1,45 @@
+@model MinicartResourcesViewModel
+
+@if(Model.MinicartEnabled || Model.MiniwishlistEnabled)
+{
+	<div class="minicart-loading-overlay js-minicart-loading-overlay off">
+		<div class="minicart-overlay"></div>
+		<div class="minicart-loading">
+			<div class="minicart-loading-message js-minicart-loading-message">@Html.StringResource("minicart.loading")</div>
+			<div class="loading-animation loading-style-dark"></div>
+		</div>
+	</div>
+
+	@Html.RegisterScriptBundle(
+		ScriptBundlePaths.SkinBundle,
+		ScriptPaths.Minicart,
+		new[]
+		{
+			ScriptPaths.JQuery.AdnsfAlias,
+			ScriptPaths.JQuery.Validate,
+		})
+
+	@Html.RegisterInlineScript(
+	@<script type="text/javascript">
+		adnsf$.minicart.initialize(
+		{
+			minicart_DeleteWaitMessage: @Html.JavascriptString(AppLogic.GetString("minicart.deletewaitmessage")),
+			miniwish_MoveSingleMessage: @Html.JavascriptString(AppLogic.GetString("miniwish.movesinglemessage")),
+			miniwish_MoveAllMessage: @Html.JavascriptString(AppLogic.GetString("miniwish.moveallmessage")),
+			minicart_UpdateFailureMessage: @Html.JavascriptString(AppLogic.GetString("minicart.updateerror")),
+			miniwish_UpdateFailureMessage: @Html.JavascriptString(AppLogic.GetString("miniwish.updateerror")),
+			minicart_CountLabel: @Html.JavascriptString(AppLogic.GetString("minicart.itemslabel")),
+			minicart_CountLabelSingular: @Html.JavascriptString(AppLogic.GetString("minicart.itemlabel")),
+			checkoutUrl: @Html.JavascriptString(Url.Action(ActionNames.Index, ControllerNames.Checkout)),
+			loginUrl: @Html.JavascriptString(Url.Action(ActionNames.SignIn, ControllerNames.Account))
+		});
+		adnsf$.minicart.cartEnabled = @Html.JavascriptBool(Model.MinicartEnabled);
+		adnsf$.minicart.wishEnabled = @Html.JavascriptBool(Model.MiniwishlistEnabled );
+		adnsf$.minicart.onCheckoutPage = @Html.JavascriptBool(Model.CheckoutInProgress);
+	</script>,
+		dependencies: new[]
+		{
+			ScriptPaths.JQuery.AdnsfAlias,
+			ScriptPaths.Minicart,
+		})
+}

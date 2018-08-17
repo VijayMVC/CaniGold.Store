@@ -1,0 +1,11 @@
+E:\1Data\0CaniGold.store\CaniGoldSrce\AspDotNetStorefrontPromotions\bin\Debug\AspDotNetStorefrontPromotions.dll
+E:\1Data\0CaniGold.store\CaniGoldSrce\AspDotNetStorefrontPromotions\bin\Debug\AspDotNetStorefrontPromotions.pdb
+E:\1Data\0CaniGold.store\CaniGoldSrce\AspDotNetStorefrontPromotions\obj\Debug\AspDotNetStorefrontPromotions.csproj.CoreCompileInputs.cache
+E:\1Data\0CaniGold.store\CaniGoldSrce\AspDotNetStorefrontPromotions\obj\Debug\AspDotNetStorefrontPromotions.dll
+E:\1Data\0CaniGold.store\CaniGoldSrce\AspDotNetStorefrontPromotions\obj\Debug\AspDotNetStorefrontPromotions.pdb
+D:\CaniGold\CaniGoldSrce\AspDotNetStorefrontPromotions\bin\Debug\AspDotNetStorefrontPromotions.dll
+D:\CaniGold\CaniGoldSrce\AspDotNetStorefrontPromotions\bin\Debug\AspDotNetStorefrontPromotions.pdb
+D:\CaniGold\CaniGoldSrce\AspDotNetStorefrontPromotions\obj\Debug\AspDotNetStorefrontPromotions.csprojAssemblyReference.cache
+D:\CaniGold\CaniGoldSrce\AspDotNetStorefrontPromotions\obj\Debug\AspDotNetStorefrontPromotions.csproj.CoreCompileInputs.cache
+D:\CaniGold\CaniGoldSrce\AspDotNetStorefrontPromotions\obj\Debug\AspDotNetStorefrontPromotions.dll
+D:\CaniGold\CaniGoldSrce\AspDotNetStorefrontPromotions\obj\Debug\AspDotNetStorefrontPromotions.pdb

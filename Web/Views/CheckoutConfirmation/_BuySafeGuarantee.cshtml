@@ -1,0 +1,17 @@
+@model BuySafeGuaranteeViewModel
+
+<span id="BuySafeGuaranteeSpan"></span>
+
+@Html.RegisterScriptReference(Model.JSLocation)
+@Html.RegisterInlineScript(
+	@<script type="text/javascript">
+		buySAFE.Hash = "@Model.Hash";
+		buySAFE.Guarantee.order = "@Model.OrderNumber";
+		buySAFE.Guarantee.total = "@Model.Total";
+		buySAFE.Guarantee.email = "@Model.Email";
+		WriteBuySafeGuarantee("JavaScript");
+	</script>,
+	dependencies: new[]
+	{
+		@Model.JSLocation
+	})

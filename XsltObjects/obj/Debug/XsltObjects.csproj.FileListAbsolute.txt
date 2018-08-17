@@ -1,0 +1,11 @@
+E:\1Data\0CaniGold.store\CaniGoldSrce\XsltObjects\bin\Debug\XsltObjects.dll
+E:\1Data\0CaniGold.store\CaniGoldSrce\XsltObjects\bin\Debug\XsltObjects.pdb
+E:\1Data\0CaniGold.store\CaniGoldSrce\XsltObjects\obj\Debug\XsltObjects.csproj.CoreCompileInputs.cache
+E:\1Data\0CaniGold.store\CaniGoldSrce\XsltObjects\obj\Debug\XsltObjects.dll
+E:\1Data\0CaniGold.store\CaniGoldSrce\XsltObjects\obj\Debug\XsltObjects.pdb
+D:\CaniGold\CaniGoldSrce\XsltObjects\bin\Debug\XsltObjects.dll
+D:\CaniGold\CaniGoldSrce\XsltObjects\bin\Debug\XsltObjects.pdb
+D:\CaniGold\CaniGoldSrce\XsltObjects\obj\Debug\XsltObjects.csprojAssemblyReference.cache
+D:\CaniGold\CaniGoldSrce\XsltObjects\obj\Debug\XsltObjects.csproj.CoreCompileInputs.cache
+D:\CaniGold\CaniGoldSrce\XsltObjects\obj\Debug\XsltObjects.dll
+D:\CaniGold\CaniGoldSrce\XsltObjects\obj\Debug\XsltObjects.pdb

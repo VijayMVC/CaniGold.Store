@@ -1,0 +1,15 @@
+@model CheckoutECheckViewModel
+<span>
+	@if(!string.IsNullOrEmpty(Model.ECheckDisplayAccountType))
+	{
+		// Checking, Savings, Business Checking
+		@Model.ECheckDisplayAccountType
+	}
+</span>
+@if(!string.IsNullOrEmpty(Model.ECheckDisplayAccountNumberLastFour))
+{
+	<span>
+		@Html.StringResource("checkout.last4") @Model.ECheckDisplayAccountNumberLastFour
+	</span>
+}
+

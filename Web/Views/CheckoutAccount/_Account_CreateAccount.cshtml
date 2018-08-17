@@ -1,0 +1,97 @@
+@model CheckoutAccountViewModel
+
+<div class="row">
+	@Html.Partial(ViewNames.AccountEmailPartial, Model)
+
+	<div class="col-md-6">
+		@{
+			using(Html.BeginForm(
+					actionName: ActionNames.CreateAccount,
+					controllerName: ControllerNames.CheckoutAccount,
+					method: FormMethod.Post,
+					htmlAttributes: new { @class = "form create-account-form js-create-account-form" }))
+			{
+				@Html.AntiForgeryToken()
+
+				@Html.HiddenFor(
+					 expression: model => model.Email,
+					 htmlAttributes: new
+					 {
+						 name = "Email",
+						 @class = "js-create-account-email"
+					 })
+
+				<div class="form-group">
+					@if(Model.PasswordRequired)
+					{
+						<label class="form-label form-label-required" for="Password">
+							<span class="form-label-prefix form-label-prefix-required">
+								@Html.StringResource("label.requiredPrefix")
+							</span>
+							@Html.StringResource("checkout.password.label")
+							<span class="form-label-suffix form-label-suffix-required">@Html.StringResource("label.requiredSuffix")</span>
+						</label>
+					}
+					else
+					{
+						<label class="form-label form-label-optional" for="Password">
+							<span class="form-label-prefix form-label-prefix-optional">
+								@Html.StringResource("label.optionalPrefix")
+							</span>
+							@Html.StringResource("checkout.password.label")
+							<span class="form-label-suffix form-label-suffix-optional">@Html.StringResource("label.optionalSuffix")</span>
+						</label>
+					}
+
+					<div class="@Html.AttributeBool(!Model.ShowCaptcha, "input-group")">
+						@Html.EditorFor(
+							 expression: m => m.Password,
+							 additionalViewData: new
+							 {
+								 htmlAttributes = new
+								 {
+									 @class = "form-control js-toggles-captcha",
+									 autocomplete = "new-password"
+								 }
+							 })
+
+						@if(!Model.ShowCaptcha)
+						{
+							<span class="input-group-btn">
+								<button type="submit" class="btn btn-primary create-account-button">
+									@Html.StringResource("checkout.createaccount")
+								</button>
+							</span>
+						}
+					</div>
+
+					@Html.ValidationMessageFor(m => m.Password)
+
+					<div class="form-description">
+						@if(Model.PasswordRequired)
+						{
+							@Html.StringResource("checkout.passwordrequired.description")
+						}
+						else
+						{
+							@Html.StringResource("checkout.passwordoptional.description")
+						}
+					</div>
+				</div>
+
+				if(Model.ShowCaptcha)
+				{
+					<div class="captcha-wrap js-captcha-wrap">
+						@Html.Action(ActionNames.Index, ControllerNames.Captcha)
+
+						<div class="text-right">
+							<button type="submit" class="btn btn-primary create-account-button">
+								@Html.StringResource("checkout.createaccount")
+							</button>
+						</div>
+					</div>
+				}
+			}
+		}
+	</div>
+</div>

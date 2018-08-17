@@ -1,0 +1,87 @@
+@model AccountSignInViewModel
+
+@{
+	ViewBag.MetaTitle = @Html.StringResource("page.title.signin");
+}
+
+<div class="page-wrap signin-page">
+
+	<h1>@Html.StringResource("signin.aspx.6")</h1>
+
+	<div class="row">
+		<div class="col-sm-6">
+			@{
+				using(Html.BeginForm(
+					actionName: ActionNames.SignIn,
+					controllerName: null,
+					routeValues: new { returnUrl = @Model.ReturnUrl },
+					method: FormMethod.Post,
+					htmlAttributes: new { @class = "form login-form" }))
+				{
+					<div class="form-text signin-text">
+						<a href="@Url.Action(ActionNames.Create)">@Html.StringResource("signin.aspx.7")</a>
+					</div>
+					<div class="group-header form-header signin-text">
+						@Html.Topic("SigninPageHeader")
+					</div>
+					@Html.EditorEntryFor(
+						 expression: m => m.Email)
+
+					@Html.EditorEntryFor(
+						 expression: m => m.Password)
+
+					if(Model.DisplayCaptcha)
+					{
+						@Html.Action(ActionNames.Index, ControllerNames.Captcha)
+					}
+
+					@Html.EditorEntryFor(
+						expression: m => m.PersistLogin,
+						editorHtmlAttributes: new Dictionary<string, object>{
+							{ "aria-describedby", "item-reader-only-" + @Html.IdFor(m => m.PersistLogin)}
+						})
+
+					<span id="item-reader-only-@Html.IdFor(m => m.PersistLogin)" class="screen-reader-only">@AppLogic.GetString("account.rememberpassword.whats-this.content")</span>
+
+					<div class="page-action-bar sign-in-actions">
+						<input type="submit" class="btn btn-primary login-button" value="@Html.StringResource("signin.aspx.19")" />
+					</div>
+				}
+			}
+		</div>
+	</div>
+
+	@if(Model.PasswordResetAvailable)
+	{
+		using(Html.BeginForm(
+			actionName: ActionNames.ResetPassword,
+			controllerName: null,
+			routeValues: new { returnUrl = @Model.ReturnUrl },
+			method: FormMethod.Post,
+			htmlAttributes: new { @class = "form password-recovery-form", id = "password-recovery" }))
+		{
+			@Html.AntiForgeryToken()
+			<h2 class="group-header form-header forgot-password-header">
+				@Html.StringResource("signin.aspx.15")
+			</h2>
+
+			<div class="form-text forgot-password-instructions">
+				@Html.StringResource("signin.aspx.16")
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					@Html.EditorEntryFor(
+						expression: m => m.Email,
+						@class: "forgot-password-email",
+						editorHtmlAttributes: new Dictionary<string, object>{
+							{ "id",  "forgot-password-email"}
+						})
+
+					<div class="page-action-bar forgot-password-actions">
+						<input type="submit" class="btn btn-default request-password-button" value="@Html.StringResource("signin.aspx.18")" />
+					</div>
+				</div>
+			</div>
+		}
+	}
+</div>

@@ -1,0 +1,4 @@
+{
+  "Payload": "{\r\n  \"IsValid\": true,\r\n  \"Domain\": \"localhost\",\r\n  \"Message\": \"localhost is a valid licensed domain.\",\r\n  \"ValidUntil\": \"2018-08-20T13:33:52.7909671-07:00\",\r\n  \"Timestamp\": \"2018-08-17T13:33:52.7909671-07:00\"\r\n}",
+  "Signature": "HXfLx4EVxNaSd00ZvtGcOi3+GdxRLPVNmLDmkZilc5KoS6ZVHZ268kcvEZpCyzkpBrnZ/JVB9cbHcREL9aw0a1ZLXQ3tkLN+eQ9MHR/1xy+52ryz1VWQ4zrqCbmll926SZc/QtA5eeVqPPeRw/FwAYZtIfYVEpQjtgMfkCqCEMQ="
+}

@@ -1,0 +1,120 @@
+@model AcceptJsEcheckViewModel
+
+<h2>@Html.StringResource("acceptjs.echeck.header")</h2>
+
+@using(Html.BeginForm(
+	actionName: ActionNames.AcceptJsECheck,
+	controllerName: ControllerNames.AcceptJs,
+	method: FormMethod.Post,
+	htmlAttributes: new { @class = "form echeck-form", @id = "acceptjs-echeck-form" }))
+{
+	//Hidden fields are submitted to the controller after secure data is sent to AcceptJs.
+	@Html.Hidden(name: "dataValue", value: string.Empty, htmlAttributes: new { @id = "dataValue" })
+	@Html.Hidden(name: "dataDescriptor", value: string.Empty, htmlAttributes: new { @id = "dataDescriptor" })
+
+	//For display in checkout:
+	@Html.Hidden(name: "dataDescriptor", value: string.Empty, htmlAttributes: new { @id = "dataDescriptor" })
+
+	@Html.Hidden(name: "eCheckDisplayAccountNumberLastFour", value: string.Empty, htmlAttributes: new { @id = "eCheckDisplayAccountNumberLastFour" })
+	@Html.Hidden(name: "eCheckDisplayAccountType", value: string.Empty, htmlAttributes: new { @id = "eCheckDisplayAccountType" })
+
+	<div class="form-text">
+		@Html.Topic("AcceptJsECheckFormInfo")
+	</div>
+	<div class="alert alert-danger text-left-lg" style="display:none;" id="AcceptJsErrors"></div>
+
+	<div class="form-group">
+		@Html.EditorEntryFor(
+			expression: m => m.ECheckViewModel.AccountNumber,
+			@class: "echeck-account-number",
+			editorClass: "echeck-account-number",
+			displayWidth: EntrySize.Medium)
+
+		@Html.EditorEntryFor(
+			expression: m => m.ECheckViewModel.RoutingNumber,
+			@class: "echeck-routing-number",
+			editorClass: "echeck-routing-number",
+			displayWidth: EntrySize.Medium)
+
+		@Html.EditorEntryFor(
+			expression: m => m.ECheckViewModel.NameOnAccount,
+			@class: "echeck-account-holder-name",
+			editorClass: "echeck-account-holder-name",
+			displayWidth: EntrySize.Medium)
+
+		@Html.DropDownListEntryFor(
+			expression: m => m.ECheckViewModel.AccountType,
+			values: Model.AccountTypes,
+			@class: "echeck-account-type",
+			displayWidth: EntrySize.Medium,
+			id: "ECheckViewModel_AccountType")
+
+		<div class="echeck-authorization-approval-language">
+			@Html.Topic("AcceptJsECheckFormAuthorizationText")
+		</div>
+
+		<button type="button" class="btn btn-primary" onclick="SendPaymentDataToAnet()">
+			@Html.StringResource("acceptjs.submit.authorize")
+		</button>
+		<a href="@Url.Action(ActionNames.Index, ControllerNames.Checkout)" class="btn btn-default acceptjs-cancel">@Html.StringResource("Global.CancelButtonText")</a>
+	</div>
+}
+
+		@Html.RegisterScriptReference(Model.AcceptJsViewModel.ScriptUrlOwnForm)
+		@Html.RegisterInlineScript(
+@<script>
+		//clear errors
+		$(document).ready(function () {
+			$('#AcceptJsErrors').hide();
+			$('#acceptjs-echeck-form input.form-control').focus(function () { $('#AcceptJsErrors').hide("slow"); });
+		});
+
+		function SendPaymentDataToAnet() {
+			var authData = {
+				clientKey: @Html.JavascriptString(Model.AcceptJsViewModel.ClientKey),
+				apiLoginID: @Html.JavascriptString(Model.AcceptJsViewModel.ApiLoginId)
+			};
+
+			var bankData = {
+				accountNumber: $('#ECheckViewModel_AccountNumber').val(),
+				routingNumber: $('#ECheckViewModel_RoutingNumber').val(),
+				nameOnAccount: $('#ECheckViewModel_NameOnAccount').val(),
+				accountType: $('#ECheckViewModel_AccountType').val(),
+			};
+
+			var secureData = {
+				authData: authData,
+				bankData: bankData,
+			};
+			//Send data to ANet
+			Accept.dispatchData(secureData, HandleAcceptJsResponse);
+		}
+
+		//Get secure data from ANet dispatch, remove secure data from form, submit nonce data.
+		function HandleAcceptJsResponse(response) {
+			var errorList = "";
+			if (response.messages.resultCode === "Error") {
+				for (var i = 0; i < response.messages.message.length; i++) {
+					console.log(response.messages.message[i].code + ":" + response.messages.message[i].text);
+					errorList += response.messages.message[i].text + '<br />';
+					$('#AcceptJsErrors').html(errorList);
+					$('#AcceptJsErrors').show();
+				}
+			}
+			else {
+				//set hidden values to be submitted to controller
+				$('#dataValue').val(response.opaqueData.dataValue);
+				$('#dataDescriptor').val(response.opaqueData.dataDescriptor);
+				$('#eCheckDisplayAccountNumberLastFour').val($('#ECheckViewModel_AccountNumber').val().substr(this.length - 4)); //get last 4
+				$('#eCheckDisplayAccountType').val($('#ECheckViewModel_AccountType option:selected').text());
+				// Remove name attribute to prevent private data from being submitted to the server.
+				$('#acceptjs-echeck-form .form-control').removeAttr('name');
+				$('#acceptjs-echeck-form').submit();
+			}
+		}
+</script>,
+dependencies: new[]
+{
+	Model.AcceptJsViewModel.ScriptUrlOwnForm,
+	ScriptPaths.JQuery.AdnsfAlias,
+})

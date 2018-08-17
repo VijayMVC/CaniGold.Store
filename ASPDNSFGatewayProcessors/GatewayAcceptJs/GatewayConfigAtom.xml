@@ -1,0 +1,52 @@
+﻿<ConfigurationAtom>
+	<HtmlHeader>
+		<![CDATA[
+			<table width="780" cellpadding="4" cellspacing="0" class="modalTable">
+				<tbody>
+					<tr>
+						<td width="225">
+							<img src="images/authorizenet.gif" border="0"/>
+						</td>
+						<td class="globalAdmin" align="right">
+							<a href="http://www.aspdotnetstorefront.com/linkmanager.aspx?topic=acceptjs&type=signup" target="_blank">Sign up for Accept.js</a><br />
+							<a href="http://www.aspdotnetstorefront.com/linkmanager.aspx?topic=acceptjs&type=info" target="_blank">Learn more about Accept.js</a><br />
+							<a href="http://www.aspdotnetstorefront.com/linkmanager.aspx?topic=1008manual&type=acceptjs" target="_blank">Configuration Help</a><br />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		]]>
+	</HtmlHeader>
+	<Title><![CDATA[Configure A.Net Accept.js]]></Title>
+	<AppConfig Required="false" Advanced="false" FriendlyName="Live API Login ID">
+		<Name>AcceptJs.Live.ApiLoginId</Name>
+	</AppConfig>
+	<AppConfig Required="false" Advanced="false" FriendlyName="Test API Login ID">
+		<Name>AcceptJs.Test.ApiLoginId</Name>
+	</AppConfig>
+	<AppConfig Required="false" Advanced="false" FriendlyName="Live Client Key">
+		<Name>AcceptJs.Live.ClientKey</Name>
+	</AppConfig>
+	<AppConfig Required="false" Advanced="false" FriendlyName="Test Client Key">
+		<Name>AcceptJs.Test.ClientKey</Name>
+	</AppConfig>
+	<AppConfig Required="false" Advanced="false" FriendlyName="Live Transaction Key">
+		<Name>AcceptJs.Live.TransactionKey</Name>
+	</AppConfig>
+	<AppConfig Required="false" Advanced="false" FriendlyName="Test Transaction Key">
+		<Name>AcceptJs.Test.TransactionKey</Name>
+	</AppConfig>
+
+	<AppConfig Required="false" Advanced="true" FriendlyName="Hosted Form Live URL">
+		<Name>AcceptJs.Form.Hosted.Live.Url</Name>
+	</AppConfig>
+	<AppConfig Required="false" Advanced="true" FriendlyName="Hosted Form Test URL">
+		<Name>AcceptJs.Form.Hosted.Test.Url</Name>
+	</AppConfig>
+	<AppConfig Required="false" Advanced="true" FriendlyName="Own Form Live URL">
+		<Name>AcceptJs.Form.Own.Live.Url</Name>
+	</AppConfig>
+	<AppConfig Required="false" Advanced="true" FriendlyName="Own Form Test URL">
+		<Name>AcceptJs.Form.Own.Test.Url</Name>
+	</AppConfig>
+</ConfigurationAtom>

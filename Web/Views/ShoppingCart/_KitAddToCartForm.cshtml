@@ -1,0 +1,148 @@
+@model KitAddToCartViewModel
+
+@{
+	using(Html.BeginForm(
+		actionName: ActionNames.KitAddToCart,
+		controllerName: ControllerNames.ShoppingCart,
+		method: FormMethod.Post,
+		htmlAttributes: new { @class = "kit-add-to-cart-form" }))
+	{
+		@Html.HiddenFor(m => m.ProductId, new { id = string.Format("product-id-{0}", Model.VariantId) })
+		@Html.HiddenFor(m => m.VariantId, new { id = string.Format("variant-id-{0}", Model.VariantId) })
+		@Html.HiddenFor(m => m.CartRecordId, new { id = string.Format("cart-record-id-{0}", Model.VariantId) })
+		@Html.HiddenFor(m => m.UpsellProducts, new { id = string.Format("upsell-product-ids-{0}", Model.VariantId) })
+		@Html.HiddenFor(m => m.ReturnUrl, new { id = string.Format("return-url-{0}", Model.VariantId) })
+		@Html.HiddenFor(m => m.IsWishlist, new { id = string.Format("is-wishlist-{0}", Model.VariantId), @class = "js-is-wishlist" })
+		@Html.HiddenFor(m => m.TemporaryImageNameStub, new { id = string.Format("temporary-image-stub-{0}", Model.VariantId), @class = "js-temporary-file-stub" })
+
+		<div class="row">
+			<div class="kit-options col-sm-8">
+				@if(Model.IsUnorderable)
+				{
+					<div class="alert alert-danger" role="alert">
+						@Html.StringResource("kitproduct.aspx.18")
+					</div>
+				}
+
+				<div class="screen-reader-only">@Html.StringResource("KitProduct.UpdateNotice")</div>
+
+				@Html.EditorForMany(
+					 expression: model => Model.KitGroups,
+					 templateName: EditorTemplateNames.KitGroup,
+					 fieldName: "KitGroups")
+			</div>
+			<div class="kit-cart-form col-sm-4">
+				<div class="panel panel-default" tabindex="0">
+					<h2 class="panel-heading kit-panel-heading kit-summary-header">
+							@Html.StringResource("kitproduct.aspx.20")
+					</h2>
+					<div class="panel-body">
+						<div class="kit-summary js-kit-summary">
+							@Html.Partial(ViewNames.KitSummaryPartial, Model)
+						</div>
+
+						@if(Model.IsCallToOrder)
+						{
+							@Html.Partial("_CallToOrder")
+						}
+						else if(Model.ShowBuyButton && !Model.IsUnorderable)
+						{
+							<div class="js-add-to-cart-errors">
+								@* Javascript will display errors here *@
+							</div>
+							<div class="form-group">
+								@if(Model.ShowQuantity)
+								{
+									<span class="add-to-cart-quantity">
+										@Html.LabelFor(m => m.Quantity, new { @for = string.Format("quantity-{0}", Model.VariantId) })
+										@if(Model.RestrictedQuantities.Any())
+										{
+											@Html.DropDownListFor(
+												 expression: m => m.Quantity,
+												 selectList: Model.RestrictedQuantities,
+												 htmlAttributes: new
+												 {
+													 @class = "form-control quantity-select js-kit-quantity",
+													 id = string.Format("quantity-{0}", Model.VariantId)
+												 });
+										}
+										else
+										{
+											@Html.EditorFor(
+												expression: m => m.Quantity,
+												additionalViewData: new
+												{
+													htmlAttributes = new
+													{
+														@class = "form-control quantity-field js-kit-quantity",
+														id = string.Format("quantity-{0}", Model.VariantId),
+														min = 0
+													}
+												})
+										}
+									</span>
+								}
+								@if(Model.CartRecordId > 0)
+								{
+									if(Model.CartType == CartTypeEnum.ShoppingCart)
+									{
+										<span class="kit-add-to-cart-button-wrap">
+											<button type="submit" class="btn btn-primary update-kit-item-button js-add-to-cart-button">
+												@Html.StringResource("cart.updateitem.prompt")
+											</button>
+										</span>
+									}
+									else if(Model.ShowWishlistButton)
+									{
+										<span class="kit-add-to-cart-button-wrap">
+											<input type="submit" value="@Html.StringResource("cart.updateitem.prompt")" class="btn btn-default add-to-wishlist js-wishlist-button" />
+										</span>
+									}
+								}
+								else
+								{
+									<span class="kit-add-to-cart-button-wrap">
+										<button id="@string.Format("{0}_{1}_addToCart", Model.ProductId, Model.VariantId)" type="submit" class="btn btn-primary js-add-to-cart-button">
+											@Html.StringResource("AppConfig.CartButtonPrompt")
+										</button>
+									</span>
+									if(Model.ShowWishlistButton)
+									{
+										<span class="kit-add-to-cart-button-wrap">
+											<input id="@string.Format("{0}_{1}_addToWish", Model.ProductId, Model.VariantId)" type="submit" value="@Html.StringResource("AppConfig.WishButtonPrompt")" class="btn btn-default add-to-wishlist js-wishlist-button" />
+										</span>
+									}
+								}
+							</div>
+							if(Model.PayPalAd != null && !string.IsNullOrEmpty(Model.PayPalAd.ImageMarkup))
+							{
+								@Html.Raw(Model.PayPalAd.ImageMarkup)
+							}
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+}
+
+@Html.RegisterScriptBundle(
+	bundleUrl: ScriptBundlePaths.KitProductBundle,
+	url: ScriptPaths.KitProduct,
+	dependencies: new[]
+	{
+		ScriptPaths.JQuery.AdnsfAlias,
+	})
+
+@Html.RegisterInlineScript(
+	@<script type="text/javascript">
+		adnsf$.kitForm.initialize({
+			url: @Html.JavascriptString(Url.Action(ActionNames.AjaxGetKitData, ControllerNames.ShoppingCart)),
+			kitUploadUrl: @Html.JavascriptString(Url.Action(ActionNames.Detail, ControllerNames.KitUpload))
+		});
+	</script>,
+	dependencies: new[]
+	{
+		ScriptPaths.JQuery.AdnsfAlias,
+		ScriptPaths.KitProduct,
+	})

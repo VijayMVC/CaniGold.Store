@@ -1,0 +1,44 @@
+@model ProductEmailViewModel
+
+@{
+	ViewBag.MetaTitle = @Html.StringResource("page.title.emailproduct");
+}
+
+<div class="email-product">
+	<h1>
+		@Html.StringResource("emailproduct.header")
+	</h1>
+
+	<div>
+		<a href="@Url.BuildProductLink(Model.ProductId)">
+			@Html.StringResource("emailproduct.backtoproduct")
+		</a>
+	</div>
+	@{
+		using(Html.BeginForm())
+		{
+			@Html.HiddenFor(m => m.ProductId);
+
+			<div class="row">
+				<div class="col-md-4">
+				<img alt="@Model.ProductName" class="email-product-image" src="@Model.ProductImage" />
+				</div>
+				<div class="col-md-8">
+					<div class="form-group">
+						@Html.EditorEntryFor(m => m.To)
+					</div>
+					<div class="form-group">
+						@Html.EditorEntryFor(m => m.Message)
+					</div>
+					<div class="form-group">
+						@Html.EditorEntryFor(m => m.From)
+					</div>
+					<div class="form-text">
+						@Html.StringResource("emailproduct.from.privacy")
+					</div>
+					<button type="submit" class="btn btn-primary email-product-button">@Html.StringResource("emailproduct.send")</button>
+				</div>
+			</div>
+		}
+	}
+</div>

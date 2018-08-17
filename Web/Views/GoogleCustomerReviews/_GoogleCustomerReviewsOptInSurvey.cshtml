@@ -1,0 +1,30 @@
+@model GoogleCustomerReviewsOptInSurveyViewModel
+
+<!-- BEGIN GCR Opt-in Module Code -->
+<script src="https://apis.google.com/js/platform.js?onload=renderOptIn" async defer></script>
+<script>
+	window.renderOptIn = function() {
+		window.gapi.load('surveyoptin', function() {
+			window.gapi.surveyoptin.render(
+			{
+				"merchant_id": @Model.MerchantId,
+				"order_id": @Html.JavascriptString(Model.OrderNumber.ToString()),
+				"email": @Html.JavascriptString(Model.Email),
+				"delivery_country": @Html.JavascriptString(Model.CountryCode),
+				"estimated_delivery_date": @Html.JavascriptString(Model.DeliveryDate),
+				"opt_in_style": @Html.JavascriptString(Model.SurveyPosition)
+			});
+		});
+	}
+</script>
+<!-- END GCR Opt-in Module Code -->
+@if(!Model.BadgeEnabled)
+{
+	<!-- BEGIN GCR Language Code -->
+	<script>
+		window.___gcfg = {
+			lang: @Html.JavascriptString(@Model.Language)
+			};
+	</script>
+	<!-- END GCR Language Code -->
+}

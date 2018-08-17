@@ -1,0 +1,204 @@
+@model SagePayPiViewModel
+
+@{
+	ViewBag.MetaTitle = @Html.StringResource("page.title.creditcard");
+}
+
+<div class="page-wrap sage-pay-pi-credit-card-page">
+	@{
+		using(Html.BeginForm(
+			actionName: ActionNames.SagePayPiCreditCard,
+			controllerName: ControllerNames.SagePayPi,
+			method: FormMethod.Post,
+			htmlAttributes: new { @class = "form credit-card-form", @id = "sagepaypi-card-form" }))
+		{
+			<input type="hidden" id="sagePayPiMerchantSessionKey" name="sagePayPiMerchantSessionKey" value="@Model.MerchantSessionKey" />
+			<input type="hidden" id="sagePayPiPaymentMethod" name="sagePayPiPaymentMethod" />
+			<input type="hidden" id="sagePayPiCardType" name="sagePayPiCardType" />
+			<input type="hidden" id="sagePayPiCardIdentifier" name="sagePayPiCardIdentifier" />
+			<input type="hidden" id="sagePayPiCardError" name="sagePayPiCardError" />
+
+			<div class="row">
+				<div class="col-sm-6 secured-form sagepaypi-secured-form">
+					<h2>@Html.StringResource("checkout.creditcard.security.indicator") @Html.StringResource("sagepaypi.header")</h2>
+					<div class="form-text">
+						@Html.StringResource("checkoutcard.aspx.6")
+					</div>
+					@Html.EditorEntryFor(expression: m => m.Name,
+						@class: "card-name",
+						editorClass: "card-name",
+						displayWidth: EntrySize.Medium,
+						editorHtmlAttributes: new Dictionary<string, object>{
+							{ "data-card-details",  "cardholder-name"}
+						})
+
+					@Html.EditorEntryFor(expression: m => m.Number,
+						@class: "card-number",
+						editorClass: "card-number",
+						displayWidth: EntrySize.Medium,
+						editorHtmlAttributes: new Dictionary<string, object>{
+							{ "data-card-details",  "card-number"}
+						})
+
+					@Html.EditorEntryFor(expression: m => m.ExpirationDate,
+						@class: "card-expiration",
+						editorClass: "card-expiration",
+						displayWidth: EntrySize.ExtraSmall,
+						editorHtmlAttributes: new Dictionary<string, object>{
+							{ "data-card-details",  "expiry-date"}
+						})
+
+					@Html.EditorEntryFor(expression: m => m.Cvv,
+						@class: "card-cvv",
+						editorClass: "card-cvv",
+						displayWidth: EntrySize.ExtraSmall,
+						editorHtmlAttributes: new Dictionary<string, object>{
+							{ "data-card-details",  "security-code"}
+						})
+					<div class="page-action-bar credit-card-actions">
+						<button type="submit" class="btn btn-primary js-sagepaypi-submit">@Html.StringResource("common.cs.61")</button>
+						<a href="@Url.Action(ActionNames.Index, ControllerNames.Checkout)" class="btn btn-default sagepaypi-cancel">@Html.StringResource("Global.CancelButtonText")</a>
+					</div>
+				</div>
+				<div class="col-sm-6 hidden-xs">
+					<div id="card-entry-wrapper"></div>
+				</div>
+			</div>
+		}
+	}
+</div>
+@*$, jQuery and adnsf$ are wiped out by the Sage Pay file. Below I had to store our jQuery and re-set the variables after accessing the Sage Pay file*@
+
+<script>
+	var $j = jQuery.noConflict();
+</script>
+
+@Html.RegisterScriptReference(Model.ScriptUrl)
+
+<script>
+	jQuery = $j;
+	$ = $j;
+	adnsf$ = $j;
+</script>
+
+@Html.RegisterScriptBundle(
+	bundleUrl: ScriptBundlePaths.CreditCardBundle,
+	url: ScriptPaths.Card)
+
+@Html.RegisterInlineScript(
+	@<script>
+		(function($) {
+			var creditCardType = "";
+			// Submit functionality
+			document.querySelector('[type=submit].js-sagepaypi-submit').addEventListener('click', function(e) {
+				e.preventDefault(); // to prevent default form submission
+				var form = $('[id="sagepaypi-card-form"]');
+				form.validate();
+				if(!form.valid()){
+					return;
+				}
+				var merchantSessionKey = @Html.JavascriptString(Model.MerchantSessionKey);
+				sagepayOwnForm({ merchantSessionKey: merchantSessionKey })
+					.tokeniseCardDetails({
+						cardDetails: {
+							cardholderName: $('[data-card-details="cardholder-name"]').val(),
+							cardNumber: $('[data-card-details="card-number"]').val().replace(/\s/g,''),
+							expiryDate: $('[data-card-details="expiry-date"]').val().replace(/\s/g,'').replace('/',''),
+							securityCode: $('[data-card-details="security-code"]').val()
+						},
+						onTokenised : function(result) {
+							if (result.success) {
+								$('[name="sagePayPiCardIdentifier"]').val(result.cardIdentifier);
+								$('[name="sagePayPiCardType"]').val(creditCardType);
+								// Remove name attribute to ensure they are not submitted to your server.
+								$('[data-card-details]').removeAttr('name');
+								form.submit();
+							}
+							else if (result.httpErrorCode == 401) { // Unauthorised - Authentication creds missing or incorrect. Trying again.
+								$.get('/sagepaypi/MerchantSessionKey', function(newKey) {
+									$('[name="sagePayPiMerchantSessionKey"]').val(newKey);
+									merchantSessionKey = newKey;
+
+									sagepayOwnForm({ merchantSessionKey: merchantSessionKey })
+									.tokeniseCardDetails({
+										cardDetails: {
+											cardholderName: $('[data-card-details="cardholder-name"]').val(),
+											cardNumber: $('[data-card-details="card-number"]').val().replace(/\s/g,''),
+											expiryDate: $('[data-card-details="expiry-date"]').val().replace(/\s/g,'').replace('/',''),
+											securityCode: $('[data-card-details="security-code"]').val()
+										},
+										onTokenised : function(secondAttemptResult) {
+											if (secondAttemptResult.success) {
+												$('[name="sagePayPiCardIdentifier"]').val(secondAttemptResult.cardIdentifier);
+												$('[name="sagePayPiCardType"]').val(creditCardType);
+												// Remove name attribute to ensure they are not submitted to your server.
+												$('[data-card-details]').removeAttr('name');
+												form.submit();
+											}
+											else {
+												$('[name="sagePayPiCardError"]').val('ERROR|' + JSON.stringify(secondAttemptResult));
+												// Remove name attribute to ensure they are not submitted to your server.
+												$('[data-card-details]').removeAttr('name');
+												form.submit();
+											}
+										}
+									});
+								});
+							}
+							else {
+								$('[name="sagePayPiCardError"]').val('ERROR|' + JSON.stringify(result));
+								// Remove name attribute to ensure they are not submitted to your server.
+								$('[data-card-details]').removeAttr('name');
+								form.submit();
+							}
+						}
+					});
+			}, false);
+			// Credit card validation
+			var validateCreditCardNumber = @Html.JavascriptBool(Model.ValidateCreditCardNumber);
+			if(!validateCreditCardNumber) {
+				return;
+			}
+			$('input.card-number').attr('data-val-creditcard', @Html.JavascriptString(AppLogic.GetString("creditCardDetails.cardNumber.format")));
+
+			var card = new Card({
+				form: 'form.credit-card-form',
+				container: '#card-entry-wrapper',
+
+				formSelectors: {
+					numberInput: 'input.card-number',
+					expiryInput: 'input.card-expiration',
+					cvcInput: 'input.card-cvv',
+					nameInput: 'input.card-name',
+				},
+
+				width: 290, // in pixels
+
+				messages: {
+					validDate: 'valid\ndate',
+					monthYear: 'mm/yy',
+				},
+
+				placeholders: {
+					name: @Html.JavascriptString(Model.Name),
+					number: @Html.JavascriptString(Model.Number),
+					expiry: @Html.JavascriptString(Model.ExpirationDate),
+					cvc: @Html.JavascriptString(Model.Cvv),
+				},
+			});
+			// Update the card type drop down automatically
+			var originalSetCardTypeHandler = Card.prototype.handlers.setCardType;
+
+			Card.prototype.handlers.setCardType = function($el, e) {
+				// Whenever the card type changes, this handler is invoked.
+				// We will call the original handler method to execute the original behavior and get the card type
+				creditCardType = originalSetCardTypeHandler.call(card, $el, e);
+			};
+		})(adnsf$);
+	</script>,
+	dependencies: new[]
+	{
+		Model.ScriptUrl,
+		ScriptPaths.Card,
+		ScriptPaths.JQuery.AdnsfAlias
+	})

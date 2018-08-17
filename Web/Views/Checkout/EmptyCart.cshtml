@@ -1,0 +1,13 @@
+
+@{
+	ViewBag.MetaTitle = @Html.StringResource("page.title.emptycart");
+}
+
+<div class="shopping-cart-page empty-shopping-cart">
+	<h1>
+		@Html.StringResource("checkout.indexpagetitle")
+	</h1>
+	<div>
+		@Html.Topic("EmptyCartText")
+	</div>
+</div>

@@ -1,0 +1,22 @@
+@model MinicartLinkViewModel
+
+@if(Model.ItemCount == 0)
+{
+	<a id="js-show-cart" href="#" data-toggle="modal" data-target="#minicart-modal" class="user-link" aria-disabled="true" tabindex="-1">
+		<span aria-hidden="true">
+			<i class="fa fa-shopping-cart"></i>
+		</span>
+		@Html.StringResource("minicart.viewCart") (<span class="minicart-count js-minicart-count">@Model.ItemCount</span>)
+	</a>
+}
+else
+{
+	<a id="js-show-cart" href="#" data-toggle="modal" data-target="#minicart-modal" class="user-link">
+		<span aria-hidden="true">
+			<i class="fa fa-shopping-cart"></i>
+		</span>
+		@Html.StringResource("minicart.viewCart") (<span class="minicart-count js-minicart-count">@Model.ItemCount</span>)
+	</a>
+}
+
+

@@ -1,0 +1,29 @@
+@model AddressDetailViewModel
+
+@{
+	ViewBag.MetaTitle = @Html.StringResource("page.title.address");
+}
+
+<div class="page-wrap create-account-page">
+	<h1>@Model.Header</h1>
+	@{
+		using(Html.BeginForm())
+		{
+			@Html.Partial(ViewNames.EditAddressPartial, Model)
+
+			if(Model.Address.Id.HasValue)
+			{
+				<input type="submit" class="btn btn-primary update-button" value="@Html.StringResource("address.cs.66")" />
+
+				<a href="@Url.Action(ActionNames.Delete, new { addressId = Model.Address.Id.Value, returnUrl = Model.ReturnUrl })"
+				   class="btn btn-default delete-button"
+				   onclick="return confirm('@Html.JavascriptString(AppLogic.GetString("address.deleteconfirm"))');">@Html.StringResource("address.cs.67")</a>
+			}
+			else
+			{
+				<input type="submit" class="btn btn-primary update-button" value="@Html.StringResource("address.cs.65")" />
+				<a href="@Model.ReturnUrl" class="btn btn-default cancel-button">@Html.StringResource("address.cs.68")</a>
+			}
+		}
+	}
+</div>

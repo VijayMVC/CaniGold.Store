@@ -1,0 +1,26 @@
+@model EmailGiftCardsViewModel
+
+@{
+	ViewBag.MetaTitle = @Html.StringResource("page.title.giftcardsetup");
+}
+
+<div class="gift-card-page">
+	@{
+		using(Html.BeginForm(
+			actionName: ActionNames.GiftCardSetup,
+			controllerName: ControllerNames.CheckoutGiftCardSetup,
+			method: FormMethod.Post,
+			htmlAttributes: new { @class = "form credit-card-form" }))
+		{
+			<h1>@Html.StringResource("giftcard.Header")</h1>
+
+			<div class="cart-email-gift-cards">
+				@Html.EditorForMany(m => m.EmailGiftCardsInCart, EditorTemplateNames.EmailGiftCardItem)
+			</div>
+			<div>
+				<input type="submit" class="btn btn-primary gift-card-submit" value="@Html.StringResource("giftcard.Submit")" />
+				<a href="@Url.Action(ActionNames.Index, ControllerNames.Checkout)" class="btn btn-default gift-card-cancel">@Html.StringResource("Global.CancelButtonText")</a>
+			</div>
+		}
+	}
+</div>

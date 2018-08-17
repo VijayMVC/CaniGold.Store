@@ -1,0 +1,293 @@
+@model AccountIndexViewModel
+
+@{
+	ViewBag.MetaTitle = @Html.StringResource("page.title.account");
+}
+
+<div class="page-wrap account-page">
+	<h1 class="account-page-header">
+		@Html.StringResource("Header.AccountInformation")
+	</h1>
+
+	<div id="account-header-links">
+		<div class="page-row page-links">
+			<div>
+				<a href="#OrderHistory">@Html.StringResource("account.aspx.4")</a>
+			</div>
+			@if(Model.ShowMicropayLink)
+			{
+				<div class="micropay-link-wrap">
+					<a href="@Model.MicropayLink">
+						@Html.StringResource("account.addtomicropaybalance")
+					</a>
+				</div>
+			}
+		</div>
+	</div>
+
+	<div class="page-row account-header">
+		@Html.Topic("AccountPageHeader")
+	</div>
+
+	@if(!string.IsNullOrEmpty(Model.CustomerLevel))
+	{
+		<div class="notice-wrap">
+			<div class="notice notice-success">
+				@Html.StringResourceFormat("account.aspx.9", Model.CustomerLevel)
+			</div>
+		</div>
+	}
+
+	@if(Model.HasMicropayBalance)
+	{
+		<div class="notice-wrap">
+			<div class="notice notice-success">
+				@string.Format(AppLogic.GetString("account.aspx.10", Model.LocaleSetting), AppLogic.GetString("account.aspx.11", Model.LocaleSetting), Localization.CurrencyStringForDisplayWithExchangeRate(Model.MicropayBalance, Model.CurrencySetting))
+			</div>
+		</div>
+	}
+
+	@{
+		using(Html.BeginForm())
+		{
+			@Html.AntiForgeryToken()
+
+			<div class="form account-form">
+				<h2 class="group-header form-header account-header">
+					@Html.StringResource("Header.AccountContact")
+				</h2>
+				<div class="form-text account-text">
+					@Html.StringResource("account.aspx.12")
+				</div>
+				<div class="account-form-wrap">
+					<div class="form account-form">
+						<div class="row">
+							<div class="col-sm-6 col-md-5 col-lg-4">
+								@Html.EditorEntryFor(
+									 expression: m => m.Account.FirstName,
+									 @class: "first-name",
+									 displayWidth: EntrySize.Medium)
+							</div>
+							<div class="col-sm-6 col-md-5 col-lg-4">
+								@Html.EditorEntryFor(
+									 expression: m => m.Account.LastName,
+									 @class: "last-name",
+									 displayWidth: EntrySize.Medium)
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-6 col-md-5 col-lg-4">
+								@Html.EditorEntryFor(
+									 expression: m => m.Account.Email,
+									 @class: "email",
+									 displayWidth: EntrySize.Medium)
+							</div>
+							@if(Model.RequireEmailConfirmation)
+							{
+								<div class="col-sm-6 col-md-5 col-lg-4">
+									@Html.EditorEntryFor(
+										 expression: m => m.Account.EmailConfirmation,
+										 @class: "confirm-email",
+										 displayWidth: EntrySize.Medium)
+								</div>
+							}
+						</div>
+
+						<div class="row">
+							<div class="col-sm-6 col-md-5 col-lg-4">
+								@Html.EditorEntryFor(
+									 expression: m => m.Account.Password,
+									 @class: "password-one",
+									 displayWidth: EntrySize.Medium)
+							</div>
+							<div class="col-sm-6 col-md-5 col-lg-4">
+								@Html.EditorEntryFor(
+									 expression: m => m.Account.PasswordConfirmation,
+									 @class: "password-two",
+									 displayWidth: EntrySize.Medium)
+							</div>
+						</div>
+
+						@Html.EditorEntryFor(
+							 expression: m => m.Account.Phone,
+							 @class: "phone",
+							 displayWidth: EntrySize.Small)
+
+						@if(Model.DisplayOver13Selector)
+						{
+							@Html.EditorEntryFor(
+								 expression: (m => m.Account.IsOver13),
+								 @class: "over-thirteen")
+						}
+
+						@Html.EditorEntryFor(
+							 expression: (m => m.Account.IsOkToEmail),
+							 @class: "okay-to-email")
+
+						@if(Model.ShowSaveCreditCardNumber)
+						{
+							@Html.EditorEntryFor(
+								 expression: (m => m.Account.SaveCreditCardNumber),
+								 descriptionOverride: Model.SaveCreditCardNumberNote)
+						}
+
+						@if(Model.ShowVatRegistrationId)
+						{
+							@Html.EditorEntryFor(
+								 expression: m => m.Account.VatRegistrationId,
+								 @class: "vat-id",
+								 displayWidth: EntrySize.Small)
+						}
+					</div>
+				</div>
+				<div class="row page-action-bar account-actions">
+					<div class="col-sm-6 col-md-5 col-lg-4">
+						<input type="submit" class="btn btn-primary update-account-button" value="@Html.StringResource("account.aspx.28")" />
+					</div>
+					@if(Model.ShowAccountRemovalButton)
+					{
+						<div class="col-sm-6 col-md-5 col-lg-4">
+							<a href="@Url.Action(ActionNames.Remove, ControllerNames.Account)" class="btn btn-default delete-account-button">
+								@Html.StringResource("account.removeaccount")
+							</a>
+						</div>
+					}
+				</div>
+			</div>
+		}
+	}
+
+	<div id="PageContent_pnlAddress">
+		<h2 class="group-header account-header address-header">
+			@Html.StringResource("Header.AddressBook")
+		</h2>
+		<div class="page-block form-text address-text">
+			<span>@Html.StringResource("account.aspx.29")</span>
+		</div>
+		<div class="row address-row">
+			<div class="col-sm-6 address-wrap">
+				<div id="billing-wrap">
+					<h3 class="address-header">
+						@Html.StringResource("account.aspx.30")
+					</h3>
+					<div class="address-view">
+						<div>@Model.PrimaryBillingAddress.FirstName @Model.PrimaryBillingAddress.LastName</div>
+						<div>@Model.PrimaryBillingAddress.Address1</div>
+						@if(!string.IsNullOrWhiteSpace(Model.PrimaryBillingAddress.Address2))
+						{
+							<div>@Model.PrimaryBillingAddress.Address2</div>
+						}
+						<div>@Model.PrimaryBillingAddress.City, @Model.PrimaryBillingAddress.State @Model.PrimaryBillingAddress.Zip</div>
+						<div>@Model.PrimaryBillingAddress.Country</div>
+						<div>@Model.PrimaryBillingAddress.Phone</div>
+					</div>
+				</div>
+				<div class="address-edit">
+					<a href="@Url.Action(ActionNames.Index, ControllerNames.Address)"
+					   class="btn btn-default edit-addresses-account-button">
+						@Html.StringResource("account.editAddresses")
+					</a>
+				</div>
+			</div>
+			<div class="col-sm-6 address-wrap">
+				<div id="shipping-wrap">
+					<h3 class="address-header">
+						@Html.StringResource("account.aspx.32")
+					</h3>
+					<div class="address-view">
+						<div>@Model.PrimaryShippingAddress.FirstName @Model.PrimaryShippingAddress.LastName</div>
+						<div>@Model.PrimaryShippingAddress.Address1</div>
+						@if(!string.IsNullOrWhiteSpace(Model.PrimaryShippingAddress.Address2))
+						{
+							<div>@Model.PrimaryShippingAddress.Address2</div>
+						}
+						<div>@Model.PrimaryShippingAddress.City, @Model.PrimaryShippingAddress.State @Model.PrimaryShippingAddress.Zip</div>
+						<div>@Model.PrimaryShippingAddress.Country</div>
+						<div>@Model.PrimaryShippingAddress.Phone</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	@if(Model.ShowWallets)
+	{
+		<div class="wallet-wrap">
+			<div class="row">
+				<div class="col-sm-12">
+					<a href="@Url.Action(ActionNames.Index, ControllerNames.Wallet)"
+					   class="btn btn-default add-payment-account-button">
+						@Html.StringResource("account.aspx.104")
+					</a>
+				</div>
+			</div>
+			<div class="row"></div>
+		</div>
+	}
+
+	<div id="order-history-wrap">
+		<h2 id="OrderHistory" class="group-header account-header order-history-header">
+			@Html.StringResource("Header.OrderHistory")
+		</h2>
+		<div class="page-row order-history">
+			<div class="table-responsive">
+				<table class="table table-striped order-history-table">
+					<tbody>
+						<tr class="table-header">
+							<th scope="col">
+								<div>@Html.StringResource("account.aspx.36")</div>
+								<div class="text-nowrap">@Html.StringResource("account.aspx.37")</div>
+							</th>
+							<th scope="col"></th>
+							<th scope="col">
+								<span>@Html.StringResource("account.aspx.38")</span>
+							</th>
+							<th scope="col">
+								<span>@Html.StringResource("account.aspx.39")</span>
+							</th>
+							<th scope="col">
+								<span>@Html.StringResource("account.aspx.40")</span>
+							</th>
+							<th scope="col">
+								<span>@Html.StringResource("account.aspx.41")</span>
+							</th>
+							<th scope="col">
+								<span>@Html.StringResource("account.aspx.42")</span>
+							</th>
+						</tr>
+						@foreach(var order in Model.Orders)
+						{
+							<tr class="table-row">
+								<th class="table-row-header" scope="row">
+									<a target="_blank" href="@Url.Action(ActionNames.Index, ControllerNames.Receipt, new { orderNumber = order.OrderNumber })">@order.OrderNumber</a>
+								</th>
+								<td>
+									@if(order.CanReorder)
+									{
+										<span class="text-nowrap">
+											<a href="@Url.Action(ActionNames.ReOrder, new { orderId = order.OrderNumber })" class="=btn btn-primary btn-sm">@Html.StringResource("account.aspx.57")</a>
+										</span>
+									}
+								</td>
+								<td>@order.OrderDate</td>
+								<td>@order.PaymentStatus (<span class="text-@order.TransactionStateNotificationType">@order.TransactionState</span>)</td>
+								<td>@Html.Raw(order.ShippingStatus)</td>
+								<td>@order.OrderTotal</td>
+								<td>@order.CustomerServiceNotes</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	@if(Model.ShowRecurringOrders)
+	{
+		<h2 class="group-header account-header recurring-header">
+			@Html.StringResource("account.aspx.35")
+			<a href="@Url.Action(ActionNames.Index, ControllerNames.RecurringOrder)" class="btn btn-default view-recurring-account-button">@Html.StringResource("account.recurringorders.view")</a>
+		</h2>
+	}
+</div>

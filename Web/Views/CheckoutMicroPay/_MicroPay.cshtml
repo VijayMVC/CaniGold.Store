@@ -1,0 +1,11 @@
+@model MicroPayViewModel
+<span>
+	@if(Model.BalanceIsSufficient)
+	{
+		@Html.StringResourceFormat("shoppingcart.cs.24", Model.Balance);
+	}
+	else
+	{
+		@Html.StringResourceFormat("checkoutpayment.aspx.26", Model.Balance);
+	}
+</span>

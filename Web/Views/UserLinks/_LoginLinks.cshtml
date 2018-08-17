@@ -1,0 +1,20 @@
+@model LoginLinksViewModel
+
+@if(Model.UserIsRegistered)
+{
+	<a href="@Url.Action(ActionNames.SignOut, ControllerNames.Account)" class="user-link log-out-link">
+		<span aria-hidden="true">
+			<i class="fa fa-sign-out"></i>
+		</span>
+		@Html.StringResource("skinbase.cs.5")
+	</a>
+}
+else
+{
+	<a href="@Url.Action(ActionNames.SignIn, ControllerNames.Account, new RouteValueDictionary { { RouteDataKeys.ReturnUrl, Request.RawUrl } })" class="user-link log-in-link">
+		<span aria-hidden="true">
+			<i class="fa fa-sign-in"></i>
+		</span>
+		@Html.StringResource("skinbase.cs.4")
+	</a>
+}

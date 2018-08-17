@@ -1,0 +1,33 @@
+@model AccountRemovalViewModel
+
+<div class="page-wrap signin-page">
+
+	<h1>@Html.StringResource("account.remove.header")</h1>
+	<div class="form-text">
+		@Html.Raw(Model.ExplanationText)
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6">
+			@{
+				using(Html.BeginForm(
+					actionName: ActionNames.Remove,
+					controllerName: null,
+					routeValues: null,
+					method: FormMethod.Post,
+					htmlAttributes: new { @class = "form remove-form" }))
+				{
+					@Html.AntiForgeryToken()
+					<div class="account-remove-confirmation">
+						<label>
+							@Html.CheckBox("removeconfirmation")
+							@Html.StringResource("remove.account.confirmation")
+						</label>
+					</div>
+					<input type="submit" class="btn btn-primary remove-account-button" value="@Html.StringResource("common.remove")" />
+					<a href="@Url.Action(ActionNames.Index, ControllerNames.Account)" class="btn btn-default back-address-button">@Html.StringResource("account.aspx.61")</a>
+				}
+			}
+		</div>
+	</div>
+</div>

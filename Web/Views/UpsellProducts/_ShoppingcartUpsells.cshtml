@@ -1,0 +1,27 @@
+@model UpsellProductsViewModel
+
+<div class="order-details upsell-details">
+
+	<h3 class="checkout-header cart-upsell-header">
+		@Html.StringResource("Header.UpsellHeader")
+	</h3>
+	@{
+		using(Html.BeginForm(
+			actionName: ActionNames.ShoppingCartUpsells,
+			controllerName: ControllerNames.UpsellProducts,
+			method: FormMethod.Post,
+			htmlAttributes: new
+			{
+				@class = "form",
+			}))
+		{
+			@Html.EditorForMany(
+				expression: model => model.UpsellProducts,
+				templateName: EditorTemplateNames.ShoppingCartUpsellItem)
+
+			<div class="checkout-action-row upsell-actions">
+				<input class="btn btn-default update-cart-button" value="@Html.StringResource("checkout.saveupsells")" type="submit">
+			</div>
+		}
+	}
+</div>

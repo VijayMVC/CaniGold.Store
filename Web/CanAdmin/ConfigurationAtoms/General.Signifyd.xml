@@ -1,0 +1,33 @@
+<ConfigurationAtom>
+  <HtmlHeader>
+    <![CDATA[
+      <table width="780" cellpadding="4" cellspacing="0" class="modalTable">
+      <tbody>
+      <tr>
+
+      <td width="225">
+        <img src="images/signifyd.png" border="0"/>
+      </td>
+      
+      <td class="globalAdminHeading">Guaranteed Fraud Protection with Signifyd</td>
+      
+        <td class="globalAdmin" align="right">
+        <a href="http://www.aspdotnetstorefront.com/linkmanager.aspx?topic=signifyd&type=signup" target="_blank">Sign up for Signifyd Complete Protection</a><br />
+        <a href="http://www.aspdotnetstorefront.com/linkmanager.aspx?topic=signifyd&type=info" target="_blank">Learn More</a><br />
+        <a href="http://www.aspdotnetstorefront.com/linkmanager.aspx?topic=10000manual&type=signifyd" target="_blank">Configuration Help</a>
+      </td>
+
+      </tr>
+      </tbody>
+      </table>
+    ]]>
+  </HtmlHeader>
+  <Title>
+    <![CDATA[Configure Signifyd]]>
+  </Title>
+  <AppConfig Required="false" Advanced="false" FriendlyName="Signifyd Enabled"><Name>Signifyd.Enabled</Name></AppConfig>
+  <AppConfig Required="false" Advanced="false" FriendlyName="API Url"><Name>Signifyd.API.Url</Name></AppConfig>
+  <AppConfig Required="false" Advanced="false" FriendlyName="Console Url"><Name>Signifyd.Console.Url</Name></AppConfig>
+  <AppConfig Required="false" Advanced="false" FriendlyName="Team Key"><Name>Signifyd.Team.Key</Name></AppConfig>
+  <AppConfig Required="false" Advanced="false" FriendlyName="Decline Action Void"><Name>Signifyd.DeclineAction.Void</Name></AppConfig>
+</ConfigurationAtom>

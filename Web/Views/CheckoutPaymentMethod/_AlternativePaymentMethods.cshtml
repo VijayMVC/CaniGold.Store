@@ -1,0 +1,47 @@
+@model PaymentMethodRenderModel
+
+@if(!Model.PaymentMethodComplete && Model.AlternatePaymentOptions.Any())
+{
+	<div class="alternative-payment-methods">
+		@foreach(var paymentMethod in Model.AlternatePaymentOptions)
+		{
+			<div class="alternative-payment-button">
+				@if(paymentMethod.ScriptTarget == null)
+				{
+					<a class="choose-payment-method-offsite-button js-alternative-payment-method-option"
+					   href="@paymentMethod.EditUrl"
+					   tabindex="0"
+					   onkeypress="if(event.keyCode == 13) { this.click(); };">
+						<img src="@paymentMethod.SelectionImage" alt="@paymentMethod.Info.DisplayName" />
+					</a>
+				}
+				else
+				{
+					if(paymentMethod.SelectionImage != null)
+					{
+						<a id="@paymentMethod.ScriptTarget"
+						   class="choose-payment-method-offsite-button js-alternative-payment-method-option"
+						   tabindex="0"
+						   onkeypress="if(event.keyCode == 13) { this.click(); };">
+							<img src="@paymentMethod.SelectionImage" alt="@paymentMethod.Info.DisplayName" />
+						</a>
+					}
+					else
+					{
+						<a id="@paymentMethod.ScriptTarget"
+							tabindex="0"
+							onkeypress="if (event.keyCode == 13) { ($(this).find('img')).click(); };"></a>
+					}
+				}
+			</div>
+		}
+	</div>
+}
+
+@foreach(var paymentOption in Model.AlternatePaymentOptions)
+{
+	foreach(var paymentScript in paymentOption.PaymentScripts)
+	{
+		@Html.Raw(paymentScript);
+	}
+}

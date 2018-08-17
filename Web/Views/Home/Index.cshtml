@@ -1,0 +1,8 @@
+@model HomeViewModel
+
+@{
+	ViewBag.MetaTitle = @Html.StringResource("page.title.home");
+}
+
+@Html.Raw(Model.PayPalAd)
+@Html.XmlPackage("page.default.xml.config")

@@ -1,0 +1,47 @@
+@model CheckoutAccountViewModel
+
+<div class="col-md-6">
+	@{
+		var saveButtonClass = string.IsNullOrEmpty(Model.Email)
+			? "btn-primary"
+			: "btn-success";
+
+		using(Html.BeginForm(
+			actionName: ActionNames.SetEmail,
+			controllerName: ControllerNames.CheckoutAccount,
+			method: FormMethod.Post,
+			htmlAttributes: new { @class = "form email-form" }))
+		{
+			<div class="form-group">
+				@Html.LabelEntryFor(m => m.Email)
+
+				<div class="input-group">
+					@Html.EditorFor(
+						expression: m => m.Email,
+						additionalViewData: new
+						{
+							htmlAttributes = new
+							{
+								@class = "form-control js-account-email",
+								placeholder = AppLogic.GetString("signin.emailaddress.example"),
+								autocomplete = "email",
+								aria_describedby = "email-description"
+							}
+						})
+
+					<span class="input-group-btn">
+						<button class="btn @saveButtonClass save-email-button" type="submit">
+							@Html.StringResource("checkout.saveemail")
+						</button>
+					</span>
+				</div>
+
+				@Html.ValidationMessageFor(m => m.Email)
+
+				<div id="email-description" class="form-description">
+					@Html.StringResource("checkout.email.description")
+				</div>
+			</div>
+		}
+	}
+</div>

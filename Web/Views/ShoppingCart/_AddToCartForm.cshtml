@@ -1,0 +1,270 @@
+@model AddToCartViewModel
+
+@if(Model.IsCallToOrder)
+{
+	@Html.Partial("_CallToOrder")
+}
+else if(Model.ShowBuyButton)
+{
+	using(Html.BeginForm(
+		actionName: ActionNames.AddToCart,
+		controllerName: ControllerNames.ShoppingCart,
+		method: FormMethod.Post,
+		htmlAttributes: new
+		{
+			@class = "form add-to-cart-form js-add-to-cart-form",
+			id = string.Format("add-to-cart-{0}", Model.VariantId),
+		}))
+	{
+		@Html.HiddenFor(m => m.ProductId, new { id = string.Format("product-id-{0}", Model.VariantId) })
+		@Html.HiddenFor(m => m.VariantId, new { id = string.Format("variant-id-{0}", Model.VariantId) })
+		@Html.HiddenFor(m => m.CartRecordId, new { id = string.Format("cart-record-id-{0}", Model.VariantId) })
+		@Html.HiddenFor(m => m.UpsellProducts, new { id = string.Format("upsell-product-ids-{0}", Model.VariantId) })
+		@Html.HiddenFor(m => m.ReturnUrl, new { id = string.Format("return-url-{0}", Model.VariantId) })
+		@Html.HiddenFor(m => m.IsWishlist, new { id = string.Format("is-wishlist-{0}", Model.VariantId), @class="js-is-wishlist" })
+
+		<div class="js-add-to-cart-errors">
+			@* Javascript will display errors here *@
+		</div>
+
+		if(Model.ShowTextOption)
+		{
+			<div class="form-group text-option-group">
+				<label for="TextOption">
+					@Model.TextOptionPrompt
+				</label>
+				@if(Model.TextOptionMaxLength < 50)
+				{
+					@Html.TextBoxFor(m => m.TextOption, new { @class = "form-control text-option", maxlength = Model.TextOptionMaxLength })
+				}
+				else
+				{
+					@Html.TextAreaFor(m => m.TextOption, new { @class = "form-control text-option", maxlength = Model.TextOptionMaxLength })
+				}
+			</div>
+		}
+		<div class="form-group add-to-cart-group">
+			@if(Model.CustomerEntersPrice)
+			{
+				<span class="customer-enters-price-wrap">
+					<label class="customer-enters-price-label" for="CustomerEnteredPrice">
+						@Model.CustomerEntersPricePrompt
+					</label>
+					@Html.EditorFor(m => m.CustomerEnteredPrice, new { htmlAttributes = new { @class = "form-control text-xs form-control-inline customer-entered-price" } })
+				</span>
+			}
+
+			@if(Model.ShowQuantity)
+			{
+				<span class="add-to-cart-quantity">
+					@Html.LabelFor(m => m.Quantity, new { @for = string.Format("quantity-{0}", Model.VariantId) })
+					@if(Model.RestrictedQuantities.Any())
+					{
+						@Html.DropDownListFor(m => m.Quantity, Model.RestrictedQuantities, new { @class = "form-control quantity-select js-validate-quantity", id = string.Format("quantity-{0}", Model.VariantId) });
+					}
+					else
+					{
+						@Html.EditorFor(
+						expression: m => m.Quantity,
+						additionalViewData: new
+						{
+							htmlAttributes = new
+							{
+								@class = "form-control quantity-field js-validate-quantity",
+								id = string.Format("quantity-{0}", Model.VariantId),
+								min = 0,
+								aria_label = Html.StringResource("shoppingcart.quantity")
+							}
+						})
+					}
+				</span>
+			}
+
+			@if(Model.SizeOptions.Any() || Model.ColorOptions.Any())
+			{
+				<div class="add-to-cart-selectors">
+					@if(Model.SizeOptions.Any())
+					{
+						@Html.DropDownListFor(m => m.Size,
+						Model.SizeOptions,
+						new
+						{
+							@class = "form-control size-select",
+							id = string.Format("size-{0}", Model.VariantId),
+							autocomplete = "off",
+							aria_label = Html.StringResource("AppConfig.SizeOptionPrompt")
+						});
+					}
+
+					@if(Model.ColorOptions.Any())
+					{
+						@Html.DropDownListFor(m => m.Color,
+						Model.ColorOptions,
+						new
+						{
+							@class = "form-control color-select",
+							id = string.Format("color-{0}", Model.VariantId),
+							autocomplete = "off",
+							aria_label = Html.StringResource("AppConfig.ColorOptionPrompt")
+						});
+					}
+				</div>
+			}
+
+			@if(Model.CartRecordId > 0)
+			{
+				if(Model.CartType == CartTypeEnum.ShoppingCart)
+				{
+					<button id="@string.Format("{0}_{1}_addToCart", Model.ProductId, Model.VariantId)" type="submit" class="btn btn-primary add-to-cart js-add-to-cart-button">
+						@Html.StringResource("cart.updateitem.prompt")
+					</button>
+				}
+				else if(Model.ShowWishlistButton)
+				{
+					<button id="@string.Format("{0}_{1}_addToWish", Model.ProductId, Model.VariantId)" type="submit" class="btn btn-default add-to-wishlist js-wishlist-button">
+						@Html.StringResource("cart.updateitem.prompt")
+					</button>
+				}
+			}
+			else
+			{
+				<button id="@string.Format("{0}_{1}_addToCart", Model.ProductId, Model.VariantId)" type="submit" class="btn btn-primary add-to-cart js-add-to-cart-button">
+					@Html.StringResource("AppConfig.CartButtonPrompt")
+				</button>
+				if(Model.ShowWishlistButton)
+				{
+					<button id="@string.Format("{0}_{1}_addToWish", Model.ProductId, Model.VariantId)" type="submit" class="btn btn-default add-to-wishlist js-wishlist-button">
+						@Html.StringResource("AppConfig.WishButtonPrompt")
+					</button>
+				}
+			}
+		</div>
+
+		if(Model.ShowBuySafeKicker)
+		{
+			<div class="form-text buysafe-kicker" id="productBuySafeKicker">
+				<span id="buySAFE_Kicker" name="buySAFE_Kicker" type="@Model.BuySafeKickerType"></span>
+			</div>
+		}
+
+		if(Model.ColorSelectorChangesImage)
+		{
+			@Html.RegisterInlineScript(
+				@<script type="text/javascript">
+					adnsf$('#color-@(Model.VariantId)').change(function () {
+						if(window['setcolorpic_@(Model.ProductId)']){
+							setcolorpic_@(Model.ProductId)(adnsf$(this).val());
+						}
+					});
+
+					if(adnsf$('#color-@(Model.VariantId)').length && adnsf$('#color-@(Model.VariantId)').val() != '') {
+						if(window['setcolorpic_@(Model.ProductId)']) {
+							setcolorpic_@(Model.ProductId)(adnsf$('#color-@(Model.VariantId)').val());
+						}
+					}
+				</script>,
+				dependencies: new[]
+				{
+					ScriptPaths.JQuery.AdnsfAlias,
+				})
+		}
+
+		if(Model.PayPalAd != null && !string.IsNullOrEmpty(Model.PayPalAd.ImageMarkup))
+		{
+			@Html.Raw(Model.PayPalAd.ImageMarkup)
+		}
+
+		@* register client side script in reverse order, so top-most field is selected if multiple errors *@
+
+		if(Model.SizeOptions.Any())
+		{
+			@Html.RegisterInlineScript(
+				@<script type="text/javascript">
+					(function ($) {
+						$(function () {
+							$('#@(Model.ProductId)_@(Model.VariantId)_addToCart:submit').click(function (e) {
+								$('#size-validation-message').remove();
+								if ($('#size-@(Model.VariantId)').val() == '') {
+									var message = "<div id='size-validation-message' class='form-validation-message field-validation-error'>" +
+										"@(string.Format(Html.StringResource("common.cs.71").ToString(), Html.StringResource("AppConfig.SizeOptionPrompt")))" +
+										"</div>";
+									$('#size-@(Model.VariantId)').after(message);
+									$('#size-@(Model.VariantId)').attr("aria-describedby", "size-validation-message");
+									$('#size-@(Model.VariantId)').focus();
+									e.preventDefault();
+								}
+							});
+							$('#size-@(Model.VariantId)').change(function () {
+								$('#size-validation-message').remove();
+							});
+						});
+					})(adnsf$);
+				</script>,
+				dependencies: new[]
+				{
+					ScriptPaths.JQuery.AdnsfAlias,
+				})
+		}
+		if(Model.ColorOptions.Any())
+		{
+			@Html.RegisterInlineScript(
+				@<script type="text/javascript">
+					(function ($) {
+						$(function () {
+							$('#@(Model.ProductId)_@(Model.VariantId)_addToCart:submit').click(function (e) {
+								$('#color-validation-message').remove();
+								if ($('#color-@(Model.VariantId)').val() == '') {
+									var message = "<div id='color-validation-message' class='form-validation-message field-validation-error'>" +
+										"@(string.Format(Html.StringResource("common.cs.71").ToString(), Html.StringResource("AppConfig.ColorOptionPrompt")))" +
+										"</div>";
+									$('#color-@(Model.VariantId)').after(message);
+									$('#color-@(Model.VariantId)').attr("aria-describedby", "color-validation-message");
+									$('#color-@(Model.VariantId)').focus();
+									e.preventDefault();
+								}
+							});
+
+							$('#color-@(Model.VariantId)').change(function () {
+								$('#color-validation-message').remove();
+							});
+						});
+					})(adnsf$);
+				</script>,
+				dependencies: new[]
+				{
+					ScriptPaths.JQuery.AdnsfAlias,
+				})
+		}
+
+		if(Model.ShowQuantity)
+		{
+			@Html.RegisterInlineScript(
+				@<script type="text/javascript">
+					(function ($) {
+						$(function () {
+							$('#@(Model.ProductId)_@(Model.VariantId)_addToCart:submit').click(function (e) {
+								$('#quantity-validation-message').remove();
+								if ($('#quantity-@(Model.VariantId)').val() == '0') {
+									var message = "<div id='quantity-validation-message' class='form-validation-message field-validation-error'>" +
+										"@Html.StringResource("addtocart.entervalidquantity")" +
+										"</div>";
+									$('#quantity-@(Model.VariantId)').after(message);
+									$('#quantity-@(Model.VariantId)').attr("aria-describedby", "quantity-validation-message");
+									$('#quantity-@(Model.VariantId)').focus();
+									e.preventDefault();
+								}
+							});
+
+							$('#quantity-@(Model.VariantId)').change(function () {
+								$('#quantity-validation-message').remove();
+							});
+						});
+					})(adnsf$);
+				</script>,
+				dependencies: new[]
+				{
+					ScriptPaths.JQuery.AdnsfAlias,
+				})
+		}
+	}
+}

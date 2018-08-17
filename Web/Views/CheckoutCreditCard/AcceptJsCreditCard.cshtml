@@ -1,0 +1,60 @@
+@model AcceptJsViewModel
+
+@{
+	ViewBag.MetaTitle = @Html.StringResource("page.title.creditcard");
+}
+
+<h2>@Html.StringResource("acceptjs.creditcard.header")</h2>
+
+@using(Html.BeginForm(
+	actionName: ActionNames.AcceptJsCreditCard,
+	controllerName: ControllerNames.AcceptJs,
+	method: FormMethod.Post,
+	htmlAttributes: new { @class = "form credit-card-form", @id = "acceptjs-card-form" }))
+{
+	<input type="hidden" name="dataValue" id="dataValue" />
+	<input type="hidden" name="dataDescriptor" id="dataDescriptor" />
+	<input type="hidden" name="lastFour" id="lastFour" />
+	<input type="hidden" name="expirationDate" id="expirationDate" />
+
+	<div class="form-text">
+		@Html.Topic("AcceptJsCCFormInfo")
+	</div>
+
+	<div>
+		<button 
+			type="button" 
+			data-billingAddressOptions='{"show":false, "required":false}' 
+			data-apiLoginId="@Model.ApiLoginId" 
+			data-clientKey="@Model.ClientKey"
+			data-acceptUIFormBtnTxt="@Html.StringResource("acceptjs.submit")" 
+			data-acceptUIFormHeaderTxt="@Html.StringResource("acceptjs.filloutform")" 
+			data-responseHandler="HandleAcceptJsResponse"
+			class="btn btn-primary AcceptUI">@Html.StringResource("acceptjs.enterpaymentdetails")</button>
+		<a href="@Url.Action(ActionNames.Index, ControllerNames.Checkout)" class="btn btn-default acceptjs-cancel">@Html.StringResource("Global.CancelButtonText")</a>
+	</div>
+}
+
+@Html.RegisterScriptReference(Model.ScriptUrlHostedForm)
+@Html.RegisterInlineScript(
+	@<script>
+		function HandleAcceptJsResponse(response) {
+			if (response.messages.resultCode === "Error") {
+				for (var i = 0; i < response.messages.message.length; i++) {
+					console.log(response.messages.message[i].code + ":" + response.messages.message[i].text);
+				}
+			}
+			else {
+				$('#dataValue').val(response.opaqueData.dataValue);
+				$('#dataDescriptor').val(response.opaqueData.dataDescriptor);
+				$('#lastFour').val(response.encryptedCardData.cardNumber);
+				$('#expirationDate').val(response.encryptedCardData.expDate);
+				$('#acceptjs-card-form').submit();
+			}
+		}
+	</script>,
+	dependencies: new[]
+	{
+		Model.ScriptUrlHostedForm,
+		ScriptPaths.JQuery.AdnsfAlias,
+	})

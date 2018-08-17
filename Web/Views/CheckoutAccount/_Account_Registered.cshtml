@@ -1,0 +1,8 @@
+@model CheckoutAccountViewModel
+
+<div class="form-group">
+	@Model.Email
+	<a href="@Url.Action(ActionNames.SignOut, ControllerNames.Account, null, null)">
+		@Html.StringResource("checkout.notyou")
+	</a>
+</div>

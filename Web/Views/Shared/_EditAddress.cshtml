@@ -1,0 +1,321 @@
+@model AddressDetailViewModel
+
+@Html.HiddenFor(m => m.Address.Id)
+@Html.HiddenFor(m => m.MakePrimary)
+
+<div class="address-control">
+	<div class="row">
+		<div class="col-sm-6">
+			<div id="country-field">
+				@Html.DropDownListEntryFor(
+					expression: m => m.Address.Country,
+					values: Model.CountryOptions,
+					@class: "country js-country",
+					id: "ddlCountries")
+			</div>
+		</div>
+	</div>
+
+	@if(Model.ShowNickName)
+	{
+		<div class="row">
+			<div class="col-sm-6">
+				@Html.EditorEntryFor(
+					expression: m => m.Address.NickName,
+					@class: "nick-name")
+			</div>
+		</div>
+	}
+
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.EditorEntryFor(
+				expression: m => m.Address.Name,
+				@class: "address-name")
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.EditorEntryFor(
+				expression: m => m.Address.Phone,
+				@class: "phone-number")
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.EditorEntryFor(
+				expression: m => m.Address.Address1,
+				@class: "address-one")
+		</div>
+	</div>
+
+	<div class="row collapsed-address-field">
+		<div class="col-sm-6">
+			<div>
+				<button type="button" data-target="#collapseAddress2" id="address2CollapseLink" class="btn-link address-collapse-link" aria-controls="collapseAddress2" data-toggle="collapse" aria-expanded="false">
+					<i class="fa fa-plus"></i>
+					@Html.StringResource("address.address2.label")
+					<span class="form-label-suffix form-label-suffix-optional">@Html.StringResource("label.optionalSuffix")</span>
+				</button>
+
+				<div id="collapseAddress2" class="collapse address-two form-group-full form-group has-feedback">
+					@Html.EditorFor(
+						expression: m => m.Address.Address2,
+						additionalViewData: new
+						{
+							htmlAttributes = new
+							{
+								@class = "form-control address-two",
+								placeholder = AppLogic.GetString("address.address2.example"),
+								autocomplete = "addressline2",
+								aria_labelledby = "address2CollapseLink"
+							}
+						})
+					@Html.ValidationMessageFor(m => m.Address.Address2)
+				</div>
+			</div>
+		</div>
+	</div>
+
+	@if(Model.ShowSuite)
+	{
+		<div class="row collapsed-address-field">
+			<div class="col-sm-6">
+				<div>
+					<button type="button" data-target="#collapseSuite" id="suiteCollapseLink" class="btn-link address-collapse-link" aria-controls="collapseSuite" data-toggle="collapse">
+						<i class="fa fa-plus"></i>
+						@Html.StringResource("address.suite.label")
+						<span class="form-label-suffix form-label-suffix-optional">@Html.StringResource("label.optionalSuffix")</span>
+					</button>
+
+					<div id="collapseSuite" class="collapse suite form-group-full form-group has-feedback">
+						@Html.EditorFor(
+							expression: m => m.Address.Suite,
+							additionalViewData: new
+							{
+								htmlAttributes = new
+								{
+									@class = "form-control suite",
+									placeholder = AppLogic.GetString("address.suite.example"),
+									autocomplete = "addressline3",
+									aria_labelledby = "suiteCollapseLink"
+								}
+							})
+						@Html.ValidationMessageFor(m => m.Address.Suite)
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+
+	@if(Model.ShowCompanyField)
+	{
+		<div class="row collapsed-address-field">
+			<div class="col-sm-6">
+				<div>
+					<button type="button" data-target="#collapseCompany" id="companyCollapseLink" class="btn-link address-collapse-link" aria-controls="collapseCompany" data-toggle="collapse" aria-expanded="false">
+						<i class="fa fa-plus"></i>
+						@Html.StringResource("address.company.label")
+						<span class="form-label-suffix form-label-suffix-optional">@Html.StringResource("label.optionalSuffix")</span>
+					</button>
+
+					<div id="collapseCompany" class="collapse company form-group-full form-group has-feedback">
+						@Html.EditorFor(
+							expression: m => m.Address.Company,
+							additionalViewData: new
+							{
+								htmlAttributes = new
+								{
+									@class = "form-control company",
+									placeholder = AppLogic.GetString("address.company.example"),
+									autocomplete = "organization",
+									aria_labelledby = "companyCollapseLink"
+								}
+							})
+						@Html.ValidationMessageFor(m => m.Address.Company)
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+
+	@if(Model.ShowResidenceTypeField)
+	{
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label class="form-label form-label-required">
+						<span class="form-label-prefix form-label-prefix-required">
+							@Html.StringResource("label.requiredPrefix")
+						</span>
+						<span class="form-label-wrap">@Html.StringResource("address.type.label")</span>
+						<span class="form-label-suffix form-label-suffix-required">@Html.StringResource("label.requiredSuffix")</span>
+					</label>
+
+					<div class="entry-feedback-wrapper">
+						@Html.DropDownListFor(m => m.Address.ResidenceType, Model.ResidenceTypeOptions, new
+				   {
+					   @class = "form-control"
+				   })
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.EditorEntryFor(
+				expression: m => m.Address.Zip,
+				@class: "postal-code js-postal-code")
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.EditorEntryFor(
+				expression: m => m.Address.City,
+				@class: "city")
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.DropDownListEntryFor(
+				expression: m => m.Address.State,
+				values: Model.StateOptions,
+				@default: Model.StateOptions.Count() > 1
+					? AppLogic.GetString("address.state.defaultoption")
+					: null,
+				@class: "state js-state",
+				id: "ddlStates")
+		</div>
+	</div>
+</div>
+
+@Html.RegisterScriptBundle(
+	bundleUrl: ScriptBundlePaths.CheckoutBundle,
+	urls: new[]
+	{
+		ScriptPaths.CountryAndState,
+		ScriptPaths.Mask
+	},
+	sharedDependencies: new[]
+	{
+		ScriptPaths.JQuery.AdnsfAlias,
+	})
+
+@Html.RegisterInlineScript(
+	@<script>
+		SelectDataBinder
+			.BindCountryAndStates('#ddlCountries', '#ddlStates', '@Url.Action(ActionNames.States, ControllerNames.Country)', '@AppLogic.GetString("address.state.defaultoption")');
+
+		(function ($, enablePostalCodeLookup) {
+
+			function toggleInternationalUI(isInternational) {
+				$('.js-state .form-label-wrap').text(isInternational
+					? @Html.JavascriptString(AppLogic.GetString("address.region.label"))
+					: @Html.JavascriptString(AppLogic.GetString("address.state.label")));
+
+				$('.js-postal-code .form-label-wrap').text(isInternational
+					? @Html.JavascriptString(AppLogic.GetString("address.postalcode.label"))
+					: @Html.JavascriptString(AppLogic.GetString("address.zip.label")));
+
+				$('.js-postal-code .text-box').attr("placeholder", isInternational
+					? ''
+					: @Html.JavascriptString(AppLogic.GetString("address.zip.example")));
+
+				@if(Model.EnablePhoneInputMask)
+				{
+					<text>
+						if(!isInternational)
+							$('.phone-number .text-box').mask('(000) 000-0000 XXXXXXXXXX', {
+								'translation': {
+									// Allow any characters for the 'Extension' section after the phone number
+									X: { pattern: /.*/ }
+								}
+							});
+						else
+							$('.phone-number .text-box').mask('0000000000000000000000000', {
+								'translation': {
+									// For international phone numbers, allow any characters
+									0: { pattern: /.*/ }
+								}
+							});
+					</text>
+				}
+			}
+
+			function lookupPostalCode(postalCode, countryCode) {
+				// Track the user changing values midstream.
+				var initialCityValue = $('#Address_City').val();
+				var initialStateValue = $('#ddlStates').val();
+
+				var apiEndpoint = @Html.JavascriptString(@Url.Action(ActionNames.PostalCodeLookup, ControllerNames.Address))
+					+ '?postalcode=' + postalCode + '&countrycode=' + countryCode;
+
+				$.get(apiEndpoint)
+					.done(function (data) {
+						var $addressCity = $('#Address_City');
+						var $ddlStates = $('#ddlStates');
+
+						// If the user hasn't changed any values, then set the fields to the received values.
+						if($addressCity.val() == initialCityValue)
+							$addressCity.val(data.City);
+
+						if($ddlStates.val() == initialStateValue)
+							$ddlStates.val(data.State);
+					});
+			}
+
+			function isSelectedCountryInternational() {
+				return $('.js-country option:selected').val() != 'United States';
+			}
+
+			function toggleIcon(icon) {
+				icon.attr('class') == 'fa fa-plus'
+					? icon.attr('class', 'fa fa-minus')
+					: icon.attr('class', 'fa fa-plus');
+			}
+
+			$(document).ready(function () {
+
+				$('.address-collapse-link').click(function () {
+					toggleIcon($(this).children('.fa'));
+				});
+
+				$(".collapse").on("shown.bs.collapse", function () {
+					$(this).find("input").focus();
+				});
+
+				$('#Address_FirstName')
+					.focus();
+
+				toggleInternationalUI(isSelectedCountryInternational());
+
+				$('.js-country').change(function () {
+					toggleInternationalUI(isSelectedCountryInternational());
+				});
+
+				$('.js-postal-code .text-box').change(function () {
+					if (!enablePostalCodeLookup)
+						return;
+
+					lookupPostalCode(
+						$('.js-postal-code .text-box').val(),
+						$('.js-country option:selected').val());
+				});
+
+				if ($('.input-validation-error')) {
+					$('.input-validation-error').first().focus();
+				}
+			});
+		})(adnsf$, @Html.JavascriptBool(Model.ShowPostalCodeLookup));
+	</script>,
+	dependencies: new[]
+	{
+		ScriptPaths.JQuery.AdnsfAlias,
+		ScriptPaths.CountryAndState,
+	})

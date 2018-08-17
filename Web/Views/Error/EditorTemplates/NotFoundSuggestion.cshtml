@@ -1,0 +1,8 @@
+@model NotFoundSuggestionViewModel
+
+<div class="not-found-suggestion">
+	<a href="@Model.Url" class="not-found-suggestion-link">@Model.Name</a>
+	<div class="not-found-suggestion-description">
+		@Html.Raw(@Model.Description)
+	</div>
+</div>

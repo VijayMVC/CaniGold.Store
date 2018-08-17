@@ -1,0 +1,28 @@
+@model InvalidRequestViewModel
+
+@{
+	ViewBag.MetaTitle = "Error";
+}
+
+<div>
+	@Html.Topic("InvalidRequest")
+</div>
+
+@if(Model.ErrorCode != null)
+{
+	<div>
+		<p>
+			@Html.StringResource("invalidrequest.aspx.1")
+			@Model.ErrorCode
+		</p>
+	</div>
+}
+
+@if(Model.UserIsAdmin)
+{
+	<div>
+		<p>
+			@Html.StringResource("invalidrequest.aspx.2")
+		</p>
+	</div>
+}

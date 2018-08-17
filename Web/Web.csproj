@@ -1,0 +1,2781 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion />
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6E92C962-3A38-484A-A3B7-3DC0CE3A131D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AspDotNetStorefront</RootNamespace>
+    <AssemblyName>Web</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=15.1.2.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\AjaxControlToolkit.15.1.2.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="ASPDNSFApplication">
+      <HintPath>..\AssemblyReferences\ASPDNSFApplication.dll</HintPath>
+    </Reference>
+    <Reference Include="ASPDNSFEncrypt">
+      <HintPath>..\AssemblyReferences\ASPDNSFEncrypt.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac, Version=4.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Autofac.4.5.0\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.WebApi, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Autofac.WebApi2.4.0.1\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Braintree-2.46.0">
+      <HintPath>..\AssemblyReferences\Braintree-2.46.0.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelWrapper">
+      <HintPath>..\AssemblyReferences\ExcelWrapper.dll</HintPath>
+    </Reference>
+    <Reference Include="jose-jwt">
+      <HintPath>..\AssemblyReferences\jose-jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="OffAmazonPaymentsService">
+      <HintPath>..\AssemblyReferences\OffAmazonPaymentsService.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\System.Diagnostics.DiagnosticSource.4.3.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\System.Net.Http.4.3.0\lib\net46\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Telerik.Web.UI">
+      <HintPath>..\AssemblyReferences\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\AssemblyReferences\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="CanAdmin\about.aspx.cs">
+      <DependentUpon>about.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\about.aspx.designer.cs">
+      <DependentUpon>about.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\adhoccharge.aspx.cs">
+      <DependentUpon>adhoccharge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\adhoccharge.aspx.designer.cs">
+      <DependentUpon>adhoccharge.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\adhocchargecomplete.aspx.cs">
+      <DependentUpon>adhocchargecomplete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\adhocchargecomplete.aspx.designer.cs">
+      <DependentUpon>adhocchargecomplete.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\adjustcharge.aspx.cs">
+      <DependentUpon>adjustcharge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\adjustcharge.aspx.designer.cs">
+      <DependentUpon>adjustcharge.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\affiliate.aspx.cs">
+      <DependentUpon>affiliate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\affiliate.aspx.designer.cs">
+      <DependentUpon>affiliate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\affiliates.aspx.cs">
+      <DependentUpon>affiliates.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\affiliates.aspx.designer.cs">
+      <DependentUpon>affiliates.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\amazontransaction.aspx.cs">
+      <DependentUpon>amazontransaction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\amazontransaction.aspx.designer.cs">
+      <DependentUpon>amazontransaction.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\appconfigs.aspx.cs">
+      <DependentUpon>appconfigs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\appconfigs.aspx.designer.cs">
+      <DependentUpon>appconfigs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\App_Code\DashboardStatistics.cs" />
+    <Compile Include="CanAdmin\App_Code\ImpersonationHandler.cs" />
+    <Compile Include="CanAdmin\Controls\Listing\ShippingMethodFilter.ascx.cs">
+      <DependentUpon>ShippingMethodFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\ShippingMethodFilter.ascx.designer.cs">
+      <DependentUpon>ShippingMethodFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\App_Code\LoggedAuthorizationModule.cs" />
+    <Compile Include="CanAdmin\App_Code\MasterPageBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\App_Code\SkinBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\auditlog.aspx.cs">
+      <DependentUpon>auditlog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\auditlog.aspx.designer.cs">
+      <DependentUpon>auditlog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\avalaraconnectiontest.aspx.cs">
+      <DependentUpon>avalaraconnectiontest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\avalaraconnectiontest.aspx.designer.cs">
+      <DependentUpon>avalaraconnectiontest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\badword.aspx.cs">
+      <DependentUpon>badword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\badword.aspx.designer.cs">
+      <DependentUpon>badword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\bmlsettings.aspx.cs">
+      <DependentUpon>bmlsettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\bmlsettings.aspx.designer.cs">
+      <DependentUpon>bmlsettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\bulkeditprices.aspx.cs">
+      <DependentUpon>bulkeditprices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\bulkeditprices.aspx.designer.cs">
+      <DependentUpon>bulkeditprices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\bulkeditweights.aspx.cs">
+      <DependentUpon>bulkeditweights.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\bulkeditweights.aspx.designer.cs">
+      <DependentUpon>bulkeditweights.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\bulkshipping.aspx.cs">
+      <DependentUpon>bulkshipping.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\bulkshipping.aspx.designer.cs">
+      <DependentUpon>bulkshipping.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\buysafeframe.aspx.cs">
+      <DependentUpon>buysafeframe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\buysafeframe.aspx.designer.cs">
+      <DependentUpon>buysafeframe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\buysafesetup.aspx.cs">
+      <DependentUpon>buysafesetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\buysafesetup.aspx.designer.cs">
+      <DependentUpon>buysafesetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\changeencryptkey.aspx.cs">
+      <DependentUpon>changeencryptkey.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\changeencryptkey.aspx.designer.cs">
+      <DependentUpon>changeencryptkey.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\config.aspx.cs">
+      <DependentUpon>config.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\config.aspx.designer.cs">
+      <DependentUpon>config.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\AlertMessageTemplate.ascx.cs">
+      <DependentUpon>AlertMessageTemplate.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\AlertMessageTemplate.ascx.designer.cs">
+      <DependentUpon>AlertMessageTemplate.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\AppConfigInfo.ascx.cs">
+      <DependentUpon>AppConfigInfo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\AppConfigInfo.ascx.designer.cs">
+      <DependentUpon>AppConfigInfo.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\ConfigurationAtom.ascx.cs">
+      <DependentUpon>ConfigurationAtom.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\ConfigurationAtom.ascx.designer.cs">
+      <DependentUpon>ConfigurationAtom.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\ConfigurationMenu.ascx.cs">
+      <DependentUpon>ConfigurationMenu.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\ConfigurationMenu.ascx.designer.cs">
+      <DependentUpon>ConfigurationMenu.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Config\BooleanEditor.ascx.cs">
+      <DependentUpon>BooleanEditor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Config\BooleanEditor.ascx.designer.cs">
+      <DependentUpon>BooleanEditor.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Config\DecimalEditor.ascx.cs">
+      <DependentUpon>DecimalEditor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Config\DecimalEditor.ascx.designer.cs">
+      <DependentUpon>DecimalEditor.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Config\EnumEditor.ascx.cs">
+      <DependentUpon>EnumEditor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Config\EnumEditor.ascx.designer.cs">
+      <DependentUpon>EnumEditor.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Config\IntegerEditor.ascx.cs">
+      <DependentUpon>IntegerEditor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Config\IntegerEditor.ascx.designer.cs">
+      <DependentUpon>IntegerEditor.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Config\MultiselectEditor.ascx.cs">
+      <DependentUpon>MultiselectEditor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Config\MultiselectEditor.ascx.designer.cs">
+      <DependentUpon>MultiselectEditor.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Config\StringEditor.ascx.cs">
+      <DependentUpon>StringEditor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Config\StringEditor.ascx.designer.cs">
+      <DependentUpon>StringEditor.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\CSVHelper.ascx.cs">
+      <DependentUpon>CSVHelper.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\CSVHelper.ascx.designer.cs">
+      <DependentUpon>CSVHelper.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\EditAppConfigAtom.ascx.cs">
+      <DependentUpon>EditAppConfigAtom.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\EditAppConfigAtom.ascx.designer.cs">
+      <DependentUpon>EditAppConfigAtom.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\EditAppConfigInput.ascx.cs">
+      <DependentUpon>EditAppConfigInput.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\EditAppConfigInput.ascx.designer.cs">
+      <DependentUpon>EditAppConfigInput.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\EditAppConfigStoresAtom.ascx.cs">
+      <DependentUpon>EditAppConfigStoresAtom.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\EditAppConfigStoresAtom.ascx.designer.cs">
+      <DependentUpon>EditAppConfigStoresAtom.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\EditKitGroupTemplate.ascx.cs">
+      <DependentUpon>EditKitGroupTemplate.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\EditKitGroupTemplate.ascx.designer.cs">
+      <DependentUpon>EditKitGroupTemplate.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\EntityToStoreMapper.ascx.cs">
+      <DependentUpon>EntityToStoreMapper.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\EntityToStoreMapper.ascx.designer.cs">
+      <DependentUpon>EntityToStoreMapper.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\GeneralInfo.ascx.cs">
+      <DependentUpon>GeneralInfo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\GeneralInfo.ascx.designer.cs">
+      <DependentUpon>GeneralInfo.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\LinkGroupEntities.ascx.cs">
+      <DependentUpon>LinkGroupEntities.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\LinkGroupEntities.ascx.designer.cs">
+      <DependentUpon>LinkGroupEntities.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\LinkGroupImportExport.ascx.cs">
+      <DependentUpon>LinkGroupImportExport.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\LinkGroupImportExport.ascx.designer.cs">
+      <DependentUpon>LinkGroupImportExport.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\LinkGroupLinks.ascx.cs">
+      <DependentUpon>LinkGroupLinks.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\LinkGroupLinks.ascx.designer.cs">
+      <DependentUpon>LinkGroupLinks.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\LinkGroupOrders.ascx.cs">
+      <DependentUpon>LinkGroupOrders.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\LinkGroupOrders.ascx.designer.cs">
+      <DependentUpon>LinkGroupOrders.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\LinkGroupProducts.ascx.cs">
+      <DependentUpon>LinkGroupProducts.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\LinkGroupProducts.ascx.designer.cs">
+      <DependentUpon>LinkGroupProducts.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\LinkGroupRatings.ascx.cs">
+      <DependentUpon>LinkGroupRatings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\LinkGroupRatings.ascx.designer.cs">
+      <DependentUpon>LinkGroupRatings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\LinkGroupRecurring.ascx.cs">
+      <DependentUpon>LinkGroupRecurring.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\LinkGroupRecurring.ascx.designer.cs">
+      <DependentUpon>LinkGroupRecurring.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\BooleanFilter.ascx.cs">
+      <DependentUpon>BooleanFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\BooleanFilter.ascx.designer.cs">
+      <DependentUpon>BooleanFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\DataQueryFilter.ascx.cs">
+      <DependentUpon>DataQueryFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\DataQueryFilter.ascx.designer.cs">
+      <DependentUpon>DataQueryFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\DateRangeFilter.ascx.cs">
+      <DependentUpon>DateRangeFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\DateRangeFilter.ascx.designer.cs">
+      <DependentUpon>DateRangeFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\DecimalRangeFilter.ascx.cs">
+      <DependentUpon>DecimalRangeFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\DecimalRangeFilter.ascx.designer.cs">
+      <DependentUpon>DecimalRangeFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\DefaultActionRow.ascx.cs">
+      <DependentUpon>DefaultActionRow.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\DefaultActionRow.ascx.designer.cs">
+      <DependentUpon>DefaultActionRow.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\DefaultFilterActions.ascx.cs">
+      <DependentUpon>DefaultFilterActions.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\DefaultFilterActions.ascx.designer.cs">
+      <DependentUpon>DefaultFilterActions.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\DefaultFilterControls.ascx.cs">
+      <DependentUpon>DefaultFilterControls.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\DefaultFilterControls.ascx.designer.cs">
+      <DependentUpon>DefaultFilterControls.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\DefaultPagingControls.ascx.cs">
+      <DependentUpon>DefaultPagingControls.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\DefaultPagingControls.ascx.designer.cs">
+      <DependentUpon>DefaultPagingControls.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\EntityFilter.ascx.cs">
+      <DependentUpon>EntityFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\EntityFilter.ascx.designer.cs">
+      <DependentUpon>EntityFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\EnumSelectFilter.ascx.cs">
+      <DependentUpon>EnumSelectFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\EnumSelectFilter.ascx.designer.cs">
+      <DependentUpon>EnumSelectFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\FlagFilter.ascx.cs">
+      <DependentUpon>FlagFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\FlagFilter.ascx.designer.cs">
+      <DependentUpon>FlagFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\IntegerFilter.ascx.cs">
+      <DependentUpon>IntegerFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\IntegerFilter.ascx.designer.cs">
+      <DependentUpon>IntegerFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\ListFilter.ascx.cs">
+      <DependentUpon>ListFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\ListFilter.ascx.designer.cs">
+      <DependentUpon>ListFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\LocaleFilter.ascx.cs">
+      <DependentUpon>LocaleFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\LocaleFilter.ascx.designer.cs">
+      <DependentUpon>LocaleFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\MultiFieldStringFilter.ascx.cs">
+      <DependentUpon>MultiFieldStringFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\MultiFieldStringFilter.ascx.designer.cs">
+      <DependentUpon>MultiFieldStringFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\OrderItemFilter.ascx.cs">
+      <DependentUpon>OrderItemFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\OrderItemFilter.ascx.designer.cs">
+      <DependentUpon>OrderItemFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\PromotionFilter.ascx.cs">
+      <DependentUpon>PromotionFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\PromotionFilter.ascx.designer.cs">
+      <DependentUpon>PromotionFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\StoreFilter.ascx.cs">
+      <DependentUpon>StoreFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\StoreFilter.ascx.designer.cs">
+      <DependentUpon>StoreFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\StringFilter.ascx.cs">
+      <DependentUpon>StringFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\StringFilter.ascx.designer.cs">
+      <DependentUpon>StringFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\VariantEntityFilter.ascx.cs">
+      <DependentUpon>VariantEntityFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\Listing\VariantEntityFilter.ascx.designer.cs">
+      <DependentUpon>VariantEntityFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\LocaleField.ascx.cs">
+      <DependentUpon>LocaleField.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\LocaleField.ascx.designer.cs">
+      <DependentUpon>LocaleField.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\ManualSearch.ascx.cs">
+      <DependentUpon>ManualSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\ManualSearch.ascx.designer.cs">
+      <DependentUpon>ManualSearch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\ModalConfigurationAtom.ascx.cs">
+      <DependentUpon>ModalConfigurationAtom.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\ModalConfigurationAtom.ascx.designer.cs">
+      <DependentUpon>ModalConfigurationAtom.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\QuickAdd\QuickAddCustomerLevel.ascx.cs">
+      <DependentUpon>QuickAddCustomerLevel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\QuickAdd\QuickAddCustomerLevel.ascx.designer.cs">
+      <DependentUpon>QuickAddCustomerLevel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\QuickAdd\QuickAddEntity.ascx.cs">
+      <DependentUpon>QuickAddEntity.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\QuickAdd\QuickAddEntity.ascx.designer.cs">
+      <DependentUpon>QuickAddEntity.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\QuickAdd\QuickAddQuantityDiscounts.ascx.cs">
+      <DependentUpon>QuickAddQuantityDiscounts.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\QuickAdd\QuickAddQuantityDiscounts.ascx.designer.cs">
+      <DependentUpon>QuickAddQuantityDiscounts.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\QuickStart.ascx.cs">
+      <DependentUpon>QuickStart.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\QuickStart.ascx.designer.cs">
+      <DependentUpon>QuickStart.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\StoreControl.ascx.cs">
+      <DependentUpon>StoreControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\StoreControl.ascx.designer.cs">
+      <DependentUpon>StoreControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\StoreEdit.ascx.cs">
+      <DependentUpon>StoreEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\StoreEdit.ascx.designer.cs">
+      <DependentUpon>StoreEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\ImpersonateToStore.ascx.cs">
+      <DependentUpon>ImpersonateToStore.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\ImpersonateToStore.ascx.designer.cs">
+      <DependentUpon>ImpersonateToStore.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\StoreNavigator.ascx.cs">
+      <DependentUpon>StoreNavigator.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\StoreNavigator.ascx.designer.cs">
+      <DependentUpon>StoreNavigator.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\StoreSelector.ascx.cs">
+      <DependentUpon>StoreSelector.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\StoreSelector.ascx.designer.cs">
+      <DependentUpon>StoreSelector.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\VerticalMenu.ascx.cs">
+      <DependentUpon>VerticalMenu.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\VerticalMenu.ascx.designer.cs">
+      <DependentUpon>VerticalMenu.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\XmlPackageControl.ascx.cs">
+      <DependentUpon>XmlPackageControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\Controls\XmlPackageControl.ascx.designer.cs">
+      <DependentUpon>XmlPackageControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\countries.aspx.cs">
+      <DependentUpon>countries.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\countries.aspx.designer.cs">
+      <DependentUpon>countries.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\country.aspx.cs">
+      <DependentUpon>country.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\country.aspx.designer.cs">
+      <DependentUpon>country.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\createorder.aspx.cs">
+      <DependentUpon>createorder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\createorder.aspx.designer.cs">
+      <DependentUpon>createorder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\creditcards.aspx.cs">
+      <DependentUpon>creditcards.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\creditcards.aspx.designer.cs">
+      <DependentUpon>creditcards.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\currencies.aspx.cs">
+      <DependentUpon>currencies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\currencies.aspx.designer.cs">
+      <DependentUpon>currencies.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\customer.aspx.cs">
+      <DependentUpon>customer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\customer.aspx.designer.cs">
+      <DependentUpon>customer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\customeraddress.aspx.cs">
+      <DependentUpon>customeraddress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\customeraddress.aspx.designer.cs">
+      <DependentUpon>customeraddress.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\customerlevel.aspx.cs">
+      <DependentUpon>customerlevel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\customerlevel.aspx.designer.cs">
+      <DependentUpon>customerlevel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\customerlevelcustomers.aspx.cs">
+      <DependentUpon>customerlevelcustomers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\customerlevelcustomers.aspx.designer.cs">
+      <DependentUpon>customerlevelcustomers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\customerlevels.aspx.cs">
+      <DependentUpon>customerlevels.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\customerlevels.aspx.designer.cs">
+      <DependentUpon>customerlevels.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\customerremoval.aspx.cs">
+      <DependentUpon>customerremoval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\customerremoval.aspx.designer.cs">
+      <DependentUpon>customerremoval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\customers.aspx.cs">
+      <DependentUpon>customers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\customers.aspx.designer.cs">
+      <DependentUpon>customers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\customer_history.aspx.cs">
+      <DependentUpon>customer_history.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\customer_history.aspx.designer.cs">
+      <DependentUpon>customer_history.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\deleteimage.aspx.cs">
+      <DependentUpon>deleteimage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\deleteimage.aspx.designer.cs">
+      <DependentUpon>deleteimage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\editaddressrecurring.aspx.cs">
+      <DependentUpon>editaddressrecurring.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\editaddressrecurring.aspx.designer.cs">
+      <DependentUpon>editaddressrecurring.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\editextendedprices.aspx.cs">
+      <DependentUpon>editextendedprices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\editextendedprices.aspx.designer.cs">
+      <DependentUpon>editextendedprices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\entities.aspx.cs">
+      <DependentUpon>entities.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\entities.aspx.designer.cs">
+      <DependentUpon>entities.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\entity.aspx.cs">
+      <DependentUpon>entity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\entity.aspx.designer.cs">
+      <DependentUpon>entity.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\entitybulkdisplayorder.aspx.cs">
+      <DependentUpon>entitybulkdisplayorder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\entitybulkdisplayorder.aspx.designer.cs">
+      <DependentUpon>entitybulkdisplayorder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\entitybulkdownloadfiles.aspx.cs">
+      <DependentUpon>entitybulkdownloadfiles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\entitybulkdownloadfiles.aspx.designer.cs">
+      <DependentUpon>entitybulkdownloadfiles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\entitybulkinventory.aspx.cs">
+      <DependentUpon>entitybulkinventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\entitybulkinventory.aspx.designer.cs">
+      <DependentUpon>entitybulkinventory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\entitybulkprices.aspx.cs">
+      <DependentUpon>entitybulkprices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\entitybulkprices.aspx.designer.cs">
+      <DependentUpon>entitybulkprices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\entitybulkse.aspx.cs">
+      <DependentUpon>entitybulkse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\entitybulkse.aspx.designer.cs">
+      <DependentUpon>entitybulkse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\entitybulkshipping.aspx.cs">
+      <DependentUpon>entitybulkshipping.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\entitybulkshipping.aspx.designer.cs">
+      <DependentUpon>entitybulkshipping.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\entityproductbulkdisplayorder.aspx.cs">
+      <DependentUpon>entityproductbulkdisplayorder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\entityproductbulkdisplayorder.aspx.designer.cs">
+      <DependentUpon>entityproductbulkdisplayorder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\entityproductmap.aspx.cs">
+      <DependentUpon>entityproductmap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\entityproductmap.aspx.designer.cs">
+      <DependentUpon>entityproductmap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\eventhandler.aspx.cs">
+      <DependentUpon>eventhandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\eventhandler.aspx.designer.cs">
+      <DependentUpon>eventhandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\exportproductpricing.aspx.cs">
+      <DependentUpon>exportproductpricing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\exportproductpricing.aspx.designer.cs">
+      <DependentUpon>exportproductpricing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\failedtransactions.aspx.cs">
+      <DependentUpon>failedtransactions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\failedtransactions.aspx.designer.cs">
+      <DependentUpon>failedtransactions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\feed.aspx.cs">
+      <DependentUpon>feed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\feed.aspx.designer.cs">
+      <DependentUpon>feed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\feeds.aspx.cs">
+      <DependentUpon>feeds.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\feeds.aspx.designer.cs">
+      <DependentUpon>feeds.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\fraudorders.aspx.cs">
+      <DependentUpon>fraudorders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\fraudorders.aspx.designer.cs">
+      <DependentUpon>fraudorders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\giftcard.aspx.cs">
+      <DependentUpon>giftcard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\giftcard.aspx.designer.cs">
+      <DependentUpon>giftcard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\giftcards.aspx.cs">
+      <DependentUpon>giftcards.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\giftcards.aspx.designer.cs">
+      <DependentUpon>giftcards.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\giftcardusage.aspx.cs">
+      <DependentUpon>giftcardusage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\giftcardusage.aspx.designer.cs">
+      <DependentUpon>giftcardusage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\globalconfigs.aspx.cs">
+      <DependentUpon>globalconfigs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\globalconfigs.aspx.designer.cs">
+      <DependentUpon>globalconfigs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\importproductpricing.aspx.cs">
+      <DependentUpon>importproductpricing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\importproductpricing.aspx.designer.cs">
+      <DependentUpon>importproductpricing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\importproductsfromexcel.aspx.cs">
+      <DependentUpon>importproductsfromexcel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\importproductsfromexcel.aspx.designer.cs">
+      <DependentUpon>importproductsfromexcel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\importproductsfromxml.aspx.cs">
+      <DependentUpon>importproductsfromxml.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\importproductsfromxml.aspx.designer.cs">
+      <DependentUpon>importproductsfromxml.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\importstringresourcefile1.aspx.cs">
+      <DependentUpon>importstringresourcefile1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\importstringresourcefile1.aspx.designer.cs">
+      <DependentUpon>importstringresourcefile1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\importstringresourcefile2.aspx.cs">
+      <DependentUpon>importstringresourcefile2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\importstringresourcefile2.aspx.designer.cs">
+      <DependentUpon>importstringresourcefile2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\invalidrequest.aspx.cs">
+      <DependentUpon>invalidrequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\invalidrequest.aspx.designer.cs">
+      <DependentUpon>invalidrequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\inventorycontrol.aspx.cs">
+      <DependentUpon>inventorycontrol.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\inventorycontrol.aspx.designer.cs">
+      <DependentUpon>inventorycontrol.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\kit.aspx.cs">
+      <DependentUpon>kit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\kit.aspx.designer.cs">
+      <DependentUpon>kit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\kitgroupimageupload.aspx.cs">
+      <DependentUpon>kitgroupimageupload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\kitgroupimageupload.aspx.designer.cs">
+      <DependentUpon>kitgroupimageupload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\kitvariantitemselector.aspx.cs">
+      <DependentUpon>kitvariantitemselector.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\kitvariantitemselector.aspx.designer.cs">
+      <DependentUpon>kitvariantitemselector.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\localesettings.aspx.cs">
+      <DependentUpon>localesettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\localesettings.aspx.designer.cs">
+      <DependentUpon>localesettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\mailingtest.aspx.cs">
+      <DependentUpon>mailingtest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\mailingtest.aspx.designer.cs">
+      <DependentUpon>mailingtest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\databasemaintenance.aspx.cs">
+      <DependentUpon>databasemaintenance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\databasemaintenance.aspx.designer.cs">
+      <DependentUpon>databasemaintenance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\multiimagemanager.aspx.cs">
+      <DependentUpon>multiimagemanager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\multiimagemanager.aspx.designer.cs">
+      <DependentUpon>multiimagemanager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\news.aspx.cs">
+      <DependentUpon>news.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\news.aspx.designer.cs">
+      <DependentUpon>news.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\newseditor.aspx.cs">
+      <DependentUpon>newseditor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\newseditor.aspx.designer.cs">
+      <DependentUpon>newseditor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\order.aspx.cs">
+      <DependentUpon>order.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\order.aspx.designer.cs">
+      <DependentUpon>order.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\orderoption.aspx.cs">
+      <DependentUpon>orderoption.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\orderoption.aspx.designer.cs">
+      <DependentUpon>orderoption.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\orderoptions.aspx.cs">
+      <DependentUpon>orderoptions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\orderoptions.aspx.designer.cs">
+      <DependentUpon>orderoptions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\orders.aspx.cs">
+      <DependentUpon>orders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\orders.aspx.designer.cs">
+      <DependentUpon>orders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\PageNotFound.aspx.cs">
+      <DependentUpon>PageNotFound.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\PageNotFound.aspx.designer.cs">
+      <DependentUpon>PageNotFound.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\paypalreauthorder.aspx.cs">
+      <DependentUpon>paypalreauthorder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\paypalreauthorder.aspx.designer.cs">
+      <DependentUpon>paypalreauthorder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\printreceipts.aspx.cs">
+      <DependentUpon>printreceipts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\printreceipts.aspx.designer.cs">
+      <DependentUpon>printreceipts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\product.aspx.cs">
+      <DependentUpon>product.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\product.aspx.designer.cs">
+      <DependentUpon>product.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\products.aspx.cs">
+      <DependentUpon>products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\products.aspx.designer.cs">
+      <DependentUpon>products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\producttype.aspx.cs">
+      <DependentUpon>producttype.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\producttype.aspx.designer.cs">
+      <DependentUpon>producttype.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\producttypes.aspx.cs">
+      <DependentUpon>producttypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\producttypes.aspx.designer.cs">
+      <DependentUpon>producttypes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\promotion.aspx.cs">
+      <DependentUpon>promotion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\promotion.aspx.designer.cs">
+      <DependentUpon>promotion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\promotions.aspx.cs">
+      <DependentUpon>promotions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\promotions.aspx.designer.cs">
+      <DependentUpon>promotions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\quantitydiscount.aspx.cs">
+      <DependentUpon>quantitydiscount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\quantitydiscount.aspx.designer.cs">
+      <DependentUpon>quantitydiscount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\quantitydiscounts.aspx.cs">
+      <DependentUpon>quantitydiscounts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\quantitydiscounts.aspx.designer.cs">
+      <DependentUpon>quantitydiscounts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\rating.aspx.cs">
+      <DependentUpon>rating.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\rating.aspx.designer.cs">
+      <DependentUpon>rating.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\ratings.aspx.cs">
+      <DependentUpon>ratings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\ratings.aspx.designer.cs">
+      <DependentUpon>ratings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\recurringgatewaydetails.aspx.cs">
+      <DependentUpon>recurringgatewaydetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\recurringgatewaydetails.aspx.designer.cs">
+      <DependentUpon>recurringgatewaydetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\recurringimport.aspx.cs">
+      <DependentUpon>recurringimport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\recurringimport.aspx.designer.cs">
+      <DependentUpon>recurringimport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\recurringorder.aspx.cs">
+      <DependentUpon>recurringorder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\recurringorder.aspx.designer.cs">
+      <DependentUpon>recurringorder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\recurringorders.aspx.cs">
+      <DependentUpon>recurringorders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\recurringorders.aspx.designer.cs">
+      <DependentUpon>recurringorders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\recurringrefundcancel.aspx.cs">
+      <DependentUpon>recurringrefundcancel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\recurringrefundcancel.aspx.designer.cs">
+      <DependentUpon>recurringrefundcancel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\refundorder.aspx.cs">
+      <DependentUpon>refundorder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\refundorder.aspx.designer.cs">
+      <DependentUpon>refundorder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\reports.aspx.cs">
+      <DependentUpon>reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\reports.aspx.designer.cs">
+      <DependentUpon>reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\rtshippinglocalpickup.aspx.cs">
+      <DependentUpon>rtshippinglocalpickup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\rtshippinglocalpickup.aspx.designer.cs">
+      <DependentUpon>rtshippinglocalpickup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\runsql.aspx.cs">
+      <DependentUpon>runsql.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\runsql.aspx.designer.cs">
+      <DependentUpon>runsql.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\salesprompt.aspx.cs">
+      <DependentUpon>salesprompt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\salesprompt.aspx.designer.cs">
+      <DependentUpon>salesprompt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\salesprompts.aspx.cs">
+      <DependentUpon>salesprompts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\salesprompts.aspx.designer.cs">
+      <DependentUpon>salesprompts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\search.aspx.cs">
+      <DependentUpon>search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\search.aspx.designer.cs">
+      <DependentUpon>search.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\securitylog.aspx.cs">
+      <DependentUpon>securitylog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\securitylog.aspx.designer.cs">
+      <DependentUpon>securitylog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\setupfts.aspx.cs">
+      <DependentUpon>setupfts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\setupfts.aspx.designer.cs">
+      <DependentUpon>setupfts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\setupfts_noisewords.aspx.cs">
+      <DependentUpon>setupfts_noisewords.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\setupfts_noisewords.aspx.designer.cs">
+      <DependentUpon>setupfts_noisewords.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\shipping.aspx.cs">
+      <DependentUpon>shipping.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\shipping.aspx.designer.cs">
+      <DependentUpon>shipping.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\shippingbytotal.aspx.cs">
+      <DependentUpon>shippingbytotal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\shippingbytotal.aspx.designer.cs">
+      <DependentUpon>shippingbytotal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\shippingbytotalandpercent.aspx.cs">
+      <DependentUpon>shippingbytotalandpercent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\shippingbytotalandpercent.aspx.designer.cs">
+      <DependentUpon>shippingbytotalandpercent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\shippingbytotalandzone.aspx.cs">
+      <DependentUpon>shippingbytotalandzone.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\shippingbytotalandzone.aspx.designer.cs">
+      <DependentUpon>shippingbytotalandzone.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\shippingbyweight.aspx.cs">
+      <DependentUpon>shippingbyweight.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\shippingbyweight.aspx.designer.cs">
+      <DependentUpon>shippingbyweight.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\shippingbyweightandzone.aspx.cs">
+      <DependentUpon>shippingbyweightandzone.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\shippingbyweightandzone.aspx.designer.cs">
+      <DependentUpon>shippingbyweightandzone.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\shippingfixedprices.aspx.cs">
+      <DependentUpon>shippingfixedprices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\shippingfixedprices.aspx.designer.cs">
+      <DependentUpon>shippingfixedprices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\shippingmethod.aspx.cs">
+      <DependentUpon>shippingmethod.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\shippingmethod.aspx.designer.cs">
+      <DependentUpon>shippingmethod.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\shippingmethodcountries.aspx.cs">
+      <DependentUpon>shippingmethodcountries.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\shippingmethodcountries.aspx.designer.cs">
+      <DependentUpon>shippingmethodcountries.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\shippingmethods.aspx.cs">
+      <DependentUpon>shippingmethods.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\shippingmethods.aspx.designer.cs">
+      <DependentUpon>shippingmethods.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\shippingmethodsrealtime.aspx.cs">
+      <DependentUpon>shippingmethodsrealtime.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\shippingmethodsrealtime.aspx.designer.cs">
+      <DependentUpon>shippingmethodsrealtime.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\shippingmethodstates.aspx.cs">
+      <DependentUpon>shippingmethodstates.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\shippingmethodstates.aspx.designer.cs">
+      <DependentUpon>shippingmethodstates.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\shippingmethodzones.aspx.cs">
+      <DependentUpon>shippingmethodzones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\shippingmethodzones.aspx.designer.cs">
+      <DependentUpon>shippingmethodzones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\shippingpercentageoftotal.aspx.cs">
+      <DependentUpon>shippingpercentageoftotal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\shippingpercentageoftotal.aspx.designer.cs">
+      <DependentUpon>shippingpercentageoftotal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\shippingzone.aspx.cs">
+      <DependentUpon>shippingzone.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\shippingzone.aspx.designer.cs">
+      <DependentUpon>shippingzone.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\shippingzones.aspx.cs">
+      <DependentUpon>shippingzones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\shippingzones.aspx.designer.cs">
+      <DependentUpon>shippingzones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\skinselector.aspx.cs">
+      <DependentUpon>skinselector.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\skinselector.aspx.designer.cs">
+      <DependentUpon>skinselector.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\state.aspx.cs">
+      <DependentUpon>state.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\state.aspx.designer.cs">
+      <DependentUpon>state.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\states.aspx.cs">
+      <DependentUpon>states.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\states.aspx.designer.cs">
+      <DependentUpon>states.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\storemappings.aspx.cs">
+      <DependentUpon>storemappings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\storemappings.aspx.designer.cs">
+      <DependentUpon>storemappings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\stores.aspx.cs">
+      <DependentUpon>stores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\stores.aspx.designer.cs">
+      <DependentUpon>stores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\storewide.aspx.cs">
+      <DependentUpon>storewide.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\storewide.aspx.designer.cs">
+      <DependentUpon>storewide.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\stringresource.aspx.cs">
+      <DependentUpon>stringresource.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\stringresource.aspx.designer.cs">
+      <DependentUpon>stringresource.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\stringresourcerpt.aspx.cs">
+      <DependentUpon>stringresourcerpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\stringresourcerpt.aspx.designer.cs">
+      <DependentUpon>stringresourcerpt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\stringresources.aspx.cs">
+      <DependentUpon>stringresources.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\stringresources.aspx.designer.cs">
+      <DependentUpon>stringresources.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\systemlog.aspx.cs">
+      <DependentUpon>systemlog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\systemlog.aspx.designer.cs">
+      <DependentUpon>systemlog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\systemlogs.aspx.cs">
+      <DependentUpon>systemlogs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\systemlogs.aspx.designer.cs">
+      <DependentUpon>systemlogs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\taxclass.aspx.cs">
+      <DependentUpon>taxclass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\taxclass.aspx.designer.cs">
+      <DependentUpon>taxclass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\topic.aspx.cs">
+      <DependentUpon>topic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\topic.aspx.designer.cs">
+      <DependentUpon>topic.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\topics.aspx.cs">
+      <DependentUpon>topics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\topics.aspx.designer.cs">
+      <DependentUpon>topics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\variant.aspx.cs">
+      <DependentUpon>variant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\variant.aspx.designer.cs">
+      <DependentUpon>variant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\variants.aspx.cs">
+      <DependentUpon>variants.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\variants.aspx.designer.cs">
+      <DependentUpon>variants.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\variantsizecolorinventory.aspx.cs">
+      <DependentUpon>variantsizecolorinventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\variantsizecolorinventory.aspx.designer.cs">
+      <DependentUpon>variantsizecolorinventory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\versioninfo.aspx.cs">
+      <DependentUpon>versioninfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\versioninfo.aspx.designer.cs">
+      <DependentUpon>versioninfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\voidorder.aspx.cs">
+      <DependentUpon>voidorder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\voidorder.aspx.designer.cs">
+      <DependentUpon>voidorder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\wizard.aspx.cs">
+      <DependentUpon>wizard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\wizard.aspx.designer.cs">
+      <DependentUpon>wizard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\zipcode.aspx.cs">
+      <DependentUpon>zipcode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\zipcode.aspx.designer.cs">
+      <DependentUpon>zipcode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\zipcodes.aspx.cs">
+      <DependentUpon>zipcodes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\zipcodes.aspx.designer.cs">
+      <DependentUpon>zipcodes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CanAdmin\App_Code\AdminPageBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CanAdmin\App_Code\AdminPromoUsage.cs" />
+    <Compile Include="CanAdmin\App_Code\LoggedAuthorizeAttribute.cs" />
+    <Compile Include="IIpx.cs" />
+    <Compile Include="Ipx.svc.cs">
+      <DependentUpon>Ipx.svc</DependentUpon>
+    </Compile>
+    <Compile Include="App_Templates\Admin_Default\AdminMaster.master.cs">
+      <DependentUpon>AdminMaster.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Templates\Admin_Default\AdminMaster.master.designer.cs">
+      <DependentUpon>AdminMaster.master</DependentUpon>
+    </Compile>
+    <Compile Include="App_Templates\Admin_Default\Popup.master.cs">
+      <DependentUpon>Popup.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Templates\Admin_Default\Popup.master.designer.cs">
+      <DependentUpon>Popup.master</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="CanAdmin\about.aspx" />
+    <Content Include="CanAdmin\adhoccharge.aspx" />
+    <Content Include="CanAdmin\adhocchargecomplete.aspx" />
+    <Content Include="CanAdmin\adjustcharge.aspx" />
+    <Content Include="CanAdmin\affiliate.aspx" />
+    <Content Include="CanAdmin\affiliates.aspx" />
+    <Content Include="CanAdmin\amazontransaction.aspx" />
+    <Content Include="CanAdmin\appconfigs.aspx" />
+    <Content Include="CanAdmin\auditlog.aspx" />
+    <Content Include="CanAdmin\avalaraconnectiontest.aspx" />
+    <Content Include="CanAdmin\badword.aspx" />
+    <Content Include="CanAdmin\bmlsettings.aspx" />
+    <Content Include="CanAdmin\bulkeditprices.aspx" />
+    <Content Include="CanAdmin\bulkeditweights.aspx" />
+    <Content Include="CanAdmin\bulkshipping.aspx" />
+    <Content Include="CanAdmin\buysafeframe.aspx" />
+    <Content Include="CanAdmin\buysafesetup.aspx" />
+    <Content Include="CanAdmin\changeencryptkey.aspx" />
+    <Content Include="CanAdmin\config.aspx" />
+    <Content Include="CanAdmin\ConfigurationAtoms\General.Signifyd.xml" />
+    <Content Include="CanAdmin\ConfigurationAtoms\PaymentMethod.AmazonPayments.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="CanAdmin\ConfigurationAtoms\General.Email.xml" />
+    <Content Include="CanAdmin\ConfigurationAtoms\General.Gateway.xml" />
+    <Content Include="CanAdmin\ConfigurationAtoms\General.MaxMind.xml" />
+    <Content Include="CanAdmin\ConfigurationAtoms\General.PaymentMethods.xml" />
+    <Content Include="CanAdmin\ConfigurationAtoms\General.SEO.xml" />
+    <Content Include="CanAdmin\ConfigurationAtoms\PaymentMethod.CreditCard.xml" />
+    <Content Include="CanAdmin\ConfigurationAtoms\PaymentMethod.PayPalEmbeddedCheckout.xml" />
+    <Content Include="CanAdmin\ConfigurationAtoms\PaymentMethod.PayPalExpress.xml" />
+    <Content Include="CanAdmin\Controls\AlertMessageTemplate.ascx" />
+    <Content Include="CanAdmin\Controls\AppConfigInfo.ascx" />
+    <Content Include="CanAdmin\Controls\ConfigurationAtom.ascx" />
+    <Content Include="CanAdmin\Controls\ConfigurationMenu.ascx" />
+    <Content Include="CanAdmin\Controls\Config\BooleanEditor.ascx" />
+    <Content Include="CanAdmin\Controls\Config\DecimalEditor.ascx" />
+    <Content Include="CanAdmin\Controls\Config\EnumEditor.ascx" />
+    <Content Include="CanAdmin\Controls\Config\IntegerEditor.ascx" />
+    <Content Include="CanAdmin\Controls\Config\MultiselectEditor.ascx" />
+    <Content Include="CanAdmin\Controls\Config\StringEditor.ascx" />
+    <Content Include="CanAdmin\Controls\CSVHelper.ascx" />
+    <Content Include="CanAdmin\Controls\EditAppConfigAtom.ascx" />
+    <Content Include="CanAdmin\Controls\EditAppConfigInput.ascx" />
+    <Content Include="CanAdmin\Controls\EditAppConfigStoresAtom.ascx" />
+    <Content Include="CanAdmin\Controls\EditKitGroupTemplate.ascx" />
+    <Content Include="CanAdmin\Controls\EntityToStoreMapper.ascx" />
+    <Content Include="CanAdmin\Controls\GeneralInfo.ascx" />
+    <Content Include="CanAdmin\Controls\LinkGroupEntities.ascx" />
+    <Content Include="CanAdmin\Controls\LinkGroupImportExport.ascx" />
+    <Content Include="CanAdmin\Controls\LinkGroupLinks.ascx" />
+    <Content Include="CanAdmin\Controls\LinkGroupOrders.ascx" />
+    <Content Include="CanAdmin\Controls\LinkGroupProducts.ascx" />
+    <Content Include="CanAdmin\Controls\LinkGroupRatings.ascx" />
+    <Content Include="CanAdmin\Controls\LinkGroupRecurring.ascx" />
+    <Content Include="CanAdmin\Controls\Listing\BooleanFilter.ascx" />
+    <Content Include="CanAdmin\Controls\Listing\DataQueryFilter.ascx" />
+    <Content Include="CanAdmin\Controls\Listing\DateRangeFilter.ascx" />
+    <Content Include="CanAdmin\Controls\Listing\DecimalRangeFilter.ascx" />
+    <Content Include="CanAdmin\Controls\Listing\DefaultActionRow.ascx" />
+    <Content Include="CanAdmin\Controls\Listing\DefaultFilterActions.ascx" />
+    <Content Include="CanAdmin\Controls\Listing\DefaultFilterControls.ascx" />
+    <Content Include="CanAdmin\Controls\Listing\DefaultPagingControls.ascx" />
+    <Content Include="CanAdmin\Controls\Listing\EntityFilter.ascx" />
+    <Content Include="CanAdmin\Controls\Listing\EnumSelectFilter.ascx" />
+    <Content Include="CanAdmin\Controls\Listing\FlagFilter.ascx" />
+    <Content Include="CanAdmin\Controls\Listing\IntegerFilter.ascx" />
+    <Content Include="CanAdmin\Controls\Listing\ListFilter.ascx" />
+    <Content Include="CanAdmin\Controls\Listing\LocaleFilter.ascx" />
+    <Content Include="CanAdmin\Controls\Listing\MultiFieldStringFilter.ascx" />
+    <Content Include="CanAdmin\Controls\Listing\OrderItemFilter.ascx" />
+    <Content Include="CanAdmin\Controls\Listing\PromotionFilter.ascx" />
+    <Content Include="CanAdmin\Controls\Listing\ShippingMethodFilter.ascx" />
+    <Content Include="CanAdmin\Controls\Listing\StoreFilter.ascx" />
+    <Content Include="CanAdmin\Controls\Listing\StringFilter.ascx" />
+    <Content Include="CanAdmin\Controls\Listing\VariantEntityFilter.ascx" />
+    <Content Include="CanAdmin\Controls\LocaleField.ascx" />
+    <Content Include="CanAdmin\Controls\ManualSearch.ascx" />
+    <Content Include="CanAdmin\Controls\ModalConfigurationAtom.ascx" />
+    <Content Include="CanAdmin\Controls\QuickAdd\QuickAddCustomerLevel.ascx" />
+    <Content Include="CanAdmin\Controls\QuickAdd\QuickAddEntity.ascx" />
+    <Content Include="CanAdmin\Controls\QuickAdd\QuickAddQuantityDiscounts.ascx" />
+    <Content Include="CanAdmin\Controls\QuickStart.ascx" />
+    <Content Include="CanAdmin\Controls\StoreControl.ascx" />
+    <Content Include="CanAdmin\Controls\StoreEdit.ascx" />
+    <Content Include="CanAdmin\Controls\ImpersonateToStore.ascx" />
+    <Content Include="CanAdmin\Controls\StoreNavigator.ascx" />
+    <Content Include="CanAdmin\Controls\StoreSelector.ascx" />
+    <Content Include="CanAdmin\Controls\VerticalMenu.ascx" />
+    <Content Include="CanAdmin\Controls\XmlPackageControl.ascx" />
+    <Content Include="CanAdmin\countries.aspx" />
+    <Content Include="CanAdmin\country.aspx" />
+    <Content Include="CanAdmin\creditcards.aspx" />
+    <Content Include="CanAdmin\Css\nv.d3.css" />
+    <Content Include="CanAdmin\Css\promotions.css" />
+    <Content Include="CanAdmin\currencies.aspx" />
+    <Content Include="CanAdmin\customer.aspx" />
+    <Content Include="CanAdmin\customeraddress.aspx" />
+    <Content Include="CanAdmin\customerlevel.aspx" />
+    <Content Include="CanAdmin\customerlevelcustomers.aspx" />
+    <Content Include="CanAdmin\customerlevels.aspx" />
+    <Content Include="CanAdmin\createorder.aspx" />
+    <Content Include="CanAdmin\customerremoval.aspx" />
+    <Content Include="CanAdmin\customers.aspx" />
+    <Content Include="CanAdmin\customer_history.aspx" />
+    <Content Include="CanAdmin\default.aspx" />
+    <Content Include="CanAdmin\deleteimage.aspx" />
+    <Content Include="CanAdmin\editaddressrecurring.aspx" />
+    <Content Include="CanAdmin\editextendedprices.aspx" />
+    <Content Include="CanAdmin\empty.htm" />
+    <Content Include="CanAdmin\entities.aspx" />
+    <Content Include="CanAdmin\entity.aspx" />
+    <Content Include="CanAdmin\entitybulkdisplayorder.aspx" />
+    <Content Include="CanAdmin\entitybulkdownloadfiles.aspx" />
+    <Content Include="CanAdmin\entitybulkinventory.aspx" />
+    <Content Include="CanAdmin\entitybulkprices.aspx" />
+    <Content Include="CanAdmin\entitybulkse.aspx" />
+    <Content Include="CanAdmin\entitybulkshipping.aspx" />
+    <Content Include="CanAdmin\EntityHelper\EntityArrayList.xslt" />
+    <Content Include="CanAdmin\EntityHelper\EntityArrayListXML.xslt" />
+    <Content Include="CanAdmin\EntityHelper\EntityMenuList.xslt" />
+    <Content Include="CanAdmin\EntityHelper\EntitySelectList.xslt" />
+    <Content Include="CanAdmin\EntityHelper\EntityTabs.xml" />
+    <Content Include="CanAdmin\EntityHelper\EntityULList.xslt" />
+    <Content Include="CanAdmin\EntityHelper\GCConfigWizardTab.xml" />
+    <Content Include="CanAdmin\EntityHelper\MailingTabs.xml" />
+    <Content Include="CanAdmin\EntityHelper\PlainEntityList.xslt" />
+    <Content Include="CanAdmin\EntityHelper\ProductAffiliate.xslt" />
+    <Content Include="CanAdmin\EntityHelper\ProductCategory.xslt" />
+    <Content Include="CanAdmin\EntityHelper\ProductCustomerLevel.xslt" />
+    <Content Include="CanAdmin\EntityHelper\ProductGenre.xslt" />
+    <Content Include="CanAdmin\EntityHelper\ProductSection.xslt" />
+    <Content Include="CanAdmin\EntityHelper\ProductTabs.xml" />
+    <Content Include="CanAdmin\EntityHelper\ProductVector.xslt" />
+    <Content Include="CanAdmin\EntityHelper\VariantTabs.xml" />
+    <Content Include="CanAdmin\entityproductbulkdisplayorder.aspx" />
+    <Content Include="CanAdmin\entityproductmap.aspx" />
+    <Content Include="CanAdmin\eventhandler.aspx" />
+    <Content Include="CanAdmin\exportproductpricing.aspx" />
+    <Content Include="CanAdmin\failedtransactions.aspx" />
+    <Content Include="CanAdmin\feed.aspx" />
+    <Content Include="CanAdmin\feeds.aspx" />
+    <Content Include="CanAdmin\fraudorders.aspx" />
+    <Content Include="CanAdmin\giftcard.aspx" />
+    <Content Include="CanAdmin\giftcards.aspx" />
+    <Content Include="CanAdmin\giftcardusage.aspx" />
+    <Content Include="CanAdmin\globalconfigs.aspx" />
+    <Content Include="CanAdmin\Images\authorizenet.gif" />
+    <Content Include="CanAdmin\Images\bml-as-ppcredit-logo.png" />
+    <Content Include="CanAdmin\Images\braintree.png" />
+    <Content Include="CanAdmin\Images\CyberSource.gif" />
+    <Content Include="CanAdmin\Images\eProcessing.gif" />
+    <Content Include="CanAdmin\Images\eway-logo.png" />
+    <Content Include="CanAdmin\Images\MaxMind.gif" />
+    <Content Include="CanAdmin\Images\paypal_ad_cartpage.png" />
+    <Content Include="CanAdmin\Images\paypal_ad_entitypage.png" />
+    <Content Include="CanAdmin\Images\paypal_ad_homepage.png" />
+    <Content Include="CanAdmin\Images\paypal_ad_productpage.png" />
+    <Content Include="CanAdmin\Images\PayPal_Certified.gif" />
+    <Content Include="CanAdmin\Images\PayPal_CreditCards.jpg" />
+    <Content Include="CanAdmin\Images\PayPal_Express.jpg" />
+    <Content Include="CanAdmin\Images\PayPal_OnBoarding_ECPaymentIcon.gif" />
+    <Content Include="CanAdmin\Images\PayPal_OnBoarding_PayFlow.png" />
+    <Content Include="CanAdmin\Images\PayPal_OnBoarding_PayFlowPro.gif" />
+    <Content Include="CanAdmin\Images\PayPal_PayFlow.jpg" />
+    <Content Include="CanAdmin\Images\PayPal_PaymentsAccepted.gif" />
+    <Content Include="CanAdmin\Images\paywithamazon.png" />
+    <Content Include="CanAdmin\Images\SagePayPI.png" />
+    <Content Include="CanAdmin\Images\signifyd.png" />
+    <Content Include="CanAdmin\Images\skipjack.jpg" />
+    <Content Include="CanAdmin\importproductpricing.aspx" />
+    <Content Include="CanAdmin\importproductsfromexcel.aspx" />
+    <Content Include="CanAdmin\importproductsfromxml.aspx" />
+    <Content Include="CanAdmin\importstringresourcefile1.aspx" />
+    <Content Include="CanAdmin\importstringresourcefile2.aspx" />
+    <Content Include="CanAdmin\invalidrequest.aspx" />
+    <Content Include="CanAdmin\inventorycontrol.aspx" />
+    <Content Include="CanAdmin\kit.aspx" />
+    <Content Include="CanAdmin\kitgroupimageupload.aspx" />
+    <Content Include="CanAdmin\kitvariantitemselector.aspx" />
+    <Content Include="CanAdmin\localesettings.aspx" />
+    <Content Include="CanAdmin\mailingtest.aspx" />
+    <Content Include="CanAdmin\databasemaintenance.aspx" />
+    <Content Include="CanAdmin\multiimagemanager.aspx" />
+    <Content Include="CanAdmin\news.aspx" />
+    <Content Include="CanAdmin\newseditor.aspx" />
+    <Content Include="CanAdmin\order.aspx" />
+    <Content Include="CanAdmin\orderoption.aspx" />
+    <Content Include="CanAdmin\orderoptions.aspx" />
+    <Content Include="CanAdmin\orders.aspx" />
+    <Content Include="CanAdmin\PageNotFound.aspx" />
+    <Content Include="CanAdmin\paypalreauthorder.aspx" />
+    <Content Include="CanAdmin\printreceipts.aspx" />
+    <Content Include="CanAdmin\product.aspx" />
+    <Content Include="CanAdmin\products.aspx" />
+    <Content Include="CanAdmin\producttype.aspx" />
+    <Content Include="CanAdmin\producttypes.aspx" />
+    <Content Include="CanAdmin\promotion.aspx" />
+    <Content Include="CanAdmin\promotions.aspx" />
+    <Content Include="CanAdmin\quantitydiscount.aspx" />
+    <Content Include="CanAdmin\quantitydiscounts.aspx" />
+    <Content Include="CanAdmin\rating.aspx" />
+    <Content Include="CanAdmin\ratings.aspx" />
+    <Content Include="CanAdmin\recurringgatewaydetails.aspx" />
+    <Content Include="CanAdmin\recurringimport.aspx" />
+    <Content Include="CanAdmin\recurringorder.aspx" />
+    <Content Include="CanAdmin\recurringorders.aspx" />
+    <Content Include="CanAdmin\recurringrefundcancel.aspx" />
+    <Content Include="CanAdmin\refundorder.aspx" />
+    <Content Include="CanAdmin\reports.aspx" />
+    <Content Include="CanAdmin\rtshippinglocalpickup.aspx" />
+    <Content Include="CanAdmin\runsql.aspx" />
+    <Content Include="CanAdmin\salesprompt.aspx" />
+    <Content Include="CanAdmin\salesprompts.aspx" />
+    <Content Include="CanAdmin\Scripts\admin.js" />
+    <Content Include="CanAdmin\Scripts\bootstrap.min.js" />
+    <Content Include="CanAdmin\Scripts\bootstrapextensions.js" />
+    <Content Include="CanAdmin\Scripts\bootstrapValidator.min.js" />
+    <Content Include="CanAdmin\Scripts\confirm.js" />
+    <Content Include="CanAdmin\Scripts\d3.v3.min.js" />
+    <Content Include="CanAdmin\Scripts\dashboardCharts.js" />
+    <Content Include="CanAdmin\Scripts\filteredListing.js" />
+    <Content Include="CanAdmin\Scripts\filterState.js" />
+    <Content Include="CanAdmin\Scripts\formValidate.js" />
+    <Content Include="CanAdmin\Scripts\jquery.cookie.min.js" />
+    <Content Include="CanAdmin\Scripts\jquery.min.js" />
+    <Content Include="CanAdmin\Scripts\jquery.query-object.min.js" />
+    <Content Include="CanAdmin\Scripts\jquery.storageapi.min.js" />
+    <Content Include="CanAdmin\Scripts\jqueryextensions.js" />
+    <Content Include="CanAdmin\Scripts\menu.js" />
+    <Content Include="CanAdmin\Scripts\nv.d3.min.js" />
+    <Content Include="CanAdmin\Scripts\promotions.js" />
+    <Content Include="CanAdmin\search.aspx" />
+    <Content Include="CanAdmin\securitylog.aspx" />
+    <Content Include="CanAdmin\setupfts.aspx" />
+    <Content Include="CanAdmin\setupfts_noisewords.aspx" />
+    <Content Include="CanAdmin\shipping.aspx" />
+    <Content Include="CanAdmin\shippingbytotal.aspx" />
+    <Content Include="CanAdmin\shippingbytotalandpercent.aspx" />
+    <Content Include="CanAdmin\shippingbytotalandzone.aspx" />
+    <Content Include="CanAdmin\shippingbyweight.aspx" />
+    <Content Include="CanAdmin\shippingbyweightandzone.aspx" />
+    <Content Include="CanAdmin\shippingfixedprices.aspx" />
+    <Content Include="CanAdmin\shippingmethod.aspx" />
+    <Content Include="CanAdmin\shippingmethodcountries.aspx" />
+    <Content Include="CanAdmin\shippingmethods.aspx" />
+    <Content Include="CanAdmin\shippingmethodsrealtime.aspx" />
+    <Content Include="CanAdmin\shippingmethodstates.aspx" />
+    <Content Include="CanAdmin\shippingmethodzones.aspx" />
+    <Content Include="CanAdmin\shippingpercentageoftotal.aspx" />
+    <Content Include="CanAdmin\shippingzone.aspx" />
+    <Content Include="CanAdmin\shippingzones.aspx" />
+    <Content Include="CanAdmin\skinselector.aspx" />
+    <Content Include="CanAdmin\state.aspx" />
+    <Content Include="CanAdmin\states.aspx" />
+    <Content Include="CanAdmin\storemappings.aspx" />
+    <Content Include="CanAdmin\stores.aspx" />
+    <Content Include="CanAdmin\storewide.aspx" />
+    <Content Include="CanAdmin\stringresource.aspx" />
+    <Content Include="CanAdmin\stringresourcerpt.aspx" />
+    <Content Include="CanAdmin\stringresources.aspx" />
+    <Content Include="CanAdmin\systemlog.aspx" />
+    <Content Include="CanAdmin\systemlogs.aspx" />
+    <Content Include="CanAdmin\taxclass.aspx" />
+    <Content Include="CanAdmin\topic.aspx" />
+    <Content Include="CanAdmin\topics.aspx" />
+    <Content Include="CanAdmin\variant.aspx" />
+    <Content Include="CanAdmin\variants.aspx" />
+    <Content Include="CanAdmin\variantsizecolorinventory.aspx" />
+    <Content Include="CanAdmin\versioninfo.aspx" />
+    <Content Include="CanAdmin\voidorder.aspx" />
+    <Content Include="CanAdmin\wizard.aspx" />
+    <Content Include="CanAdmin\XmlPackages\ExcelPricingImport.xslt" />
+    <Content Include="CanAdmin\XmlPackages\ProductPricingExport.xslt" />
+    <Content Include="CanAdmin\XmlPackages\ProductPricingExportCSV.xslt" />
+    <Content Include="CanAdmin\XmlPackages\ProductPricingExportExcel.xslt" />
+    <Content Include="CanAdmin\XmlPackages\ReportExportCSV.xslt" />
+    <Content Include="CanAdmin\zipcode.aspx" />
+    <Content Include="CanAdmin\zipcodes.aspx" />
+    <Content Include="App_Templates\Admin_Default\previewstyles.css" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\bootstrap.css" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\theme.css" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\fonts.css" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-boldit-webfont.svg" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-it-webfont.svg" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-light-webfont.svg" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-lightit-webfont.svg" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-regular-webfont.svg" />
+    <Content Include="App_Themes\Admin_Default\FontAwesome\css\font-awesome.min.css" />
+    <Content Include="App_Themes\Admin_Default\FontAwesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="App_Themes\Admin_Default\images\accept.png" />
+    <Content Include="App_Themes\Admin_Default\images\ajax-loader.gif" />
+    <Content Include="App_Themes\Admin_Default\images\arrow.gif" />
+    <Content Include="App_Themes\Admin_Default\images\aspdnsf-logo.png" />
+    <Content Include="App_Themes\Admin_Default\images\buySafe\buysafeworks.gif" />
+    <Content Include="App_Themes\Admin_Default\images\buySafe\CTAmerch_trial.gif" />
+    <Content Include="App_Themes\Admin_Default\images\buySafe\enabletrial.gif" />
+    <Content Include="App_Themes\Admin_Default\images\buySafe\header06.gif" />
+    <Content Include="App_Themes\Admin_Default\images\buySafe\logos_landing.gif" />
+    <Content Include="App_Themes\Admin_Default\images\buySafe\spacer.gif" />
+    <Content Include="App_Themes\Admin_Default\images\buysafe_logo.jpg" />
+    <Content Include="App_Themes\Admin_Default\images\delete.png" />
+    <Content Include="App_Themes\Admin_Default\images\editAll.png" />
+    <Content Include="App_Themes\Admin_Default\images\kit\ajax-loader.gif" />
+    <Content Include="App_Themes\Admin_Default\images\kit\variantListHeader_background.jpg" />
+    <Content Include="App_Themes\Admin_Default\images\modal_popup_headerbg.jpg" />
+    <Content Include="App_Themes\Admin_Default\images\securitycode.png" />
+    <Content Include="App_Themes\Admin_Default\images\signtext2.png" />
+    <Content Include="App_Themes\Admin_Default\images\spacer.gif" />
+    <Content Include="App_Themes\Admin_Default\images\tab2.gif" />
+    <Content Include="App_Themes\Admin_Default\images\tabcorner.png" />
+    <Content Include="App_Themes\Admin_Default\images\tabHover.gif" />
+    <Content Include="App_Themes\Admin_Default\images\tabSelect.gif" />
+    <Content Include="App_Themes\Admin_Default\images\topHelp.png" />
+    <Content Include="App_Themes\Admin_Default\images\verificationtxt.png" />
+    <Content Include="App_Themes\Admin_Default\StyleSheet.css" />
+    <Content Include="App_Themes\Admin_Default\FontAwesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="dependency.json" />
+    <Content Include="descriptions\category\spacer.gif" />
+    <Content Include="descriptions\document\spacer.gif" />
+    <Content Include="descriptions\library\spacer.gif" />
+    <Content Include="descriptions\productspecs\spacer.gif" />
+    <Content Include="descriptions\product\spacer.gif" />
+    <Content Include="descriptions\section\spacer.gif" />
+    <Content Include="dotFeed.aspx" />
+    <Content Include="download\spacer.gif" />
+    <Content Include="EntityHelper\EntityArrayList.xslt" />
+    <Content Include="EntityHelper\EntityMenuList.xslt" />
+    <Content Include="EntityHelper\EntitySelectList.xslt" />
+    <Content Include="EntityHelper\EntityULList.xslt" />
+    <Content Include="EntityHelper\PlainEntityList.xslt" />
+    <Content Include="EntityHelper\rtshipping.provider.dhl.xml" />
+    <Content Include="EntityHelper\rtshipping.provider.fedex.xml" />
+    <Content Include="EntityHelper\rtshipping.provider.ups.xml" />
+    <Content Include="EntityHelper\rtshipping.provider.usps.xml" />
+    <Content Include="empty.htm" />
+    <Content Include="images\amazonpayments.jpg" />
+    <Content Include="images\category\icon\spacer.gif" />
+    <Content Include="images\category\large\spacer.gif" />
+    <Content Include="images\category\medium\spacer.gif" />
+    <Content Include="images\category\spacer.gif" />
+    <Content Include="images\distributor\icon\spacer.gif" />
+    <Content Include="images\distributor\large\spacer.gif" />
+    <Content Include="images\distributor\medium\spacer.gif" />
+    <Content Include="images\distributor\spacer.gif" />
+    <Content Include="images\document\icon\spacer.gif" />
+    <Content Include="images\document\large\spacer.gif" />
+    <Content Include="images\document\medium\spacer.gif" />
+    <Content Include="images\document\spacer.gif" />
+    <Content Include="images\flash\spacer.gif" />
+    <Content Include="images\gallery\icon\spacer.gif" />
+    <Content Include="images\genre\icon\spacer.gif" />
+    <Content Include="images\genre\large\spacer.gif" />
+    <Content Include="images\genre\medium\spacer.gif" />
+    <Content Include="images\genre\spacer.gif" />
+    <Content Include="images\icons\catalogs1.gif" />
+    <Content Include="images\icons\catalogs2.gif" />
+    <Content Include="images\icons\close.gif" />
+    <Content Include="images\icons\folder.gif" />
+    <Content Include="images\icons\folderclosed.gif" />
+    <Content Include="images\icons\folderclosed1.gif" />
+    <Content Include="images\icons\folderleaf.gif" />
+    <Content Include="images\icons\folderopen.gif" />
+    <Content Include="images\icons\folderopen1.gif" />
+    <Content Include="images\icons\gallery.gif" />
+    <Content Include="images\icons\home.gif" />
+    <Content Include="images\icons\html.gif" />
+    <Content Include="images\icons\journal1.gif" />
+    <Content Include="images\icons\newproducts1.gif" />
+    <Content Include="images\icons\root.gif" />
+    <Content Include="images\icons\support.gif" />
+    <Content Include="images\library\icon\spacer.gif" />
+    <Content Include="images\library\large\spacer.gif" />
+    <Content Include="images\library\medium\spacer.gif" />
+    <Content Include="images\library\spacer.gif" />
+    <Content Include="images\manufacturer\icon\spacer.gif" />
+    <Content Include="images\manufacturer\large\spacer.gif" />
+    <Content Include="images\manufacturer\medium\spacer.gif" />
+    <Content Include="images\manufacturer\spacer.gif" />
+    <Content Include="images\media\spacer.gif" />
+    <Content Include="images\nopicture.gif" />
+    <Content Include="images\nopictureicon.gif" />
+    <Content Include="images\orderoption\icon\1.gif" />
+    <Content Include="images\orders\spacer.gif" />
+    <Content Include="images\paypal.jpg" />
+    <Content Include="images\product\icon\spacer.gif" />
+    <Content Include="images\product\kit\spacer.gif" />
+    <Content Include="images\product\large\spacer.gif" />
+    <Content Include="images\product\medium\spacer.gif" />
+    <Content Include="images\product\micro\spacer.gif" />
+    <Content Include="images\product\spacer.gif" />
+    <Content Include="images\section\icon\spacer.gif" />
+    <Content Include="images\section\large\spacer.gif" />
+    <Content Include="images\section\medium\spacer.gif" />
+    <Content Include="images\section\spacer.gif" />
+    <Content Include="images\shipping\AustraliaPost.png" />
+    <Content Include="images\shipping\CanadaPost.png" />
+    <Content Include="images\shipping\Default.png" />
+    <Content Include="images\shipping\FedEx.png" />
+    <Content Include="images\shipping\Free.png" />
+    <Content Include="images\shipping\Ups.png" />
+    <Content Include="images\shipping\Usps.png" />
+    <Content Include="images\spacer.gif" />
+    <Content Include="images\upload\spacer.gif" />
+    <Content Include="images\variant\icon\spacer.gif" />
+    <Content Include="images\variant\large\spacer.gif" />
+    <Content Include="images\variant\medium\spacer.gif" />
+    <Content Include="images\variant\spacer.gif" />
+    <Content Include="images\vector\icon\spacer.gif" />
+    <Content Include="images\vector\large\spacer.gif" />
+    <Content Include="images\vector\medium\spacer.gif" />
+    <Content Include="images\vector\spacer.gif" />
+    <Content Include="ImportFileSamples\wsi.xml" />
+    <Content Include="ImportFileSamples\XmlImport.xml" />
+    <Content Include="Ipx.svc" />
+    <Content Include="ipx.xml" />
+    <Content Include="orderdownloads\spacer.gif" />
+    <Content Include="RadControls\Grid\Skins\AddRecord.gif" />
+    <Content Include="RadControls\Grid\Skins\Cancel.gif" />
+    <Content Include="RadControls\Grid\Skins\Delete.gif" />
+    <Content Include="RadControls\Grid\Skins\Edit.gif" />
+    <Content Include="RadControls\Grid\Skins\Filter.gif" />
+    <Content Include="RadControls\Grid\Skins\Insert.gif" />
+    <Content Include="RadControls\Grid\Skins\loading.gif" />
+    <Content Include="RadControls\Grid\Skins\NotSelectedMenu.gif" />
+    <Content Include="RadControls\Grid\Skins\Refresh.gif" />
+    <Content Include="RadControls\Grid\Skins\SelectedMenu.gif" />
+    <Content Include="RadControls\Grid\Skins\SelectedRow.gif" />
+    <Content Include="RadControls\Grid\Skins\SingleMinus.gif" />
+    <Content Include="RadControls\Grid\Skins\SinglePlus.gif" />
+    <Content Include="RadControls\Grid\Skins\SortAsc.gif" />
+    <Content Include="RadControls\Grid\Skins\SortDesc.gif" />
+    <Content Include="RadControls\Grid\Skins\Telerik\AddRecord.gif" />
+    <Content Include="RadControls\Grid\Skins\Telerik\Cancel.gif" />
+    <Content Include="RadControls\Grid\Skins\Telerik\Delete.gif" />
+    <Content Include="RadControls\Grid\Skins\Telerik\Edit.gif" />
+    <Content Include="RadControls\Grid\Skins\Telerik\Filter.gif" />
+    <Content Include="RadControls\Grid\Skins\Telerik\Img\headerBg.gif" />
+    <Content Include="RadControls\Grid\Skins\Telerik\Img\selectedRow.gif" />
+    <Content Include="RadControls\Grid\Skins\Telerik\Insert.gif" />
+    <Content Include="RadControls\Grid\Skins\Telerik\Loading.gif" />
+    <Content Include="RadControls\Grid\Skins\Telerik\MoveDown.gif" />
+    <Content Include="RadControls\Grid\Skins\Telerik\MoveUp.gif" />
+    <Content Include="RadControls\Grid\Skins\Telerik\NotSelectedMenu.gif" />
+    <Content Include="RadControls\Grid\Skins\Telerik\Refresh.gif" />
+    <Content Include="RadControls\Grid\Skins\Telerik\SelectedMenu.gif" />
+    <Content Include="RadControls\Grid\Skins\Telerik\SelectedRow.gif" />
+    <Content Include="RadControls\Grid\Skins\Telerik\SingleMinus.gif" />
+    <Content Include="RadControls\Grid\Skins\Telerik\SinglePlus.gif" />
+    <Content Include="RadControls\Grid\Skins\Telerik\SortAsc.gif" />
+    <Content Include="RadControls\Grid\Skins\Telerik\SortDesc.gif" />
+    <Content Include="RadControls\Grid\Skins\Telerik\Styles.css" />
+    <Content Include="RadControls\Grid\Skins\Telerik\Telerik.gif" />
+    <Content Include="RadControls\Grid\Skins\Telerik\Update.gif" />
+    <Content Include="RadControls\Grid\Skins\Update.gif" />
+    <Content Include="refused.htm" />
+    <Content Include="restarting.htm" />
+    <Content Include="robots.txt" />
+    <Content Include="Scripts\amazonpayments.js" />
+    <Content Include="Scripts\card.js" />
+    <Content Include="Scripts\countryandstate.js" />
+    <Content Include="Scripts\jquery.mask.js" />
+    <Content Include="Scripts\kitProduct.js" />
+    <Content Include="Scripts\checkout.js" />
+    <Content Include="Scripts\modalLogic.js" />
+    <Content Include="Scripts\bootstrappedWcagTabs.js" />
+    <Content Include="Scripts\validate.requireChecked.js" />
+    <Content Include="Scripts\validate.creditCardFormat.js" />
+    <Content Include="Scripts\validationoptions.js" />
+    <Content Include="Scripts\minicart.js" />
+    <Content Include="Scripts\jquery.adnsfalias.js" />
+    <Content Include="Scripts\paypalexpress.js" />
+    <Content Include="Scripts\addtocart.js" />
+    <Content Include="Scripts\tabbit.js" />
+    <Content Include="Scripts\toolTip.js" />
+    <Content Include="CanAdmin\Scripts\core.js" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\sessionTimer.js" />
+    <Content Include="Skins\Default\Css\base.css" />
+    <Content Include="Skins\Default\Css\custom.css" />
+    <Content Include="Skins\Default\Css\font-awesome.css" />
+    <Content Include="Skins\Default\Css\payment-icons.css" />
+    <Content Include="Skins\Default\Css\receipt.css" />
+    <Content Include="Skins\Default\Css\fonts.css" />
+    <Content Include="Skins\Default\Css\social-icons.css" />
+    <Content Include="Skins\Default\less\themestyles.css">
+      <DependentUpon>themestyles.less</DependentUpon>
+    </Content>
+    <Content Include="Skins\Default\less\bootstrap.css">
+      <DependentUpon>bootstrap.less</DependentUpon>
+    </Content>
+    <Content Include="Skins\Default\less\.csscomb.json" />
+    <Content Include="Skins\Default\less\.csslintrc" />
+    <Content Include="Skins\Default\less\alerts.less" />
+    <Content Include="Skins\Default\less\badges.less" />
+    <Content Include="Skins\Default\less\bootstrap.less" />
+    <Content Include="Skins\Default\less\breadcrumbs.less" />
+    <Content Include="Skins\Default\less\button-groups.less" />
+    <Content Include="Skins\Default\less\buttons.less" />
+    <Content Include="Skins\Default\less\carousel.less" />
+    <Content Include="Skins\Default\less\close.less" />
+    <Content Include="Skins\Default\less\code.less" />
+    <Content Include="Skins\Default\less\component-animations.less" />
+    <Content Include="Skins\Default\less\dropdowns.less" />
+    <Content Include="Skins\Default\less\forms.less" />
+    <Content Include="Skins\Default\less\glyphicons.less" />
+    <Content Include="Skins\Default\less\grid.less" />
+    <Content Include="Skins\Default\less\input-groups.less" />
+    <Content Include="Skins\Default\less\jumbotron.less" />
+    <Content Include="Skins\Default\less\labels.less" />
+    <Content Include="Skins\Default\less\list-group.less" />
+    <Content Include="Skins\Default\less\media.less" />
+    <Content Include="Skins\Default\less\mixins.less" />
+    <Content Include="Skins\Default\less\mixins\alerts.less" />
+    <Content Include="Skins\Default\less\mixins\background-variant.less" />
+    <Content Include="Skins\Default\less\mixins\border-radius.less" />
+    <Content Include="Skins\Default\less\mixins\buttons.less" />
+    <Content Include="Skins\Default\less\mixins\center-block.less" />
+    <Content Include="Skins\Default\less\mixins\clearfix.less" />
+    <Content Include="Skins\Default\less\mixins\forms.less" />
+    <Content Include="Skins\Default\less\mixins\gradients.less" />
+    <Content Include="Skins\Default\less\mixins\grid-framework.less" />
+    <Content Include="Skins\Default\less\mixins\grid.less" />
+    <Content Include="Skins\Default\less\mixins\hide-text.less" />
+    <Content Include="Skins\Default\less\mixins\image.less" />
+    <Content Include="Skins\Default\less\mixins\labels.less" />
+    <Content Include="Skins\Default\less\mixins\list-group.less" />
+    <Content Include="Skins\Default\less\mixins\nav-divider.less" />
+    <Content Include="Skins\Default\less\mixins\nav-vertical-align.less" />
+    <Content Include="Skins\Default\less\mixins\opacity.less" />
+    <Content Include="Skins\Default\less\mixins\pagination.less" />
+    <Content Include="Skins\Default\less\mixins\panels.less" />
+    <Content Include="Skins\Default\less\mixins\progress-bar.less" />
+    <Content Include="Skins\Default\less\mixins\reset-filter.less" />
+    <Content Include="Skins\Default\less\mixins\reset-text.less" />
+    <Content Include="Skins\Default\less\mixins\resize.less" />
+    <Content Include="Skins\Default\less\mixins\responsive-visibility.less" />
+    <Content Include="Skins\Default\less\mixins\size.less" />
+    <Content Include="Skins\Default\less\mixins\tab-focus.less" />
+    <Content Include="Skins\Default\less\mixins\table-row.less" />
+    <Content Include="Skins\Default\less\mixins\text-emphasis.less" />
+    <Content Include="Skins\Default\less\mixins\text-overflow.less" />
+    <Content Include="Skins\Default\less\mixins\vendor-prefixes.less" />
+    <Content Include="Skins\Default\less\modals.less" />
+    <Content Include="Skins\Default\less\navbar.less" />
+    <Content Include="Skins\Default\less\navs.less" />
+    <Content Include="Skins\Default\less\normalize.less" />
+    <Content Include="Skins\Default\less\pager.less" />
+    <Content Include="Skins\Default\less\pagination.less" />
+    <Content Include="Skins\Default\less\panels.less" />
+    <Content Include="Skins\Default\less\popovers.less" />
+    <Content Include="Skins\Default\less\print.less" />
+    <Content Include="Skins\Default\less\progress-bars.less" />
+    <Content Include="Skins\Default\less\responsive-embed.less" />
+    <Content Include="Skins\Default\less\responsive-utilities.less" />
+    <Content Include="Skins\Default\less\scaffolding.less" />
+    <Content Include="Skins\Default\less\tables.less" />
+    <Content Include="Skins\Default\less\theme.less" />
+    <Content Include="Skins\Default\less\thumbnails.less" />
+    <Content Include="Skins\Default\less\tooltip.less" />
+    <Content Include="Skins\Default\less\type.less" />
+    <Content Include="Skins\Default\less\utilities.less" />
+    <Content Include="Skins\Default\less\variables.less" />
+    <Content Include="Skins\Default\less\wells.less" />
+    <Content Include="Skins\Default\less\store.less" />
+    <Content Include="Skins\Default\less\themestyles.less" />
+    <Content Include="Skins\Default\Fonts\fontawesome-webfont.svg" />
+    <Content Include="Skins\Default\Fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Skins\Default\Images\amex.gif" />
+    <Content Include="Skins\Default\Images\box1.jpg" />
+    <Content Include="Skins\Default\Images\box2.jpg" />
+    <Content Include="Skins\Default\Images\box3.jpg" />
+    <Content Include="Skins\Default\Images\cc_diners.gif" />
+    <Content Include="Skins\Default\Images\cc_maestro.jpg" />
+    <Content Include="Skins\Default\Images\cc_visaelectron.png" />
+    <Content Include="Skins\Default\Images\discover.gif" />
+    <Content Include="Skins\Default\Images\enRoute.gif" />
+    <Content Include="Skins\Default\Images\genericCard.gif" />
+    <Content Include="Skins\Default\Images\home.jpg" />
+    <Content Include="Skins\Default\Images\home1.jpg" />
+    <Content Include="Skins\Default\Images\home2.jpg" />
+    <Content Include="Skins\Default\Images\home3.jpg" />
+    <Content Include="Skins\Default\Images\home4.jpg" />
+    <Content Include="Skins\Default\Images\jcb.gif" />
+    <Content Include="Skins\Default\Images\logo.jpg" />
+    <Content Include="Skins\Default\Images\magnify.png" />
+    <Content Include="Skins\Default\Images\mailicon.gif" />
+    <Content Include="Skins\Default\Images\mastercard.gif" />
+    <Content Include="Skins\Default\Images\nopicture.gif" />
+    <Content Include="Skins\Default\Images\nopictureicon.gif" />
+    <Content Include="Skins\Default\Images\nopicturemicro.gif" />
+    <Content Include="Skins\Default\Images\paypal_promo.gif" />
+    <Content Include="Skins\Default\Images\seal.png" />
+    <Content Include="Skins\Default\Images\securecode_logo_learn_more.gif" />
+    <Content Include="Skins\Default\Images\showlarger.gif" />
+    <Content Include="Skins\Default\Images\spacer.gif" />
+    <Content Include="Skins\Default\Images\Stare.gif" />
+    <Content Include="Skins\Default\Images\starf.gif" />
+    <Content Include="Skins\Default\Images\starh.gif" />
+    <Content Include="Skins\Default\Images\vbv_logo_learn_more.gif" />
+    <Content Include="Skins\Default\Images\visa.gif" />
+    <Content Include="Skins\Default\Scripts\bootstrap.js" />
+    <Content Include="Skins\Default\SkinInfo\preview.jpg" />
+    <Content Include="Skins\Default\SkinInfo\skininfo.xml" />
+    <Content Include="Skins\Default\Topics\styleguide.htm" />
+    <Content Include="Scripts\whatsthis.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="CanAdmin\EntityHelper\EntityMgr.xml.config" />
+    <Content Include="CanAdmin\EntityHelper\ProductAffiliateEdit.xml.config" />
+    <Content Include="CanAdmin\EntityHelper\ProductCategoryEdit.xml.config" />
+    <Content Include="CanAdmin\EntityHelper\ProductCustomerLevelEdit.xml.config" />
+    <Content Include="CanAdmin\EntityHelper\ProductGenreEdit.xml.config" />
+    <Content Include="CanAdmin\EntityHelper\ProductSectionEdit.xml.config" />
+    <Content Include="CanAdmin\EntityHelper\ProductVectorEdit.xml.config" />
+    <Content Include="CanAdmin\Scripts\jquery-1.10.2.min.map" />
+    <Content Include="CanAdmin\web.config" />
+    <Content Include="CanAdmin\XmlPackages\AffiliateArrayList.xml.config" />
+    <Content Include="CanAdmin\XmlPackages\ajax.CSVHelper.xml.config" />
+    <Content Include="CanAdmin\XmlPackages\DumpCustomer.xml.config" />
+    <Content Include="CanAdmin\XmlPackages\DumpOrder.xml.config" />
+    <Content Include="CanAdmin\XmlPackages\feed.exchangerates-eur.central.bank.xml.config" />
+    <Content Include="CanAdmin\XmlPackages\feed.exchangerates-xe.com.xml.config" />
+    <Content Include="CanAdmin\XmlPackages\rss.aspdnsfrssconsumer.xml.config" />
+    <Content Include="App_Templates\Admin_Default\AdminMaster.master" />
+    <Content Include="App_Templates\Admin_Default\Popup.master" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\.csscomb.json" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\.csslintrc" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\alerts.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\badges.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\bootstrap.css.map" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\bootstrap.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\breadcrumbs.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\button-groups.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\buttons.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\carousel.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\close.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\code.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\component-animations.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\dropdowns.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\forms.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\glyphicons.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\grid.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\input-groups.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\jumbotron.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\labels.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\list-group.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\media.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\alerts.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\background-variant.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\border-radius.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\buttons.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\center-block.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\clearfix.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\forms.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\gradients.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\grid-framework.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\grid.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\hide-text.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\image.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\labels.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\list-group.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\nav-divider.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\nav-vertical-align.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\opacity.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\pagination.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\panels.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\progress-bar.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\reset-filter.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\resize.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\responsive-visibility.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\size.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\tab-focus.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\table-row.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\text-emphasis.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\text-overflow.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\mixins\vendor-prefixes.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\modals.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\navbar.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\navs.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\normalize.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\pager.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\pagination.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\panels.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\popovers.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\print.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\progress-bars.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\responsive-embed.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\responsive-utilities.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\scaffolding.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\tables.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\theme.css.map" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\theme.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\thumbnails.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\tooltip.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\type.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\utilities.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\variables.less" />
+    <Content Include="App_Themes\Admin_Default\Bootstrap\less\wells.less" />
+    <Content Include="App_Themes\Admin_Default\Common.skin" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-bold-webfont.eot" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-bold-webfont.ttf" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-bold-webfont.woff" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-boldit-webfont.eot" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-boldit-webfont.ttf" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-boldit-webfont.woff" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-it-webfont.eot" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-it-webfont.ttf" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-it-webfont.woff" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-light-webfont.eot" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-light-webfont.ttf" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-light-webfont.woff" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-lightit-webfont.eot" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-lightit-webfont.ttf" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-lightit-webfont.woff" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-regular-webfont.eot" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-regular-webfont.ttf" />
+    <Content Include="App_Themes\Admin_Default\CustomFonts\Fonts\sourcesanspro-regular-webfont.woff" />
+    <Content Include="App_Themes\Admin_Default\FontAwesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="App_Themes\Admin_Default\FontAwesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="App_Themes\Admin_Default\FontAwesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="App_Themes\Admin_Default\FontAwesome\fonts\FontAwesome.otf" />
+    <Content Include="EntityHelper\EntityMgr.xml.config" />
+    <Content Include="ConnectionStrings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="AppSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="AjaxControlToolkit.config" />
+    <Content Include="App_Data\RadSpell\en-US.tdf" />
+    <Content Include="compilerconfig.json" />
+    <Content Include="compilerconfig.json.defaults" />
+    <None Include="EntityHelper\rtshipping.provider.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="ImportFileSamples\ExcelImport.xls" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Topics\tokens.html" />
+    <Content Include="Views\XmlPackage\Detail.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Skins\Default\Views\_ViewStart.cshtml" />
+    <Content Include="Views\Image\PopUp.cshtml" />
+    <Content Include="Skins\Default\Views\Shared\_Layout.cshtml" />
+    <Content Include="Skins\Default\Views\Shared\_BodyClose.cshtml" />
+    <Content Include="Skins\Default\Views\Shared\_BodyOpen.cshtml" />
+    <Content Include="Views\Minicart\_MiniCart.cshtml" />
+    <Content Include="Views\Minicart\_MiniWishLink.cshtml" />
+    <Content Include="Scripts\validate.postalCodeRegexLookup.js" />
+    <Content Include="Views\ShoppingCart\_SimpleAddToCartForm.cshtml" />
+    <Content Include="Views\Maintenance\Index.cshtml" />
+    <Content Include="Skins\Default\Fonts\fontawesome-webfont.eot" />
+    <Content Include="Skins\Default\Fonts\fontawesome-webfont.ttf" />
+    <Content Include="Skins\Default\Fonts\fontawesome-webfont.woff" />
+    <Content Include="Skins\Default\Fonts\fontawesome-webfont.woff2" />
+    <Content Include="Skins\Default\Fonts\FontAwesome.otf" />
+    <Content Include="Views\Error\EditorTemplates\NotFoundSuggestion.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\UpsellProducts\_ShoppingCartUpsells.cshtml" />
+    <Content Include="Views\UpsellProducts\EditorTemplates\ShoppingCartUpsellItem.cshtml" />
+    <Content Include="Scripts\validate.creditCardFutureExpirationDate.js" />
+    <Content Include="Views\Minicart\_MiniCartResources.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\UserLinks\_LoginLinks.cshtml" />
+    <Content Include="Views\ContactUs\Index.cshtml" />
+    <Content Include="Views\Account\SignIn.cshtml" />
+    <Content Include="Views\Topic\_Description.cshtml" />
+    <Content Include="Views\Topic\Detail.cshtml" />
+    <Content Include="Views\Topic\DetailNoTemplate.cshtml" />
+    <Content Include="Views\MetaTag\_Detail.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\XmlPackage\_Output.cshtml" />
+    <Content Include="XmlPackages\featuredproducts.xml.config" />
+    <Content Include="XmlPackages\availablePromotions.xml.config" />
+    <Content Include="XmlPackages\DumpShoppingCart.xml.config" />
+    <Content Include="XmlPackages\entity.grid.xml.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="XmlPackages\entity.gridwithprices.xml.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="XmlPackages\entity.rootlevel.xml.config" />
+    <Content Include="XmlPackages\entity.simpleproductlist.xml.config" />
+    <Content Include="XmlPackages\entity.tableorderform.xml.config" />
+    <Content Include="XmlPackages\entitygridpage.xml.config" />
+    <Content Include="XmlPackages\event.default.xml.config" />
+    <Content Include="XmlPackages\giftcardassignment.xml.config" />
+    <Content Include="XmlPackages\notification.adminneworder.xml.config" />
+    <Content Include="XmlPackages\notification.distributor.xml.config" />
+    <Content Include="XmlPackages\notification.downloadreleased.xml.config" />
+    <Content Include="XmlPackages\notification.emailgiftcard.xml.config" />
+    <Content Include="XmlPackages\notification.emailproduct.xml.config" />
+    <Content Include="XmlPackages\notification.lostpassword.xml.config" />
+    <Content Include="XmlPackages\notification.newmemberwelcome.xml.config" />
+    <Content Include="XmlPackages\notification.ordercanceled.xml.config" />
+    <Content Include="XmlPackages\notification.orderrefund.xml.config" />
+    <Content Include="XmlPackages\notification.receipt.xml.config" />
+    <Content Include="XmlPackages\notification.shipped.xml.config" />
+    <Content Include="XmlPackages\notification.smsneworder.xml.config" />
+    <Content Include="XmlPackages\page.bestsellers.xml.config" />
+    <Content Include="XmlPackages\page.default.xml.config" />
+    <Content Include="XmlPackages\page.orderconfirmation.xml.config" />
+    <Content Include="XmlPackages\page.recentadditions.xml.config" />
+    <Content Include="XmlPackages\page.search.xml.config" />
+    <Content Include="XmlPackages\page.searchadv.xml.config" />
+    <Content Include="XmlPackages\product.SimpleProduct.xml.config" />
+    <Content Include="XmlPackages\product.SimpleProductLargeImage.xml.config" />
+    <Content Include="XmlPackages\product.TabbedUI.xml.config" />
+    <Content Include="XmlPackages\product.VariantsInDropDown.xml.config" />
+    <Content Include="XmlPackages\product.VariantsInGrid.xml.config" />
+    <Content Include="XmlPackages\product.VariantsInRightBar.xml.config" />
+    <Content Include="XmlPackages\relatedproducts.xml.config" />
+    <Content Include="XmlPackages\rss.news.xml.config" />
+    <Content Include="XmlPackages\rss.unknown.xml.config" />
+    <Content Include="XmlPackages\script.bodyclose.xml.config" />
+    <Content Include="XmlPackages\script.bodyopen.xml.config" />
+    <Content Include="Skins\Default\Fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Skins\Default\Fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Skins\Default\Fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Skins\Default\Fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Scripts\jquery.validate.bootstrap.js" />
+    <None Include="packages.config" />
+    <None Include="Skins\Default\Images\home.psd" />
+    <Content Include="Views\Notice\_Index.cshtml" />
+    <Content Include="Views\Preview\_PreviewBar.cshtml" />
+    <Content Include="Views\Breadcrumb\_Detail.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Entity\Detail.cshtml" />
+    <Content Include="Views\Shared\SimplePage.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Downloads\Index.cshtml" />
+    <Content Include="Views\Product\Detail.cshtml" />
+    <Content Include="Views\Address\Index.cshtml" />
+    <Content Include="Views\Address\Detail.cshtml" />
+    <Content Include="Views\ShoppingCart\_AddToCartForm.cshtml" />
+    <Content Include="StringResources\admin.strings.en-US.csv" />
+    <Content Include="StringResources\strings.en-US.csv" />
+    <Content Include="Views\RecurringOrder\Index.cshtml" />
+    <Content Include="Views\RecurringOrder\Edit.cshtml" />
+    <Content Include="Views\ShoppingCart\_CallToOrder.cshtml" />
+    <Content Include="Views\SessionTimeout\_AddTimer.cshtml" />
+    <Content Include="Views\RequestCatalog\Index.cshtml" />
+    <Content Include="Views\SiteDisclaimer\Index.cshtml" />
+    <Content Include="Views\Topic\Password.cshtml" />
+    <Content Include="Views\Checkout\Index.cshtml" />
+    <Content Include="Views\CheckoutShippingMethod\_ShippingMethod.cshtml" />
+    <Content Include="Views\CheckoutCreditCard\CreditCard.cshtml" />
+    <Content Include="Views\CheckoutConfirmation\Confirmation.cshtml" />
+    <Content Include="Views\CheckoutCart\_CheckoutCart.cshtml" />
+    <Content Include="Views\CheckoutOrderSummary\_OrderSummary.cshtml" />
+    <Content Include="Views\CheckoutCart\EditorTemplates\CheckoutCartItem.cshtml" />
+    <Content Include="Views\CheckoutPurchaseOrder\PurchaseOrder.cshtml" />
+    <Content Include="Views\CheckoutMicroPay\_MicroPay.cshtml" />
+    <Content Include="Views\CheckoutPromotions\_AddPromoCode.cshtml" />
+    <Content Include="Views\CheckoutOrderOption\_OrderOption.cshtml" />
+    <Content Include="Views\CheckoutGiftCardEntry\_AddGiftCard.cshtml" />
+    <Content Include="Views\CheckoutPaymentMethod\_PaymentMethod.cshtml" />
+    <Content Include="Views\CheckoutCreditCard\_CreditCardDetail.cshtml" />
+    <Content Include="Views\CheckoutPurchaseOrder\_PurchaseOrderDetail.cshtml" />
+    <Content Include="Views\ThreeDSecure\ThreeDSecure.cshtml" />
+    <Content Include="Views\CheckoutOrderOption\EditorTemplates\OrderOptionItem.cshtml" />
+    <Content Include="Views\CheckoutGiftCardSetup\EditorTemplates\EmailGiftCardItem.cshtml" />
+    <Content Include="Views\CheckoutGiftCardSetup\GiftCardSetup.cshtml" />
+    <Content Include="Views\TwoCheckout\TwoCheckout.cshtml" />
+    <Content Include="Views\CheckoutCart\EditorTemplates\CheckoutKitDetail.cshtml" />
+    <Content Include="Views\Wallet\SelectWallet.cshtml" />
+    <Content Include="Views\CheckoutAddress\_AddressDetail.cshtml" />
+    <Content Include="Views\CheckoutAddress\_AddressOptions.cshtml" />
+    <Content Include="Views\CheckoutAddress\_SelectAddress.cshtml" />
+    <Content Include="Views\CheckoutCreditCard\BraintreeCreditCard.cshtml" />
+    <Content Include="Views\CheckoutConfirmation\_BuySafeGuarantee.cshtml" />
+    <Content Include="Views\Receipt\Index.cshtml" />
+    <Content Include="Views\CheckoutDebugRealTimeShipping\DebugRealTimeShipping.cshtml" />
+    <Content Include="Views\Shared\_EditAddress.cshtml" />
+    <Content Include="Views\CheckoutAmazonPayments\AmazonPayments.cshtml" />
+    <Content Include="Views\CheckoutAmazonPayments\_AmazonPaymentsDetail.cshtml" />
+    <Content Include="Views\CheckoutShippingEstimate\_ShippingEstimate.cshtml" />
+    <Content Include="Views\Shared\_Search.cshtml" />
+    <Content Include="Views\Minicart\_MiniCartLink.cshtml" />
+    <Content Include="Views\Minicart\_MiniCartContents.cshtml" />
+    <Content Include="Views\UserLinks\_UserLinks.cshtml" />
+    <Content Include="Views\Minicart\EditorTemplates\MiniCartItem.cshtml" />
+    <Content Include="Views\ThreeDSecure\BraintreeThreeDSecureForm.cshtml" />
+    <Content Include="Views\CheckoutPaymentMethod\_AlternativePaymentMethods.cshtml" />
+    <Content Include="Views\Account\Create.cshtml" />
+    <Content Include="Views\ShoppingCart\_BulkAddToCartForm.cshtml" />
+    <Content Include="Views\Product\KitDetail.cshtml" />
+    <Content Include="Views\ShoppingCart\_KitAddToCartForm.cshtml" />
+    <Content Include="Views\ShoppingCart\EditorTemplates\KitGroup.cshtml" />
+    <Content Include="Views\ShoppingCart\EditorTemplates\KitItemMultiSelectCheckbox.cshtml" />
+    <Content Include="Views\ShoppingCart\EditorTemplates\KitItemTextOption.cshtml" />
+    <Content Include="Views\ShoppingCart\EditorTemplates\KitItemTextArea.cshtml" />
+    <Content Include="Views\ShoppingCart\EditorTemplates\KitItemFileUpload.cshtml" />
+    <Content Include="Views\ShoppingCart\_KitSummary.cshtml" />
+    <Content Include="Views\KitUpload\Detail.cshtml" />
+    <Content Include="Views\Product\EmailProduct.cshtml" />
+    <Content Include="Views\Rating\Index.cshtml" />
+    <Content Include="Skins\Default\Views\Shared\_PopupLayout.cshtml" />
+    <Content Include="Views\Checkout\EmptyCart.cshtml" />
+    <Content Include="Views\News\Detail.cshtml" />
+    <Content Include="Views\News\_NewsList.cshtml" />
+    <Content Include="Views\Minicart\EditorTemplates\MiniWishItem.cshtml" />
+    <Content Include="Views\Minicart\_MiniWish.cshtml" />
+    <Content Include="Views\Minicart\_MiniWishContents.cshtml" />
+    <Content Include="Views\Wallet\Index.cshtml" />
+    <Content Include="Views\Wallet\Edit.cshtml" />
+    <Content Include="Views\CheckoutAccount\_Account_Login.cshtml" />
+    <Content Include="Views\CheckoutAccount\_Account_Registered.cshtml" />
+    <Content Include="Views\CheckoutAccount\_Account_CreateAccount.cshtml" />
+    <Content Include="Views\CheckoutAccount\_Account_CollectEmail.cshtml" />
+    <Content Include="Views\CheckoutAccount\_Account_Email.cshtml" />
+    <Content Include="Views\ThreeDSecure\ThreeDSecureForm.cshtml" />
+    <Content Include="XmlPackages\page.kitheader.xml.config" />
+    <Content Include="Skins\Default\XmlPackages\entitymenu.xml.config" />
+    <Content Include="Skins\Default\Views\Shared\_Head.cshtml" />
+    <Content Include="XmlPackages\skin.adminalert.xml.config" />
+    <Content Include="XmlPackages\skin.rootlevelentityullist.xml.config" />
+    <Content Include="XmlPackages\upsellproducts.xml.config" />
+    <Content Include="Views\GoogleCustomerReviews\_GoogleCustomerReviewsBadge.cshtml" />
+    <Content Include="Views\GoogleCustomerReviews\_GoogleCustomerReviewsOptInSurvey.cshtml" />
+    <Content Include="Views\CheckoutCreditCard\SagePayPiCreditCard.cshtml" />
+    <Content Include="Views\ThreeDSecure\SagePayPiThreeDSecureForm.cshtml" />
+    <Content Include="XmlPackages\script.head.xml.config" />
+    <Content Include="Views\Shared\_Captcha.cshtml" />
+    <Content Include="Views\CheckoutCreditCard\AcceptJsCreditCard.cshtml" />
+    <Content Include="Views\CheckoutECheck\AcceptJsECheck.cshtml" />
+    <Content Include="Views\CheckoutECheck\_ECheckDetail.cshtml" />
+    <Content Include="Views\SiteMap\SiteMap.cshtml" />
+    <Content Include="Views\Account\Remove.cshtml" />
+    <None Include="XmlPackages\xmlpackage.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="XmlPackages\xmlpackage.xsx">
+      <DependentUpon>xmlpackage.xsd</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
+    <Folder Include="Skins\Default\Images\paymentOptions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ASPDNSFCommon\AspDotNetStorefrontCommon.csproj">
+      <Project>{65e8266f-bd0a-4c2a-b7de-13aee9df0fae}</Project>
+      <Name>AspDotNetStorefrontCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFControls\AspDotNetStorefrontControls.csproj">
+      <Project>{0249cf6e-1cd6-4f6f-953f-5ef1a3bc71f9}</Project>
+      <Name>AspDotNetStorefrontControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFCore\AspDotNetStorefrontCore.csproj">
+      <Project>{06ed156e-ca02-4a2b-80c4-eeed5a84e9f9}</Project>
+      <Name>AspDotNetStorefrontCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFGatewayProcessors\GatewayAcceptJs\GatewayAcceptJs.csproj">
+      <Project>{0ab33d49-0745-4fb7-a2ba-cd930e5416a6}</Project>
+      <Name>GatewayAcceptJs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFGatewayProcessors\GatewayAmazonPayments\GatewayAmazonPayments.csproj">
+      <Project>{ec30ac00-5cb0-4391-b20e-d61794914a13}</Project>
+      <Name>GatewayAmazonPayments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFGatewayProcessors\GatewayAuthorizeNet\GatewayAuthorizeNet.csproj">
+      <Project>{be725ebc-0882-4f04-b56c-bb1b2be740b7}</Project>
+      <Name>GatewayAuthorizeNet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFGatewayProcessors\GatewayBraintree\GatewayBraintree.csproj">
+      <Project>{78630060-2174-41a9-a14a-58f215491f1b}</Project>
+      <Name>GatewayBraintree</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFGatewayProcessors\GatewayCybersource\GatewayCybersource.csproj">
+      <Project>{9b14da79-a1b6-4928-97e7-d2c5672b646b}</Project>
+      <Name>GatewayCybersource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFGatewayProcessors\GatewayEProcessingNetwork\GatewayEProcessingNetwork.csproj">
+      <Project>{2690d00b-9920-4c4f-bd4e-d6a09295f34f}</Project>
+      <Name>GatewayEProcessingNetwork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFGatewayProcessors\GatewayEWay\GatewayEWay.csproj">
+      <Project>{4fdceb76-a482-48ea-90c4-52ae6bb5a34f}</Project>
+      <Name>GatewayEWay</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFGatewayProcessors\GatewayManual\GatewayManual.csproj">
+      <Project>{11d773b1-7c8c-4b5d-b6ae-fddafd5024d8}</Project>
+      <Name>GatewayManual</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFGatewayProcessors\GatewayMicropay\GatewayMicropay.csproj">
+      <Project>{2366e8a8-0049-41ed-8cc7-36b65c6ce257}</Project>
+      <Name>GatewayMicropay</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFGatewayProcessors\GatewayMoneris\GatewayMoneris.csproj">
+      <Project>{72f189a2-6add-4931-ad67-e340a6eeb825}</Project>
+      <Name>GatewayMoneris</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFGatewayProcessors\GatewayPayFlowPro\GatewayPayFlowPro.csproj">
+      <Project>{024fb35b-d83e-463e-90c5-8dbb6a786e09}</Project>
+      <Name>GatewayPayFlowPro</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFGatewayProcessors\GatewayQBMerchantServices\GatewayQBMerchantServices.csproj">
+      <Project>{0aa1e189-58f8-497b-ac47-2334d8506d4d}</Project>
+      <Name>GatewayQBMerchantServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFGatewayProcessors\GatewaySagePayments\GatewaySagePayments.csproj">
+      <Project>{edc547ac-a027-4e93-b6d0-e45dd7899825}</Project>
+      <Name>GatewaySagePayments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFGatewayProcessors\GatewaySagePayPI\GatewaySagePayPi.csproj">
+      <Project>{664cec49-0376-4824-9b4b-9f2481855d9e}</Project>
+      <Name>GatewaySagePayPi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFGatewayProcessors\GatewaySagePayUK\GatewaySagePayUK.csproj">
+      <Project>{f047bcef-a69b-49f6-b9c9-219640c6bbd7}</Project>
+      <Name>GatewaySagePayUK</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFGatewayProcessors\GatewaySkipjack\GatewaySkipjack.csproj">
+      <Project>{31c2f0b6-ef4f-40b3-81ef-d2320e18075a}</Project>
+      <Name>GatewaySkipjack</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFGatewayProcessors\GatewayTwoCheckout\GatewayTwoCheckout.csproj">
+      <Project>{83a9c9a4-899c-4013-8685-3b4f419a2b36}</Project>
+      <Name>GatewayTwoCheckout</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFGatewayProcessors\GatewayUSAePay\GatewayUSAePay.csproj">
+      <Project>{92484b4b-3107-4bee-b313-225d65dfc172}</Project>
+      <Name>GatewayUSAePay</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AspDotNetStorefront.Addon.Api\AspDotNetStorefront.Addon.Api.csproj">
+      <Project>{8e9add5a-704e-4385-b715-e436c896c309}</Project>
+      <Name>AspDotNetStorefront.Addon.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AspDotNetStorefront.Addon\AspDotNetStorefront.Addon.csproj">
+      <Project>{5e3a36a0-b239-4188-8ab3-b881b1647daf}</Project>
+      <Name>AspDotNetStorefront.Addon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AspDotNetStorefront.Application\AspDotNetStorefront.Application.csproj">
+      <Project>{19f0ce4a-953f-4f35-9c58-984a5d7f0692}</Project>
+      <Name>AspDotNetStorefront.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AspDotNetStorefront.Auth\AspDotNetStorefront.Auth.csproj">
+      <Project>{b2a4a1eb-6ee8-4b56-b503-e3a72023b4ba}</Project>
+      <Name>AspDotNetStorefront.Auth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AspDotNetStorefront.Caching\AspDotNetStorefront.Caching.csproj">
+      <Project>{e4dde4de-b960-4b60-883b-da1c9a12aaf8}</Project>
+      <Name>AspDotNetStorefront.Caching</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AspDotNetStorefront.Checkout\AspDotNetStorefront.Checkout.csproj">
+      <Project>{6ab7d083-610d-4c3d-8779-06cbf0c9af9e}</Project>
+      <Name>AspDotNetStorefront.Checkout</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AspDotNetStorefront.ClientResource\AspDotNetStorefront.ClientResource.csproj">
+      <Project>{e1944260-7d84-4316-bcb9-3bb7d28ab0c2}</Project>
+      <Name>AspDotNetStorefront.ClientResource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AspDotNetStorefront.Controllers\AspDotNetStorefront.Controllers.csproj">
+      <Project>{c0d06b95-79b0-4e69-b50f-62d69d7a771a}</Project>
+      <Name>AspDotNetStorefront.Controllers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AspDotNetStorefront.Entry\AspDotNetStorefront.Entry.csproj">
+      <Project>{3cc120f6-ae1a-4029-9524-047a8463e53a}</Project>
+      <Name>AspDotNetStorefront.Entry</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AspDotNetStorefront.Filters\AspDotNetStorefront.Filters.csproj">
+      <Project>{a6a96769-7363-41d7-bc7b-b1213fc95983}</Project>
+      <Name>AspDotNetStorefront.Filters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AspDotNetStorefront.Models\AspDotNetStorefront.Models.csproj">
+      <Project>{6d4b79bd-a41f-4691-940a-6a0d8a8ecb74}</Project>
+      <Name>AspDotNetStorefront.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AspDotNetStorefront.Routing\AspDotNetStorefront.Routing.csproj">
+      <Project>{87e96abf-251e-4852-95fe-ad19eb149969}</Project>
+      <Name>AspDotNetStorefront.Routing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AspDotNetStorefront.Signifyd\AspDotNetStorefront.Signifyd.csproj">
+      <Project>{dd4e2c28-873d-4b7c-a096-a78f9c2ae3c5}</Project>
+      <Name>AspDotNetStorefront.Signifyd</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AspDotNetStorefront.Validation\AspDotNetStorefront.Validation.csproj">
+      <Project>{f47ff746-d6a3-4725-afd2-2d23de1bd2cb}</Project>
+      <Name>AspDotNetStorefront.Validation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFGatewayProcessors\GatewayPayPal\GatewayPayPal.csproj">
+      <Project>{384a5a6b-1965-43c4-8aab-8a3f990d3e1d}</Project>
+      <Name>GatewayPayPal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFGateways\AspDotNetStorefrontGateways.csproj">
+      <Project>{63e62d25-0d49-4414-836e-85481a039c06}</Project>
+      <Name>AspDotNetStorefrontGateways</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPDNSFWSI\AspDotNetStorefrontWSI.csproj">
+      <Project>{9900e6fd-b97f-4daa-9df9-3e1ce78f48c8}</Project>
+      <Name>AspDotNetStorefrontWSI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AspDotNetStorefrontBuySafe\AspDotNetStorefrontBuySafe.csproj">
+      <Project>{de0e2bb7-adfa-4140-826c-92778fb9d8c6}</Project>
+      <Name>AspDotNetStorefrontBuySafe</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AspDotNetStorefrontEvents\AspDotNetStorefrontEventHandlers.csproj">
+      <Project>{eb4333e4-c278-4d42-8370-42f3052b9af5}</Project>
+      <Name>AspDotNetStorefrontEventHandlers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AspDotNetStorefrontPromotions\AspDotNetStorefrontPromotions.csproj">
+      <Project>{0d9eb42c-b770-4f86-961f-9d1de341bfce}</Project>
+      <Name>AspDotNetStorefrontPromotions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AspDotNetStorefront\AspDotNetStorefront.csproj">
+      <Project>{3f7d3652-dcc8-4b47-af21-09b452866555}</Project>
+      <Name>AspDotNetStorefront</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XsltObjects\XsltObjects.csproj">
+      <Project>{5487d70a-c4dc-4062-82cd-3f2ef1db1a1b}</Project>
+      <Name>XsltObjects</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

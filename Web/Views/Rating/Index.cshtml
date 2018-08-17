@@ -1,0 +1,110 @@
+@model RatingViewModel
+
+@{
+	Layout = ViewEngines.Engines.FindViewPath(ViewContext.Controller.ControllerContext, "_PopupLayout");
+	ViewBag.MetaTitle = @Html.StringResource("page.title.rateitem");
+}
+
+<div class="container-fluid">
+	<div class="page-wrap ratings-page-wrap">
+		<div class="list-item-inner">
+			@{
+				using(Html.BeginForm(
+					ActionNames.RateProduct,
+					ControllerNames.Rating))
+				{
+					@Html.HiddenFor(m => m.ProductId)
+					@Html.HiddenFor(m => m.Editing)
+
+					if(Model.SubmittedSuccessfully)
+					{
+						@Html.RegisterInlineScript(
+					@<script>
+						window.opener.location.reload();
+						window.close();
+					</script>)
+					}
+
+					<h1 class="group-header rating-header">
+						@Html.StringResource("rateit.aspx.3")
+						@Model.ProductName
+					</h1>
+
+					if(Model.HasBadWords)
+					{
+						<div class="page-row bad-words-label">
+							@Html.StringResource("rateit.aspx.4")
+						</div>
+					}
+
+					<div class="product-rating-stars text-center" aria-hidden="true">
+						<i id="ratingstar1" class="fa fa-star-o js-rating-star"></i>
+						<i id="ratingstar2" class="fa fa-star-o js-rating-star"></i>
+						<i id="ratingstar3" class="fa fa-star-o js-rating-star"></i>
+						<i id="ratingstar4" class="fa fa-star-o js-rating-star"></i>
+						<i id="ratingstar5" class="fa fa-star-o js-rating-star"></i>
+					</div>
+
+					@Html.DropDownListEntryFor(expression: m => m.Rating,
+						values: Model.RatingOptions,
+						id: "ratings-dropdown")
+
+					<div class="form-group">
+						<label class="form-label form-label-required" for="Comment">
+							@Html.StringResource("ratings.comment.label")
+							<span class="form-label-suffix form-label-suffix-optional">@Html.StringResource("label.optionalSuffix")</span>
+						</label>
+
+						@Html.TextAreaFor(m => m.Comment, new { @class = "form-control" })
+						@Html.ValidationMessageFor(expression: m => m.Comment)
+					</div>
+
+					<div class="page-action-bar rating-actions">
+						<input type="submit" class="btn btn-primary submit-rating-button" value="@Html.StringResource("rateit.aspx.14")" />
+						<input type="button" class="btn btn-default cancel-rating-button" onclick="window.close();" value="@Html.StringResource("rateit.aspx.15")" />
+					</div>
+				}
+			}
+		</div>
+	</div>
+</div>
+
+@Html.RegisterInlineScript(
+	@<script>
+		//If they clicked a star, toggle the right one(s) and change the dropdown to match
+		adnsf$(".js-rating-star").click(function (event) {
+			var starId = event.target.id.substr(event.target.id.length - 1);
+
+			adnsf$("#ratings-dropdown").val(starId);
+			ToggleStars(starId);
+		});
+
+		//If they changed the dropdown, toggle the right star(s) to match
+		adnsf$("#ratings-dropdown").change(function () {
+			ToggleStars(adnsf$(this).val());
+		});
+
+		//Set the initial rating if we're editing
+		adnsf$(document).ready(function() {
+			var starId = @Model.Rating;
+			adnsf$("#ratings-dropdown").val(starId);
+			ToggleStars(starId);
+		});
+
+		function ToggleStars(starId) {
+			for (i = 1; i < 6; i++) {
+				if (i <= starId) {
+					adnsf$("#ratingstar" + i).removeClass("fa-star-o");
+					adnsf$("#ratingstar" + i).addClass("fa-star");
+				}
+				else {
+					adnsf$("#ratingstar" + i).removeClass("fa-star");
+					adnsf$("#ratingstar" + i).addClass("fa-star-o");
+				}
+			}
+		}
+	</script>,
+	dependencies: new[]
+	{
+		ScriptPaths.JQuery.AdnsfAlias,
+	})

@@ -1,0 +1,21 @@
+@model MinicartLinkViewModel
+
+@if(Model.ItemCount == 0)
+{
+	<a id="js-show-wish" href="#" data-toggle="modal" data-target="#miniwish-modal" class="user-link" aria-disabled="true" tabindex="-1">
+		<span aria-hidden="true">
+			<i class="fa fa-star"></i>
+		</span>
+		@Html.StringResource("miniwish.viewCart") (<span class="minicart-count js-miniwish-count">@Model.ItemCount</span>)
+	</a>
+}
+else
+{
+	<a id="js-show-wish" href="#" data-toggle="modal" data-target="#miniwish-modal" class="user-link">
+		<span aria-hidden="true">
+			<i class="fa fa-star"></i>
+		</span>
+		@Html.StringResource("miniwish.viewCart") (<span class="minicart-count js-miniwish-count">@Model.ItemCount</span>)
+	</a>
+}
+

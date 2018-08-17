@@ -1,0 +1,122 @@
+@model SiteMapViewModel
+
+<h1>
+	@Html.StringResource("sitemap.aspx.1")
+</h1>
+
+<div class="row">
+	@if(Model.ShowCategories
+		|| Model.ShowSections
+		|| Model.ShowManufacturers)
+	{
+		<div class="col-sm-4">
+			@if(@Model.ShowCategories)
+			{
+				<div class="site-map-group">
+					<h2>
+						@Html.StringResource("appconfig.categorypromptplural")
+					</h2>
+					@DisplayEntities(Model.Categories)
+				</div>
+			}
+
+			@if(@Model.ShowSections)
+			{
+				<div class="site-map-group">
+					<h2>
+						@Html.StringResource("appconfig.sectionpromptplural")
+					</h2>
+					@DisplayEntities(Model.Sections)
+				</div>
+			}
+
+			@if(Model.ShowManufacturers)
+			{
+				<div class="site-map-group">
+					<h2>
+						@Html.StringResource("appconfig.manufacturerpromptplural")
+					</h2>
+					@DisplayEntities(Model.Manufacturers)
+				</div>
+			}
+		</div>
+	}
+
+	@if(Model.ShowProducts)
+	{
+		<div class="col-sm-4">
+			<div class="site-map-group">
+				<h2>
+					@Html.StringResource("Global.Products")
+				</h2>
+				<ul>
+					@foreach(var product in Model.Products)
+					{
+						<li>
+							<a href="@product.Url" class="sitemap-link">
+								@product.Name
+							</a>
+						</li>
+					}
+				</ul>
+			</div>
+		</div>
+	}
+
+	@if(Model.ShowTopics || Model.ShowCustomerService)
+	{
+		<div class="col-sm-4">
+			@if(Model.ShowCustomerService)
+			{
+				<div class="site-map-group">
+					<h2>
+						@Html.StringResource("toc.aspx.5")
+					</h2>
+					<ul>
+						@foreach(var customerService in Model.CustomerService)
+						{
+							<li>
+								<a href="@customerService.Url" class="sitemap-link">
+									@customerService.Name
+								</a>
+							</li>
+						}
+					</ul>
+				</div>
+			}
+			@if(Model.ShowTopics)
+			{
+				<div class="site-map-group">
+					<h2>
+						@Html.StringResource("sitemap.aspx.2")
+					</h2>
+					<ul>
+						@foreach(var topic in Model.Topics)
+						{
+							<li>
+								<a href="@topic.Url" class="sitemap-link">
+									@topic.Name
+								</a>
+							</li>
+						}
+					</ul>
+				</div>
+			}
+		</div>
+	}
+</div>
+
+@helper DisplayEntities(List<SiteMapEntity> entities)
+{
+	<ul>
+		@foreach(var entity in entities)
+		{
+			<li>
+				<a href="@entity.Url" class="sitemap-link">
+					@entity.Name
+				</a>
+				@DisplayEntities(entity.Children)
+			</li>
+		}
+	</ul>
+}

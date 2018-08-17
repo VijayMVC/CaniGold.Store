@@ -1,0 +1,82 @@
+@model RecurringOrderIndexViewModel
+
+@{
+	ViewBag.MetaTitle = @Html.StringResource("page.title.recurringorders");
+}
+
+<h1 class="group-header account-header recurring-header">
+	@Html.StringResource("account.aspx.35")
+</h1>
+
+<div class="recurring-wrap">
+	@foreach(var item in @Model.RecurringOrders)
+	{
+		<div class="recurring-wrap">
+			<div class="recurring-header">
+				@Html.StringResource("recurringorder.originalnumber") @item.RecurringOrderId
+			</div>
+
+			@if(!string.IsNullOrEmpty(item.RecurringSubscriptionId))
+			{
+				<div class="recurring-id">@Html.StringResource("recurringorder.subscriptionid") @item.RecurringSubscriptionId</div>
+			}
+
+			<div class="recurring-index">@Html.StringResource("recurringorder.index") @item.RecurringIndex</div>
+
+			<div class="recurring-created-on">@Html.StringResource("recurringorder.createdon") @Localization.ToThreadCultureShortDateString(item.CreatedOn)</div>
+
+			<div class="recurring-buttons">
+				@if(item.AllowUpdate)
+				{
+					<a href="@Url.Action(ActionNames.Edit, new { recurringOrderId = item.RecurringOrderId })"
+					   class="btn btn-primary update-recurring-button">
+						@Html.StringResource("recurringorder.updateinfo")
+					</a>
+				}
+				<a href="@Url.Action(ActionNames.Delete, new { recurringOrderId = item.RecurringOrderId })"
+				   onclick="return confirm('@Html.StringResource("shoppingcart.cs.14")');"
+				   class="btn btn-default stop-recurring-button">
+					@Html.StringResource("recurringorder.stopfuturebilling")
+				</a>
+			</div>
+
+			<table class="table order-table">
+				<tbody>
+					<tr class="table-header">
+						<th scope="col">@Html.StringResource("shoppingcart.cs.1")</th>
+						<th scope="col">@Html.StringResource("shoppingcart.cs.2")</th>
+						<th scope="col">@Html.StringResource("AppConfig.ColorOptionPrompt")</th>
+						<th scope="col">@Html.StringResource("AppConfig.SizeOptionPrompt")</th>
+						<th scope="col">@Html.StringResource("shoppingcart.cs.3")</th>
+						<th scope="col">@Html.StringResource("shoppingcart.cs.4")</th>
+						<th scope="col">@Html.StringResource("shoppingcart.cs.7")</th>
+					</tr>
+
+					@foreach(var cartItem in item.CartItems)
+					{
+						<tr class="table-row">
+							<th scope="row" class="table-row-header">
+								@if(Model.LinkToProduct && !cartItem.IsSystem)
+								{
+									<a href="@cartItem.ProductLink">
+										@cartItem.ProductName
+									</a>
+								}
+							</th>
+							<td>@cartItem.Sku</td>
+							<td>@cartItem.ChosenColor</td>
+							<td>@cartItem.ChosenSize</td>
+							<td>@cartItem.Quantity</td>
+							<td>@cartItem.Price</td>
+							<td>
+								@Localization.ToThreadCultureShortDateString(cartItem.NextRecurringShipDate)
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	}
+
+	<a href="@Url.Action(ActionNames.Index, ControllerNames.Account)" class="btn btn-default back-recurring-button">@Html.StringResource("account.aspx.61")</a>
+</div>

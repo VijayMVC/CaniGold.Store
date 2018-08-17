@@ -1,0 +1,23 @@
+@model PopUpImageViewModel
+@{
+	Layout = ViewEngines.Engines.FindViewPath(ViewContext.Controller.ControllerContext, "_PopupLayout");
+	ViewBag.MetaTitle = @Html.StringResource("page.title.imagepopup");
+}
+
+<div class="page-wrap image-pop-up">
+	<a href="#" class="js-close-window">
+		<img src="@Model.ImageUrl" alt="@Model.AltText" />
+		<span>@Html.StringResource("popup.aspx.1")</span>
+	</a>
+</div>
+
+@Html.RegisterInlineScript(
+	@<script type="text/javascript">
+		adnsf$('.js-close-window').click(function () {
+			window.close();
+		});
+	</script>,
+	dependencies: new[]
+	{
+		ScriptPaths.JQuery.AdnsfAlias,
+	})

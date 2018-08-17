@@ -1,0 +1,15 @@
+@{
+	using(Html.BeginForm("Index", "Search", FormMethod.Get))
+	{
+		<div class="form-group search-form-group">
+			<label for="search-box" class="search-box-label hidden-xs">@Html.StringResource("search.prompt")</label>
+			<input name="searchterm"
+				   id="search-box"
+				   class="form-control form-control-inline search-box"
+				   aria-label="@Html.StringResource("search.prompt")"
+				   placeholder="@Html.StringResource("search.placeholder")"
+				   type="text">
+			<input value="@Html.StringResource("search.go")" class="btn btn-default search-go" type="submit">
+		</div>
+	}
+}

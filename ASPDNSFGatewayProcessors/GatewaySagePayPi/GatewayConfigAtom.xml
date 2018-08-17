@@ -1,0 +1,47 @@
+<ConfigurationAtom>
+	<HtmlHeader>
+		<![CDATA[
+      <table width="780" cellpadding="4" cellspacing="0" class="modalTable">
+      <tbody>
+      <tr>
+
+      <td width="225">
+        <img src="images/sagepaypi.png" border="0"/>
+      </td>
+        <td class="globalAdmin" align="right">
+        <a href="http://www.aspdotnetstorefront.com/linkmanager.aspx?topic=sagepaypi&type=signup" target="_blank">Sign up for Sage Pay PI</a><br />
+        <a href="http://www.aspdotnetstorefront.com/linkmanager.aspx?topic=sagepaypi&type=info" target="_blank">Learn more about Sage Pay PI</a><br />
+        <a href="http://www.aspdotnetstorefront.com/linkmanager.aspx?topic=10000manual&type=sagepaypi" target="_blank">Configuration Help</a><br />
+      </td>
+
+      </tr>
+      </tbody>
+      </table>
+    ]]>
+	</HtmlHeader>
+	<Title><![CDATA[Configure Sage Pay PI]]></Title>
+	<AppConfig Required="true" Advanced="false" FriendlyName="Vendor Name">
+		<Name>SagePayPi.VendorName</Name>
+	</AppConfig>
+	<AppConfig Required="true" Advanced="false" FriendlyName="Integration Key">
+		<Name>SagePayPi.IntegrationKey</Name>
+	</AppConfig>
+	<AppConfig Required="true" Advanced="false" FriendlyName="Integration Password">
+		<Name>SagePayPi.IntegrationPassword</Name>
+	</AppConfig>
+	<AppConfig Required="true" Advanced="true" FriendlyName="Live Script URL">
+		<Name>SagePayPi.LiveScriptUrl</Name>
+	</AppConfig>
+	<AppConfig Required="true" Advanced="true" FriendlyName="Test Script URL">
+		<Name>SagePayPi.TestScriptUrl</Name>
+	</AppConfig>
+	<AppConfig Required="true" Advanced="true" FriendlyName="Live API URL">
+		<Name>SagePayPi.LiveUrl</Name>
+	</AppConfig>
+	<AppConfig Required="true" Advanced="true" FriendlyName="Test API URL">
+		<Name>SagePayPi.TestUrl</Name>
+	</AppConfig>
+	<AppConfig Required="false" Advanced="false" FriendlyName="3dSecure Enabled">
+		<Name>SagePayPi.3dSecureEnabled</Name>
+	</AppConfig>
+</ConfigurationAtom>

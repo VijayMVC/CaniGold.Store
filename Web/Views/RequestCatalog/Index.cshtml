@@ -1,0 +1,20 @@
+@model AddressDetailViewModel
+
+@{
+	ViewBag.MetaTitle = @Html.StringResource("page.title.requestcatalog");
+}
+
+<div class="page-wrap request-catalog-page">
+
+	<h1>@Html.StringResource("requestcatalog.aspx.7")</h1>
+	@{
+		using(Html.BeginForm())
+		{
+			@Html.Partial(ViewNames.EditAddressPartial, Model)
+
+			<input type="submit"
+				   class="btn btn-primary update-button"
+				   value="@Html.StringResource("requestcatalog.aspx.25")" />
+		}
+	}
+</div>

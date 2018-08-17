@@ -1,0 +1,104 @@
+@model AmazonPaymentsViewModel
+
+@{
+	ViewBag.MetaTitle = @Html.StringResource("page.title.amazonpayments");
+}
+
+@Html.RegisterScriptBundle(
+	bundleUrl: ScriptBundlePaths.AmazonBundle,
+	url: ScriptPaths.AmazonPayments,
+	dependencies: new[]
+	{
+		ScriptPaths.JQuery.AdnsfAlias
+	})
+
+@Html.RegisterInlineScript(
+	@<script type="text/javascript">
+		AdnsfAmazonPayments.initClientId(@Html.JavascriptString(Model.ClientId));
+	</script>,
+	name: InlineScripts.OnAmazonLoginReady,
+	dependencies: new[]
+	{
+		ScriptPaths.AmazonPayments,
+	})
+
+@Html.RegisterScriptReference(
+	url: Model.ScriptUrl,
+	dependencies: new[]
+	{
+		InlineScripts.OnAmazonLoginReady,
+	})
+
+<h2>Amazon Payments</h2>
+<div class="page-row">
+	@if(Model.CheckoutStep == AmazonPaymentsCheckoutStep.Login)
+	{
+		<div id="AmazonPayButton"></div>
+
+		@Html.RegisterInlineScript(
+	@<script type="text/javascript">
+		AdnsfAmazonPayments.loginButton(@Html.JavascriptString(Model.MerchantId), @Html.JavascriptString(Url.Action(ActionNames.AmazonPaymentsCallback, ControllerNames.CheckoutAmazonPayments)));
+	</script>,
+			dependencies: new[]
+			{
+				InlineScripts.OnAmazonLoginReady,
+				Model.ScriptUrl,
+			})
+	}
+	else if(Model.CheckoutStep == AmazonPaymentsCheckoutStep.SelectAddress)
+	{
+		<div class="page-block">
+			<div class="row">
+				<div class="col-md-6">
+					<div id="amazonAddressWidget"></div>
+				</div>
+				<div class="col-md-6">
+					<div id="walletWidgetDiv"></div>
+				</div>
+			</div>
+		</div>
+
+		using(Html.BeginForm(ActionNames.AmazonPaymentsComplete, ControllerNames.CheckoutAmazonPayments))
+		{
+			@Html.HiddenFor(m => m.AmazonOrderReferenceId);
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label class="form-label form-label-required">
+							<span class="form-label-prefix form-label-prefix-required">
+								@Html.StringResource("label.requiredPrefix")
+							</span>
+							<span class="form-label-wrap">@Html.StringResource("address.type.label")</span>
+							<span class="form-label-suffix form-label-suffix-required">@Html.StringResource("label.requiredSuffix")</span>
+						</label>
+
+						<div class="entry-feedback-wrapper">
+							@Html.DropDownListFor(
+								expression: m => m.ResidenceType,
+								selectList: Model.ResidenceTypeOptions,
+								htmlAttributes: new
+								{
+									@class = "form-control"
+								})
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<button id="submit" class="btn btn-primary amazon-payments-submit" disabled>@Html.StringResource("common.continue")</button>
+				<a id="js-amazon-logout" class="btn btn-default amazon-payments-cancel">@Html.StringResource("Global.CancelButtonText")</a>
+			</div>
+		}
+
+		@Html.RegisterInlineScript(
+	@<script type="text/javascript">
+				AdnsfAmazonPayments.addressBook(@Html.JavascriptString(Model.AmazonOrderReferenceId), @Html.JavascriptString(Model.MerchantId), @Html.JavascriptString(Url.Action(ActionNames.AmazonPayments, ControllerNames.CheckoutAmazonPayments, new { clearSession = true })))
+	</script>,
+			dependencies: new[]
+			{
+				ScriptPaths.JQuery.AdnsfAlias,
+				InlineScripts.OnAmazonLoginReady,
+				Model.ScriptUrl,
+			})
+	}
+</div>

@@ -1,0 +1,11 @@
+[
+	{
+		"outputFile": "Skins/Default/less/bootstrap.css",
+		"inputFile": "Skins/Default/less/bootstrap.less"
+	},
+	{
+		"outputFile": "Skins/Default/less/themestyles.css",
+		"inputFile": "Skins/Default/less/themestyles.less"
+	}
+]
+/* Allows auto-compilation of LESS files with Visual Studio Extension: https://marketplace.visualstudio.com/items?itemName=MadsKristensen.WebCompiler */

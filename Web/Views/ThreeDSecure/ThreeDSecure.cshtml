@@ -1,0 +1,11 @@
+@model ThreeDSecureFrameViewModel
+
+<div>
+	<div class="three-d-secure-page-header">
+		@Html.Topic("3DSecureExplanation")
+	</div>
+
+	<div class="three-d-secure-button-wrap">
+		<a class="btn btn-primary three-dsecure-submit" href="@Model.FrameUrl">@Html.StringResource("3dsecure.offsitebutton.label")</a>
+	</div>
+</div>

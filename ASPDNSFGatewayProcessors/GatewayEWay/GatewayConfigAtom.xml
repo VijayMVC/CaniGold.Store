@@ -1,0 +1,26 @@
+<ConfigurationAtom>
+	<HtmlHeader>
+		<![CDATA[
+      <table width="780" cellpadding="4" cellspacing="0" class="modalTable">
+		<tbody>
+			<tr>
+			  <td width="225">
+				<img src="images/eway-logo.png" border="0"/>
+			  </td>
+		      <td class="globalAdmin" align="right">
+				<a href="http://www.aspdotnetstorefront.com/linkmanager.aspx?topic=eway&type=info" target="_blank">Learn more about eWAY</a><br />
+				<a href="http://www.aspdotnetstorefront.com/linkmanager.aspx?topic=10000manual&type=eway" target="_blank">Configuration Help</a>
+		      </td>
+			</tr>
+	      </tbody>
+      </table>
+    ]]>
+	</HtmlHeader>
+	<Title><![CDATA[Configure eWAY]]></Title>
+	<AppConfig Required="true" Advanced="false" FriendlyName="Rapid API Key">
+		<Name>eWAY.APIKey</Name>
+	</AppConfig>
+	<AppConfig Required="true" Advanced="false" FriendlyName="Rapid API Password">
+		<Name>eWAY.APIPassword</Name>
+	</AppConfig>
+</ConfigurationAtom>

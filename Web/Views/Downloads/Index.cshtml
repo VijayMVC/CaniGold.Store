@@ -1,0 +1,171 @@
+@model DownloadsViewModel
+
+@{
+	ViewBag.MetaTitle = @Html.StringResource("page.title.downloads");
+}
+
+<div class="page-wrap downloads-page">
+	<h1>@Html.StringResource("download.aspx.1")</h1>
+
+	<div class="downloads-info">
+		@Html.Topic("Download.Information");
+	</div>
+
+	<div class="downloads-wrap">
+		<ul id="pagetabs" class="nav nav-tabs" role="tablist">
+			<li class="nav-item">
+				<a href="#available" id="availableTab" class="nav-link" data-toggle="tab" role="tab" aria-controls="available">
+					@Html.StringResource("download.aspx.2")
+				</a>
+			</li>
+			<li class="nav-item">
+				<a href="#pending" id="pendingTab" class="nav-link" data-toggle="tab" role="tab" aria-controls="pending">
+					@Html.StringResource("download.aspx.3")
+				</a>
+			</li>
+			<li class="nav-item">
+				<a href="#expired" id="expiredTab" class="nav-link" data-toggle="tab" role="tab" aria-controls="expired">
+					@Html.StringResource("download.aspx.4")
+				</a>
+			</li>
+		</ul>
+		<div id="tabContent" class="tab-content">
+			<div id="available" class="tab-pane fade" role="tabpanel" aria-labelledby="availableTab">
+				<div class="tabContentItem">
+					@if(!Model.Available.Any())
+					{
+						@Html.StringResource("download.aspx.11")
+					}
+					else
+					{
+						<table class="table table-striped download-table">
+							<thead>
+								<tr>
+									<th scope="col">@Html.StringResource("download.aspx.5")</th>
+									<th scope="col">@Html.StringResource("download.aspx.6")</th>
+									<th scope="col">@Html.StringResource("download.aspx.7")</th>
+									<th scope="col">@Html.StringResource("download.aspx.8")</th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach(var download in Model.Available)
+								{
+									<tr>
+										<th scope="row" class="table-row-header">@download.ShoppingCartRecordId</th>
+										<td>@download.Name</td>
+										<td>@download.Category</td>
+										<td>
+											@if(download.ExpiresOn != null)
+											{
+												@download.ExpiresOn
+											}
+											else
+											{
+												@Html.StringResource("download.aspx.16")
+											}
+										</td>
+										<td>
+											<a class="btn btn-primary download-button" href="@download.DownloadLocation">@Html.StringResource("download.aspx.14")</a>
+										</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					}
+				</div>
+			</div>
+			<div id="pending" class="tab-pane fade" role="tabpanel" aria-labelledby="pendingTab">
+				<div class="tabContentItem">
+					@if(!Model.Pending.Any())
+					{
+						@Html.StringResource("download.aspx.12")
+					}
+					else
+					{
+						<table class="table table-striped download-table">
+							<thead>
+								<tr>
+									<th scope="col">@Html.StringResource("download.aspx.5")</th>
+									<th scope="col">@Html.StringResource("download.aspx.6")</th>
+									<th scope="col">@Html.StringResource("download.aspx.7")</th>
+									<th scope="col">@Html.StringResource("download.aspx.9")</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach(var download in Model.Pending)
+								{
+									<tr>
+										<th scope="row" class="table-row-header">@download.ShoppingCartRecordId</th>
+										<td>@download.Name</td>
+										<td>@download.Category</td>
+										<td>@download.PurchasedOn</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					}
+				</div>
+			</div>
+			<div id="expired" class="tab-pane fade" role="tabpanel" aria-labelledby="expiredTab">
+				<div class="tabContentItem">
+					@if(!Model.Expired.Any())
+					{
+						@Html.StringResource("download.aspx.13")
+					}
+					else
+					{
+						<table class="table table-striped download-table">
+							<thead>
+								<tr>
+									<th scope="col">@Html.StringResource("download.aspx.5")</th>
+									<th scope="col">@Html.StringResource("download.aspx.6")</th>
+									<th scope="col">@Html.StringResource("download.aspx.7")</th>
+									<th scope="col">@Html.StringResource("download.aspx.10")</th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach(var download in Model.Expired)
+								{
+									<tr>
+										<th scope="row" class="table-row-header">@download.ShoppingCartRecordId</th>
+										<td>@download.Name</td>
+										<td>@download.Category</td>
+										<td>@download.ExpiresOn</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	@Html.RegisterScriptBundle(
+		bundleUrl: ScriptBundlePaths.BootstrappedWcagTabsBundle,
+		url: ScriptPaths.BoostrappedWcagTabs)
+
+	@if(Model.RelatedProducts.Any())
+	{
+		<h4>
+			@Html.StringResource("Header.RelatedItemsHeader")
+		</h4>
+
+		<div class="related-product-wrap">
+			@foreach(var relatedProduct in Model.RelatedProducts)
+			{
+				<div class="related-product">
+					<div class="product-image">
+						<img src="@relatedProduct.ImageUrl" />
+					</div>
+					<div class="product-name">
+						<a href="@relatedProduct.Url">@relatedProduct.Name</a>
+					</div>
+				</div>
+			}
+			<div class="clearfix"></div>
+		</div>
+	}
+</div>
